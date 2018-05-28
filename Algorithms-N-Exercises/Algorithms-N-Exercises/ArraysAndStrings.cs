@@ -51,5 +51,55 @@ namespace Algorithms_N_Exercises
             }
             return true;
         }
+
+        // Check Permutation
+        // O(n)
+        public static bool CheckPermutation(String str1, String str2)
+        {
+            //Edge conditions
+            if (str1 == null || str2 == null)
+            {
+                return false;
+            }
+            if(str1 == String.Empty && str2 == String.Empty)
+            {
+                return true;
+            }
+            if (str1 == String.Empty || str2 == String.Empty)
+            {
+                return false;
+            }
+            if (str1.Length != str2.Length)
+            {
+                return false;
+            }
+
+            int[] mem = new int[256];
+            //Fill mem with chars from first string
+            for(int i = 0; i < str1.Length; i++)
+            {
+                mem[str1[i]]++;
+            }
+
+            //Remove from mem chars, that in str2
+            for (int i = 0; i < str2.Length; i++)
+            {
+                if(mem[str2[i]]-- == 0)
+                {
+                    return false;
+                }
+            }
+
+            //Check every char in mem == 0
+            for (int i = 0; i < mem.Length; i++)
+            {
+                if(mem[i] != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
