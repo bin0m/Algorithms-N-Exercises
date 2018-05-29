@@ -101,5 +101,44 @@ namespace Algorithms_N_Exercises
 
             return true;
         }
+
+        public static bool IsPalindromePermutation(String str)
+        {
+            if (String.IsNullOrEmpty(str))
+            {
+                return true;
+            }
+
+            int[] abc = new int[26];
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] >= 'A' && str[i] <= 'Z')
+                {
+                    abc[str[i] - 'A']++;
+                }
+                if (str[i] >= 'a' && str[i] <= 'z')
+                {
+                    abc[str[i] - 'a']++;
+                }
+            }
+
+            bool singleExists = false;
+
+            for (int i = 0; i < abc.Length; i++)
+            {
+                if(abc[i]> 0)
+                {
+                    if(abc[i] % 2 == 1)
+                    {
+                        if (singleExists)
+                        {
+                            return false;
+                        }
+                        singleExists = true;
+                    }
+                }
+            }          
+            return true;
+        }
     }
 }
