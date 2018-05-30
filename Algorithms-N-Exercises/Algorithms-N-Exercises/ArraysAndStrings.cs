@@ -53,7 +53,7 @@ namespace Algorithms_N_Exercises
         }
 
         // Check Permutation
-        // O(n)
+        // O(n+m)
         public static bool CheckPermutation(String str1, String str2)
         {
             //Edge conditions
@@ -102,6 +102,8 @@ namespace Algorithms_N_Exercises
             return true;
         }
 
+        // IsPalindromePermutation
+        // O(n)
         public static bool IsPalindromePermutation(String str)
         {
             if (String.IsNullOrEmpty(str))
@@ -138,6 +140,63 @@ namespace Algorithms_N_Exercises
                     }
                 }
             }          
+            return true;
+        }
+
+        // IsOneAway
+        // O(n+m)
+        public static bool IsOneAway(String str1, String str2)
+        {
+            //edge conditions
+            if(str1 == null || str2 == null)
+            {
+                return false;
+            }
+
+            var dict = new Dictionary<char, int>();
+            for (int i = 0; i < str1.Length; i++)
+            {
+                if (dict.ContainsKey(str1[i]))
+                {
+                    dict[str1[i]]++;
+                }
+                else
+                {
+                    dict[str1[i]] = 1;
+                }
+            }
+            bool wasOneDifference = false;
+            for (int i = 0; i < str2.Length; i++)
+            {
+                if(dict.ContainsKey(str2[i]))
+                {
+                    if(dict[str2[i]] == 1)
+                    {
+                        dict.Remove(str2[i]);
+                    }
+                    else
+                    {
+                        dict[str2[i]]--;
+                    }
+                }
+                else
+                {
+                    if (wasOneDifference)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        wasOneDifference = true;
+                    }
+                }
+            }
+
+            if (dict.Count > 1)
+            {
+                return false;
+            }
+
             return true;
         }
     }
