@@ -199,5 +199,41 @@ namespace Algorithms_N_Exercises
 
             return true;
         }
+
+        public static bool IsPrime(String str)
+        {
+            if (str == null || str.Length < 2)
+            {
+                return true;
+            }
+            int n = str.Length;
+            //check differnt size of substrings from 1 to n/2
+            for (int size = 1; size <= n / 2; size++)
+            {
+                int parts = n / size;
+                if (parts * size != n)
+                {
+                    continue;
+                }
+                bool partsAreEqual = true;
+                // compare every part to first part
+                for (int part = 1; part < parts && partsAreEqual; part++)
+                {
+                    for (int j = 0; j < size; j++)
+                    {
+                        if (str[j] != str[j + part * size])
+                        {
+                            partsAreEqual = false;
+                            break;
+                        }
+                    }
+                }
+                if (partsAreEqual)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
