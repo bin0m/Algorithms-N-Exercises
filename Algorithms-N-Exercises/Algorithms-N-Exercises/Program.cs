@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms_N_Exercises
 {
@@ -30,8 +26,8 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"IsPrime(\"a\"): result={ArraysAndStrings.IsPrime("a")}, expected=True");
             Console.WriteLine($"IsPrime(\"aaa\"): result={ArraysAndStrings.IsPrime("aaa")}, expected=False");
             Console.WriteLine($"IsPrime(\"aaab\"): result={ArraysAndStrings.IsPrime("aaab")}, expected=True");
-            Console.WriteLine($"IsPrime(\"abcabc\"): result={ArraysAndStrings.IsPrime("abab")}, expected=False");
-            Console.WriteLine($"IsPrime(\"ababab\"): result={ArraysAndStrings.IsPrime("abababab")}, expected=False");
+            Console.WriteLine($"IsPrime(\"abcabc\"): result={ArraysAndStrings.IsPrime("abcabc")}, expected=False");
+            Console.WriteLine($"IsPrime(\"ababab\"): result={ArraysAndStrings.IsPrime("ababab")}, expected=False");
 
 
             Console.ReadLine();
