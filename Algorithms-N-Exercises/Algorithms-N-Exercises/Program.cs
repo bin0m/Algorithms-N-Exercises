@@ -29,6 +29,15 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"IsPrime(\"abcabc\"): result={ArraysAndStrings.IsPrime("abcabc")}, expected=False");
             Console.WriteLine($"IsPrime(\"ababab\"): result={ArraysAndStrings.IsPrime("ababab")}, expected=False");
 
+            QueueViaStacks<int> queueViaStacks = new QueueViaStacks<int>();
+            queueViaStacks.Enqueue(1);
+            queueViaStacks.Enqueue(2);
+            Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=1");
+            queueViaStacks.Enqueue(3);
+            Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Peek()}, expected=2");
+            Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=2");
+            Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=3");
+
 
             Console.ReadLine();
         }
