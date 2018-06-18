@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Algorithms_N_Exercises
 {
@@ -232,6 +233,47 @@ namespace Algorithms_N_Exercises
                 }
             }
             return true;
+        }
+
+        // RotateMatrix
+        // O(n^2)
+        public static bool RotateMatrix(int[,] matrix)
+        {
+            if(matrix == null || matrix.GetUpperBound(0) != matrix.GetUpperBound(1))
+            {
+                return false;
+            }
+            int size = matrix.GetUpperBound(0) + 1;
+
+            for (int line = 0; line < size; line++)
+            {
+                for(int i = line + 1; i < size - line; i ++)
+                {
+                    int temp = matrix[line, i];
+                    matrix[line, i] = matrix[size - i - 1, line];
+                    matrix[size - i - 1, line] = matrix[size - line - 1, size-i-1];
+                    matrix[size - line - 1, size - i - 1] = matrix[i, size - line - 1];
+                    matrix[i, size - line - 1] = temp;
+                }                
+            }
+            return true;
+        }
+
+        //helper method to print matrix
+        public static string MatrixToString(int[,] matrix)
+        {
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i <= matrix.GetUpperBound(0); i++)
+            {
+                sb.Append('[');
+                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
+                {
+                    sb.Append(matrix[i, j].ToString().PadLeft(2)).Append(',');
+                }
+                sb.Length--;
+                sb.AppendLine("],");
+            }
+            return sb.ToString();
         }
     }
 }

@@ -38,6 +38,9 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=2");
             Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=3");
 
+            var mat1 = new int[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
+            var res1 = ArraysAndStrings.RotateMatrix(mat1);
+            Console.WriteLine($"RotateMatrix: result=[\n{ArraysAndStrings.MatrixToString(mat1)}], expected=[\n[13, 9, 5, 1],\n[14,10, 6, 2],\n[15,11, 7, 3],\n[16,12, 8, 4]\n]");
 
             Console.ReadLine();
         }
