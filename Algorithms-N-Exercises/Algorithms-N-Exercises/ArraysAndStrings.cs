@@ -199,6 +199,8 @@ namespace Algorithms_N_Exercises
             return true;
         }
 
+        // String is prime, when it does not contain repeating sequences
+        // O(n^3)
         public static bool IsPrime(String str)
         {
             if (str == null || str.Length < 2)
@@ -236,7 +238,8 @@ namespace Algorithms_N_Exercises
         }
 
         // RotateMatrix
-        // O(n^2)
+        // Time complexity: O(n^2)
+        // Space complexity: O(1) - no additional memory was used
         public static bool RotateMatrix(int[,] matrix)
         {
             if(matrix == null || matrix.GetUpperBound(0) != matrix.GetUpperBound(1))
@@ -260,6 +263,7 @@ namespace Algorithms_N_Exercises
         }
 
         //helper method to print matrix
+        // O(n^2)
         public static string MatrixToString(int[,] matrix)
         {
             StringBuilder sb = new StringBuilder();
