@@ -42,6 +42,10 @@ namespace Algorithms_N_Exercises
             var res1 = ArraysAndStrings.RotateMatrix(mat1);
             Console.WriteLine($"RotateMatrix: result=[\n{ArraysAndStrings.MatrixToString(mat1)}], expected=[\n[13, 9, 5, 1],\n[14,10, 6, 2],\n[15,11, 7, 3],\n[16,12, 8, 4]\n]");
 
+
+            var res01 = Trees.ListOfDepths(Trees.CreateBinaryTree(new int?[] { 3, 9, 20, null, null, 15, 7 }));
+            Console.WriteLine($"result=[[{res01[0].First.Value.val}],[{res01[1].First.Value.val},{res01[1].Last.Value.val}],[{res01[2].First.Value.val},{res01[2].Last.Value.val}]],expected = [[3],[9,20],[15,7]]");
+
             Console.ReadLine();
         }
     }

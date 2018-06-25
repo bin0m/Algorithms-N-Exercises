@@ -77,5 +77,37 @@ namespace Algorithms_N_Exercises
             sb.Append(']');
             return sb.ToString();
         }
+
+        // List Of Depths of binary Tree
+        // O(n)
+        public static List<LinkedList<TreeNode>> ListOfDepths(TreeNode root)
+        {
+            var lists = new List<LinkedList<TreeNode>>();
+            var queue1 = new Queue<TreeNode>();
+            var queue2 = new Queue<TreeNode>();
+            queue1.Enqueue(root);
+            var currentList = new LinkedList<TreeNode>();
+            while(queue1.Count > 0)
+            {
+                TreeNode node = queue1.Dequeue();
+                currentList.AddLast(node);
+                if(node.right != null)
+                {
+                    queue2.Enqueue(node.left);
+                }
+                if (node.left != null)
+                {
+                    queue2.Enqueue(node.right);
+                }
+                if(queue1.Count == 0)
+                {
+                    queue1 = queue2;
+                    queue2 = new Queue<TreeNode>();
+                    lists.Add(currentList);
+                    currentList = new LinkedList<TreeNode>();
+                }
+            }
+            return lists;
+        }
     }
 }
