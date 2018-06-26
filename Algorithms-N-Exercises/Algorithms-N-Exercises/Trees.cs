@@ -109,5 +109,44 @@ namespace Algorithms_N_Exercises
             }
             return lists;
         }
+
+        // private global variable for all recursion calls
+        private static bool isBalanced;
+
+        // Check if binary tree is Balanced
+        // Balanced tree - is defined to be a tree such that the heights of the two subtrees of any node never differ by more that one.
+        // O(n)
+        public static bool CheckBalanced(TreeNode root)
+        {
+            isBalanced = true;
+            GetDepthAndCheckBalanced(root);
+            return isBalanced;
+        }
+
+        // helper method for CheckBalanced()
+        private static int GetDepthAndCheckBalanced(TreeNode root)
+        {
+            if(!isBalanced)
+            {
+                //return error value, when it is already known that tree is not balanced
+                return int.MinValue;
+            }
+            
+            if(root == null)
+            {
+                return -1;
+            }
+
+            int leftDepth = GetDepthAndCheckBalanced(root.left);
+            int rightDepth = GetDepthAndCheckBalanced(root.right);
+            if(Math.Abs(leftDepth - rightDepth) > 1)
+            {
+                isBalanced = false;
+                return int.MinValue;
+            }
+
+            return 1 + Math.Max(leftDepth, rightDepth);
+        }
+
     }
 }
