@@ -4,6 +4,7 @@ namespace Algorithms_N_Exercises
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine($"IsUnique: result={ArraysAndStrings.IsStringUnique("dFf")}, expected=True");
@@ -47,7 +48,10 @@ namespace Algorithms_N_Exercises
 
 
             Console.WriteLine($"CheckBalanced: result={Trees.CheckBalanced(Trees.CreateBinaryTree(new int?[] { 3, 9, 20, null, null, 15, 7 }))}, expected=True");
+            Console.WriteLine($"CheckBalanced: result={Trees.CheckBalanced(Trees.CreateBinaryTree(new int?[] { 3, null }))}, expected=True");
             Console.WriteLine($"CheckBalanced: result={Trees.CheckBalanced(Trees.CreateBinaryTree(new int?[] { 3, null, 20, 15 }))}, expected=False");
+
+            ArraysAndStrings.ArrayInitializations();
 
             Console.ReadLine();
         }

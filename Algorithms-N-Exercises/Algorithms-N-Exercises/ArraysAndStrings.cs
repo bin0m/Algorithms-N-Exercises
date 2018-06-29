@@ -279,5 +279,19 @@ namespace Algorithms_N_Exercises
             }
             return sb.ToString();
         }
+
+        public static void ArrayInitializations()
+        {
+            // 1
+            double[] balance = new double[10];
+            // 2
+            double[] balance2 = { 2340.0, 4523.69, 3421.0 };
+            // 3
+            int[] marks = new int[5] { 99, 98, 92, 97, 95 };
+            // 4 
+            int[] marks2 = new int[] { 99, 98, 92, 97, 95 };
+            // 5
+            int[] arr2 = { };
+        }
     }
 }
