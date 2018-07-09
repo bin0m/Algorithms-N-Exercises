@@ -18,10 +18,10 @@ namespace Algorithms_N_Exercises
             }
             int[] mem = new int[256];
 
-            for (int i = 0; i < str.Length; i++)
+            foreach (char c in str)
             {
-                mem[(int)str[i]]++;
-                if (mem[str[i]] > 1)
+                mem[c]++;
+                if (mem[c] > 1)
                 {
                     return false;
                 }
@@ -75,15 +75,15 @@ namespace Algorithms_N_Exercises
 
             int[] mem = new int[256];
             //Fill mem with chars from first string
-            for (int i = 0; i < str1.Length; i++)
+            foreach (char c in str1)
             {
-                mem[str1[i]]++;
+                mem[c]++;
             }
 
             //Remove from mem chars, that in str2
-            for (int i = 0; i < str2.Length; i++)
+            foreach (char c in str2)
             {
-                if (mem[str2[i]]-- == 0)
+                if (mem[c]-- == 0)
                 {
                     return false;
                 }
@@ -111,15 +111,15 @@ namespace Algorithms_N_Exercises
             }
 
             int[] abc = new int[26];
-            for (int i = 0; i < str.Length; i++)
+            foreach (char c in str)
             {
-                if (str[i] >= 'A' && str[i] <= 'Z')
+                if (c >= 'A' && c <= 'Z')
                 {
-                    abc[str[i] - 'A']++;
+                    abc[c - 'A']++;
                 }
-                if (str[i] >= 'a' && str[i] <= 'z')
+                if (c >= 'a' && c <= 'z')
                 {
-                    abc[str[i] - 'a']++;
+                    abc[c - 'a']++;
                 }
             }
 
@@ -153,29 +153,29 @@ namespace Algorithms_N_Exercises
             }
 
             var dict = new Dictionary<char, int>();
-            for (int i = 0; i < str1.Length; i++)
+            foreach (char c in str1)
             {
-                if (dict.ContainsKey(str1[i]))
+                if (dict.ContainsKey(c))
                 {
-                    dict[str1[i]]++;
+                    dict[c]++;
                 }
                 else
                 {
-                    dict[str1[i]] = 1;
+                    dict[c] = 1;
                 }
             }
             bool wasOneDifference = false;
-            for (int i = 0; i < str2.Length; i++)
+            foreach (char c2 in str2)
             {
-                if (dict.ContainsKey(str2[i]))
+                if (dict.ContainsKey(c2))
                 {
-                    if (dict[str2[i]] == 1)
+                    if (dict[c2] == 1)
                     {
-                        dict.Remove(str2[i]);
+                        dict.Remove(c2);
                     }
                     else
                     {
-                        dict[str2[i]]--;
+                        dict[c2]--;
                     }
                 }
                 else
@@ -295,7 +295,7 @@ namespace Algorithms_N_Exercises
         }
 
         // Can be L (Letter) be written using characters from N (Newspaper) ?
-        static public bool CanBeWrittenFrom(string L, string N)
+        public static bool CanBeWrittenFrom(string L, string N)
         {
             var dict = new Dictionary<char, int>();
             int charCount = 0;

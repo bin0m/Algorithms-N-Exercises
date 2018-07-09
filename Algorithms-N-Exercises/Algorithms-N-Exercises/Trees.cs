@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms_N_Exercises
 {
@@ -10,10 +8,10 @@ namespace Algorithms_N_Exercises
     {
         public class TreeNode
         {
-            public int val;
-            public TreeNode left;
-            public TreeNode right;
-            public TreeNode(int x) { val = x; }
+            public int Val;
+            public TreeNode Left;
+            public TreeNode Right;
+            public TreeNode(int x) { Val = x; }
         }
 
         // helper method
@@ -33,16 +31,16 @@ namespace Algorithms_N_Exercises
                 TreeNode current = queue.Dequeue();
                 if (arr[i] != null)
                 {
-                    current.left = new TreeNode(arr[i].Value);
-                    queue.Enqueue(current.left);
+                    current.Left = new TreeNode(arr[i].Value);
+                    queue.Enqueue(current.Left);
                 }
 
                 if (i + 1 < arr.Length)
                 {
                     if (arr[i + 1] != null)
                     {
-                        current.right = new TreeNode(arr[i + 1].Value);
-                        queue.Enqueue(current.right);
+                        current.Right = new TreeNode(arr[i + 1].Value);
+                        queue.Enqueue(current.Right);
                     }
 
                     i++;
@@ -65,9 +63,9 @@ namespace Algorithms_N_Exercises
                 TreeNode node = queue.Dequeue();
                 if (node != null)
                 {
-                    sb.Append(node.val).Append(',');
-                    queue.Enqueue(node.left);
-                    queue.Enqueue(node.right);
+                    sb.Append(node.Val).Append(',');
+                    queue.Enqueue(node.Left);
+                    queue.Enqueue(node.Right);
                 }
                 else
                 {
@@ -91,13 +89,13 @@ namespace Algorithms_N_Exercises
             {
                 TreeNode node = queue1.Dequeue();
                 currentList.AddLast(node);
-                if(node.right != null)
+                if(node.Right != null)
                 {
-                    queue2.Enqueue(node.left);
+                    queue2.Enqueue(node.Left);
                 }
-                if (node.left != null)
+                if (node.Left != null)
                 {
-                    queue2.Enqueue(node.right);
+                    queue2.Enqueue(node.Right);
                 }
                 if(queue1.Count == 0)
                 {
@@ -111,22 +109,22 @@ namespace Algorithms_N_Exercises
         }
 
         // private global variable for all recursion calls
-        private static bool isBalanced;
+        private static bool _isBalanced;
 
         // Check if binary tree is Balanced
         // Balanced tree - is defined to be a tree such that the heights of the two subtrees of any node never differ by more that one.
         // O(n)
         public static bool CheckBalanced(TreeNode root)
         {
-            isBalanced = true;
+            _isBalanced = true;
             GetDepthAndCheckBalanced(root);
-            return isBalanced;
+            return _isBalanced;
         }
 
         // helper method for CheckBalanced()
         private static int GetDepthAndCheckBalanced(TreeNode root)
         {
-            if(!isBalanced)
+            if(!_isBalanced)
             {
                 //return error value, when it is already known that tree is not balanced
                 return int.MinValue;
@@ -137,11 +135,11 @@ namespace Algorithms_N_Exercises
                 return -1;
             }
 
-            int leftDepth = GetDepthAndCheckBalanced(root.left);
-            int rightDepth = GetDepthAndCheckBalanced(root.right);
+            int leftDepth = GetDepthAndCheckBalanced(root.Left);
+            int rightDepth = GetDepthAndCheckBalanced(root.Right);
             if(Math.Abs(leftDepth - rightDepth) > 1)
             {
-                isBalanced = false;
+                _isBalanced = false;
                 return int.MinValue;
             }
 

@@ -1,37 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms_N_Exercises
 {
     public class QueueViaStacks<T> 
     {
-        private readonly Stack<T> inStack;
-        private readonly Stack<T> outStack;
+        private readonly Stack<T> _inStack;
+        private readonly Stack<T> _outStack;
 
         public QueueViaStacks()
         {
-            inStack = new Stack<T>();
-            outStack = new Stack<T>();
+            _inStack = new Stack<T>();
+            _outStack = new Stack<T>();
         }
 
         public void Enqueue(T item)
         {
-            inStack.Push(item);
+            _inStack.Push(item);
         }
 
         public T Dequeue()
         {
-            if(outStack.Count > 0)
+            if(_outStack.Count > 0)
             {
-                return outStack.Pop();
+                return _outStack.Pop();
             }
-            else if (inStack.Count > 0)
+            else if (_inStack.Count > 0)
             {
                 ShiftStacks();
-                return outStack.Pop();
+                return _outStack.Pop();
             }
             else
             {
@@ -41,14 +38,14 @@ namespace Algorithms_N_Exercises
 
         public T Peek()
         {
-            if(outStack.Count == 0 && inStack.Count > 0)
+            if(_outStack.Count == 0 && _inStack.Count > 0)
             {
                 ShiftStacks();
             }
 
-            if (outStack.Count > 0)
+            if (_outStack.Count > 0)
             {
-                return outStack.Peek();
+                return _outStack.Peek();
             }
             else
             {
@@ -58,9 +55,9 @@ namespace Algorithms_N_Exercises
 
         private void ShiftStacks()
         {
-            while (inStack.Count > 0)
+            while (_inStack.Count > 0)
             {
-                outStack.Push(inStack.Pop());
+                _outStack.Push(_inStack.Pop());
             }
         }
     }
