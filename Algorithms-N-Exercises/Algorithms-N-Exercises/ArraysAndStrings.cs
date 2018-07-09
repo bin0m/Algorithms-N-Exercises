@@ -60,7 +60,7 @@ namespace Algorithms_N_Exercises
             {
                 return false;
             }
-            if(str1 == String.Empty && str2 == String.Empty)
+            if (str1 == String.Empty && str2 == String.Empty)
             {
                 return true;
             }
@@ -75,7 +75,7 @@ namespace Algorithms_N_Exercises
 
             int[] mem = new int[256];
             //Fill mem with chars from first string
-            for(int i = 0; i < str1.Length; i++)
+            for (int i = 0; i < str1.Length; i++)
             {
                 mem[str1[i]]++;
             }
@@ -83,7 +83,7 @@ namespace Algorithms_N_Exercises
             //Remove from mem chars, that in str2
             for (int i = 0; i < str2.Length; i++)
             {
-                if(mem[str2[i]]-- == 0)
+                if (mem[str2[i]]-- == 0)
                 {
                     return false;
                 }
@@ -92,7 +92,7 @@ namespace Algorithms_N_Exercises
             //Check every char in mem == 0
             for (int i = 0; i < mem.Length; i++)
             {
-                if(mem[i] != 0)
+                if (mem[i] != 0)
                 {
                     return false;
                 }
@@ -127,9 +127,9 @@ namespace Algorithms_N_Exercises
 
             for (int i = 0; i < abc.Length; i++)
             {
-                if(abc[i]> 0)
+                if (abc[i] > 0)
                 {
-                    if(abc[i] % 2 == 1)
+                    if (abc[i] % 2 == 1)
                     {
                         if (singleExists)
                         {
@@ -138,7 +138,7 @@ namespace Algorithms_N_Exercises
                         singleExists = true;
                     }
                 }
-            }          
+            }
             return true;
         }
 
@@ -147,7 +147,7 @@ namespace Algorithms_N_Exercises
         public static bool IsOneAway(String str1, String str2)
         {
             //edge conditions
-            if(str1 == null || str2 == null)
+            if (str1 == null || str2 == null)
             {
                 return false;
             }
@@ -167,9 +167,9 @@ namespace Algorithms_N_Exercises
             bool wasOneDifference = false;
             for (int i = 0; i < str2.Length; i++)
             {
-                if(dict.ContainsKey(str2[i]))
+                if (dict.ContainsKey(str2[i]))
                 {
-                    if(dict[str2[i]] == 1)
+                    if (dict[str2[i]] == 1)
                     {
                         dict.Remove(str2[i]);
                     }
@@ -242,7 +242,7 @@ namespace Algorithms_N_Exercises
         // Space complexity: O(1) - no additional memory was used
         public static bool RotateMatrix(int[,] matrix)
         {
-            if(matrix == null || matrix.GetUpperBound(0) != matrix.GetUpperBound(1))
+            if (matrix == null || matrix.GetUpperBound(0) != matrix.GetUpperBound(1))
             {
                 return false;
             }
@@ -250,14 +250,14 @@ namespace Algorithms_N_Exercises
 
             for (int line = 0; line < size; line++)
             {
-                for(int i = line + 1; i < size - line; i ++)
+                for (int i = line + 1; i < size - line; i++)
                 {
                     int temp = matrix[line, i];
                     matrix[line, i] = matrix[size - i - 1, line];
-                    matrix[size - i - 1, line] = matrix[size - line - 1, size-i-1];
+                    matrix[size - i - 1, line] = matrix[size - line - 1, size - i - 1];
                     matrix[size - line - 1, size - i - 1] = matrix[i, size - line - 1];
                     matrix[i, size - line - 1] = temp;
-                }                
+                }
             }
             return true;
         }
@@ -267,7 +267,7 @@ namespace Algorithms_N_Exercises
         public static string MatrixToString(int[,] matrix)
         {
             StringBuilder sb = new StringBuilder();
-            for(int i = 0; i <= matrix.GetUpperBound(0); i++)
+            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
             {
                 sb.Append('[');
                 for (int j = 0; j <= matrix.GetUpperBound(1); j++)
@@ -292,6 +292,46 @@ namespace Algorithms_N_Exercises
             int[] marks2 = new int[] { 99, 98, 92, 97, 95 };
             // 5
             int[] arr2 = { };
+        }
+
+        // Can be L (Letter) be written using characters from N (Newspaper) ?
+        static public bool CanBeWrittenFrom(string L, string N)
+        {
+            var dict = new Dictionary<char, int>();
+            int charCount = 0;
+
+            // 1. count all the characters we need to find in Dictionary
+            foreach (char c in L)
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c]++;
+                }
+                else
+                {
+                    dict.Add(c, 1);
+                    charCount++;
+                }
+            }
+
+            //2. scan N and reduce its count in Dictionary 
+            // If all counts in Dictionary are zero at some point, we return true
+            foreach (char c in N)
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c]--;
+                    if (dict[c] == 0)
+                    {                       
+                        charCount--;
+                        if(charCount == 0)
+                        {
+                            return true;
+                        }
+                    }                   
+                }
+            }
+            return false;
         }
     }
 }

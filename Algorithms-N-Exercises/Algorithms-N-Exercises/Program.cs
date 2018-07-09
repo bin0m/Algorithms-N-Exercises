@@ -53,6 +53,11 @@ namespace Algorithms_N_Exercises
 
             ArraysAndStrings.ArrayInitializations();
 
+            Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("a,O,","qpz,,%ar0O")}, expected=True");
+            Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("a,O,", "qpz,%ar0O")}, expected=False");
+            Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("abba", "Banda b")}, expected=False");
+
+
             Console.ReadLine();
         }
     }
