@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms_N_Exercises
 {
@@ -10,15 +6,15 @@ namespace Algorithms_N_Exercises
     {
         public class ListNode<T>
         {
-            public ListNode<T> next;
-            public T val;
+            public ListNode<T> Next;
+            public T Val;
             public ListNode(T val)
             {
-                this.val = val;
+                this.Val = val;
             }
         }
 
-        static int currentNthToLast = 0;
+        static int _currentNthToLast = 0;
 
         public ListNode<int> NthToLast(ListNode<int> head, int n)
         {
@@ -27,14 +23,14 @@ namespace Algorithms_N_Exercises
                 return null;
             }
 
-            ListNode<int> node = NthToLast(head.next, n);
+            ListNode<int> node = NthToLast(head.Next, n);
 
-            if (currentNthToLast == n)
+            if (_currentNthToLast == n)
             {
                 return head;
             }
 
-            currentNthToLast++;            
+            _currentNthToLast++;            
 
             return node;
 

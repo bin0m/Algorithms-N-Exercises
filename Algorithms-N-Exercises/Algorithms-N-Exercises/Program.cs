@@ -39,12 +39,11 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=2");
             Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=3");
 
-            var mat1 = new int[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
-            var res1 = ArraysAndStrings.RotateMatrix(mat1);
+            var mat1 = new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
             Console.WriteLine($"RotateMatrix: result=[\n{ArraysAndStrings.MatrixToString(mat1)}], expected=[\n[13, 9, 5, 1],\n[14,10, 6, 2],\n[15,11, 7, 3],\n[16,12, 8, 4]\n]");
             
             var res01 = Trees.ListOfDepths(Trees.CreateBinaryTree(new int?[] { 3, 9, 20, null, null, 15, 7 }));
-            Console.WriteLine($"result=[[{res01[0].First.Value.val}],[{res01[1].First.Value.val},{res01[1].Last.Value.val}],[{res01[2].First.Value.val},{res01[2].Last.Value.val}]],expected = [[3],[9,20],[15,7]]");
+            Console.WriteLine($"result=[[{res01[0].First.Value.Val}],[{res01[1].First.Value.Val},{res01[1].Last.Value.Val}],[{res01[2].First.Value.Val},{res01[2].Last.Value.Val}]],expected = [[3],[9,20],[15,7]]");
 
 
             Console.WriteLine($"CheckBalanced: result={Trees.CheckBalanced(Trees.CreateBinaryTree(new int?[] { 3, 9, 20, null, null, 15, 7 }))}, expected=True");
