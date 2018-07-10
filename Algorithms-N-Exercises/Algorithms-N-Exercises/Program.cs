@@ -57,6 +57,9 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("a,O,", "qpz,%ar0O")}, expected=False");
             Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("abba", "Banda b")}, expected=False");
 
+            Console.WriteLine($"WordCountEngine: result=[{ArraysAndStrings.MatrixToString(ArraysAndStrings.WordCountEngine("Practice makes perfect, you'll get perfecT by practice. just practice! just just just!!"))}], expected=[[\"just\",\"4\"],[\"practice\",\"3\"],[\"perfect\",\"2\"],[\"makes\",\"1\"],[\"youll\",\"1\"],[\"get\",\"1\"],[\"by\",\"1\"]]");
+            Console.WriteLine($"WordCountEngine: result=[{ArraysAndStrings.MatrixToString(ArraysAndStrings.WordCountEngine("Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. "))}], expected=[[\"just\",\"4\"],[\"practice\",\"3\"],[\"perfect\",\"2\"],[\"makes\",\"1\"],[\"youll\",\"1\"],[\"get\",\"1\"],[\"by\",\"1\"]]");
+
 
             Console.ReadLine();
         }

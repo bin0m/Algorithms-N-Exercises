@@ -333,5 +333,80 @@ namespace Algorithms_N_Exercises
             }
             return false;
         }
+
+        // returns a list of all unique words in it and their number of occurrences,
+        // sorted by the number of occurrences in a descending order
+        // O(nlogn) - sort
+        public static string[,] WordCountEngine(string document)
+        {
+            var cleanDoc = StripOutNonAlphabeticalCharacters(document);
+            var words = cleanDoc.Split(' ');
+            var dict = new Dictionary<string, int>();
+            foreach (string word in words)
+            {
+                if( word == string.Empty)
+                {
+                    continue;
+                }
+
+                if (dict.ContainsKey(word))
+                {
+                    dict[word]++;
+                }
+                else
+                {
+                    dict.Add(word, 1);
+                }
+            }
+
+            var sort = from pair in dict
+                       orderby pair.Value descending
+                       select pair;
+            var answer = new string[dict.Count, 2];
+            int index = 0;
+            foreach (KeyValuePair<string, int> pair in sort)
+            {
+                answer[index, 0] = pair.Key;
+                answer[index++, 1] = pair.Value.ToString();
+            }
+            return answer;
+        }
+
+        // helper method for WordCountEngine()
+        // O(n) 
+        private static string StripOutNonAlphabeticalCharacters(string document)
+        {
+            var sb = new StringBuilder();
+            foreach (char c in document)
+            {
+                if (c == ' ' || (c >= 'a' && c <= 'z'))
+                {
+                    sb.Append(c);
+                }
+                else if ((c >= 'A' && c <= 'Z'))
+                {
+                    sb.Append(char.ToLower(c));
+                }
+            }
+            return sb.ToString();
+        }
+
+        //helper method to print matrix
+        // O(n^2)
+        public static string MatrixToString(string[,] matrix)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
+            {
+                sb.Append('[');
+                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
+                {
+                    sb.Append('"').Append(matrix[i, j].ToString()).Append('"').Append(',');
+                }
+                sb.Length--;
+                sb.Append("],");
+            }
+            return sb.ToString();
+        }
     }
 }
