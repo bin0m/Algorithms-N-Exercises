@@ -8,9 +8,6 @@ namespace Algorithms_N_Exercises
         static void Main(string[] args)
         {
             Console.WriteLine($"IsUnique: result={ArraysAndStrings.IsStringUnique("dFf")}, expected=True");
-            Console.WriteLine($"IsUnique: result={ArraysAndStrings.IsStringUnique("dFfd")}, expected=False");
-            Console.WriteLine($"IsUnique2: result={ArraysAndStrings.IsStringUnique2("dFf")}, expected=True");
-            Console.WriteLine($"IsUnique2: result={ArraysAndStrings.IsStringUnique2("dFfd")}, expected=False");
 
             Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb","cbba")}, expected=True");
             Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb","cbaa")}, expected=False");
