@@ -336,12 +336,13 @@ namespace Algorithms_N_Exercises
 
         // returns a list of all unique words in it and their number of occurrences,
         // sorted by the number of occurrences in a descending order
-        // O(nlogn) - sort
+        // O(n)
         public static string[,] WordCountEngine(string document)
         {
             var cleanDoc = StripOutNonAlphabeticalCharacters(document);
             var words = cleanDoc.Split(' ');
             var dict = new Dictionary<string, int>();
+            var maxCount = 0;
             foreach (string word in words)
             {
                 if( word == string.Empty)
@@ -351,23 +352,46 @@ namespace Algorithms_N_Exercises
 
                 if (dict.ContainsKey(word))
                 {
-                    dict[word]++;
+                    var count = ++dict[word];
+                    if(count > maxCount)
+                    {
+                        maxCount = count;
+                    }
                 }
                 else
                 {
                     dict.Add(word, 1);
                 }
             }
-
-            var sort = from pair in dict
-                       orderby pair.Value descending
-                       select pair;
+            var bucketsByCount = new List<string>[maxCount+1];
+            foreach(var pair in dict)
+            {
+                if(bucketsByCount[pair.Value] == null)
+                {
+                    bucketsByCount[pair.Value] = new List<string>
+                    {
+                        pair.Key
+                    };
+                }
+                else
+                {
+                    bucketsByCount[pair.Value].Add(pair.Key);
+                }
+            }
+            
             var answer = new string[dict.Count, 2];
             int index = 0;
-            foreach (KeyValuePair<string, int> pair in sort)
+            for( int i = bucketsByCount.Length - 1; i >= 0 ; i--)
             {
-                answer[index, 0] = pair.Key;
-                answer[index++, 1] = pair.Value.ToString();
+                if(bucketsByCount[i] != null)
+                {
+                    foreach(var word in bucketsByCount[i])
+                    {
+                        answer[index, 0] = word;
+                        answer[index++, 1] = i.ToString();
+                    }                   
+                }
+              
             }
             return answer;
         }
