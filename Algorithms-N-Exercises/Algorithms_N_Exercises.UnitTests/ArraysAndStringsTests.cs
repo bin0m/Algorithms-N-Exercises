@@ -34,5 +34,34 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.IsFalse(ArraysAndStrings.IsStringUnique("X b5<;-X"));
         }
+
+        [TestMethod]
+        public void IsStringUnique2Test1()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsStringUnique2("a"));
+        }
+
+        [TestMethod]
+        public void IsStringUnique2Test2()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsStringUnique2("aa"));
+        }
+
+        [TestMethod]
+        public void IsStringUnique2Test3()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsStringUnique2("aA"));
+        }
+
+        [TestMethod]
+        public void IsStringUnique2Test4()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsStringUnique2("a b5<;"));
+        }
+        [TestMethod]
+        public void IsStringUnique2Test5()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsStringUnique2("X b5<;-X"));
+        }
     }
 }
