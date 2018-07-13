@@ -58,10 +58,41 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.IsTrue(ArraysAndStrings.IsStringUnique2("a b5<;"));
         }
+
         [TestMethod]
         public void IsStringUnique2Test5()
         {
             Assert.IsFalse(ArraysAndStrings.IsStringUnique2("X b5<;-X"));
+        }
+
+        [TestMethod]
+        public void CheckPermutationTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.CheckPermutation("a", "a"));
+        }
+
+        [TestMethod]
+        public void CheckPermutationTest2()
+        {
+            Assert.IsFalse(ArraysAndStrings.CheckPermutation("abb", "ab"));
+        }
+
+        [TestMethod]
+        public void CheckPermutationTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.CheckPermutation("AB", "BA"));
+        }
+
+        [TestMethod]
+        public void CheckPermutationTest4()
+        {
+            Assert.IsFalse(ArraysAndStrings.CheckPermutation("AB", "bA"));
+        }
+
+        [TestMethod]
+        public void CheckPermutationTest5()
+        {
+            Assert.IsTrue(ArraysAndStrings.CheckPermutation("abcd", "dbac"));
         }
     }
 }
