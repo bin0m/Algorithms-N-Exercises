@@ -63,5 +63,11 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.IsFalse(ArraysAndStrings.IsStringUnique2("X b5<;-X"));
         }
+
+        [TestMethod]
+        public void ReverseWordsTest1()
+        {
+            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[]{'y','o','u',' ','m','e'}), new char[] { 'm', 'e', ' ', 'y', 'o', 'u' });
+        }
     }
 }

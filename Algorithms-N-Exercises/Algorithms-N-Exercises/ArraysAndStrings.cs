@@ -432,5 +432,48 @@ namespace Algorithms_N_Exercises
             }
             return sb.ToString();
         }
+
+        // reverses the order of the words in the array in the most efficient manner.
+        // O(n)
+        public static char[] ReverseWords(char[] arr)
+        {
+            if (arr == null || arr.Length <= 1)
+            {
+                return arr;
+            }
+
+            //step 1: swap
+            int i = 0;
+            int j = arr.Length - 1;
+            while (i < j)
+            {
+                char temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
+
+            //step 2: reverse every word
+            for (i = 0; i < arr.Length; i++)
+            {
+                int left = i;
+                while (i < arr.Length && arr[i] != ' ')
+                {
+                    i++;
+                }
+                int right = i - 1;
+                while (left < right)
+                {
+                    char temp = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = temp;
+                    left++;
+                    right--;
+                }
+            }
+
+            return arr;
+        }
     }
 }
