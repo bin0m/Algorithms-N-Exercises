@@ -10,7 +10,6 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"IsUnique: result={ArraysAndStrings.IsStringUnique("dFf")}, expected=True");
 
             Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb","cbba")}, expected=True");
-            Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb","cbaa")}, expected=False");
 
             Console.WriteLine($"IsPalindromePermutation: result={ArraysAndStrings.IsPalindromePermutation("Tact coa")}, expected=True");
             Console.WriteLine($"IsPalindromePermutation: result={ArraysAndStrings.IsPalindromePermutation("bbcc bc")}, expected=False");
@@ -57,6 +56,12 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"WordCountEngine: result=[{ArraysAndStrings.MatrixToString(ArraysAndStrings.WordCountEngine("Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. "))}], expected=[[\"and\",\"4\"],[\"every\",\"3\"],[\"is\",\"3\"],[\"a\",\"3\"],[\"quotation\",\"3\"],[\"all\",\"2\"],[\"book\",\"1\"],[\"house\",\"1\"],[\"out\",\"1\"],[\"of\",\"1\"],[\"forests\",\"1\"],[\"mines\",\"1\"],[\"stone\",\"1\"],[\"quarries\",\"1\"],[\"man\",\"1\"],[\"from\",\"1\"],[\"his\",\"1\"],[\"ancestors\",\"1\"]]");
 
             Console.WriteLine($"ReverseWords: result=[{new string(ArraysAndStrings.ReverseWords(new char[] { 'y', 'o', 'u', ' ', 'm', 'e' }))}], expected=[me you]");
+
+
+
+            Console.WriteLine($"MeetingPlanner: result=[{ArraysAndStrings.MeetingPlanner(new[,] { {7,12 }}, new[,] { { 2, 11 } },5)}], expected = []");
+
+
             Console.ReadLine();
         }
     }

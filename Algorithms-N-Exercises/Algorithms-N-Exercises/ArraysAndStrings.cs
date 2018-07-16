@@ -433,6 +433,57 @@ namespace Algorithms_N_Exercises
             return sb.ToString();
         }
 
+        // helper method for MeetingPlanner
+        // O(1)
+        private static int[] FindCommonTimeInterval(int[] slotA, int[] slotB)
+        {
+            if (slotA[0] > slotB[1] || slotB[0] > slotA[1])
+            {
+                return null;
+            }
+            int startCommonTime = Math.Max(slotA[0], slotB[0]);
+            int endCommonTime = Math.Min(slotA[1], slotB[1]);
+            return new int[] { startCommonTime, endCommonTime };
+        }
+
+        //returns the earliest time slot that works for both of them and is of duration dur
+        // O(n+m)
+        public static int[] MeetingPlanner(int[,] slotsA, int[,] slotsB, int dur)
+        {
+            int indexA = 0;
+            int indexB = 0;
+            while (indexA < slotsA.Length / 2 && indexB < slotsB.Length / 2)
+            {
+                var commonTime = FindCommonTimeInterval(new int[] { slotsA[indexA, 0], slotsA[indexA, 1] },
+                                       new int[] { slotsB[indexB, 0], slotsB[indexB, 1] });
+                if (commonTime != null)
+                {
+                    var maxDuration = commonTime[1] - commonTime[0];
+                    if (maxDuration > dur)
+                    {
+                        var cut = dur - maxDuration;
+                        commonTime[1] = commonTime[0] + dur;
+                        return commonTime;
+                    }
+                    else if (maxDuration == dur)
+                    {
+                        return commonTime;
+                    }
+                }
+
+                if (indexA == slotsA.GetUpperBound(0) ||
+                   (slotsA[indexA, 1] > slotsB[indexB, 1]) && (indexB != slotsB.GetUpperBound(0)))
+                {
+                    indexB++;
+                }
+                else
+                {
+                    indexA++;
+                }
+            }
+            return null;
+        }
+
         // reverses the order of the words in the array in the most efficient manner.
         // O(n)
         public static char[] ReverseWords(char[] arr)
