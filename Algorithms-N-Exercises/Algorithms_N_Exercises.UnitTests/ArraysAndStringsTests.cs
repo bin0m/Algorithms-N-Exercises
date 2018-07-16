@@ -69,5 +69,30 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[]{'y','o','u',' ','m','e'}), new char[] { 'm', 'e', ' ', 'y', 'o', 'u' });
         }
+
+        [TestMethod]
+        public void ReverseWordsTest2()
+        {
+            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] {' ', ' '}), new char[] { ' ', ' '});
+        }
+
+        [TestMethod]
+        public void ReverseWordsTest3()
+        {
+            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'a', ' ' }), new char[] { ' ', 'a' });
+        }
+
+
+        [TestMethod]
+        public void ReverseWordsTest4()
+        {
+            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't',' ', 'm', 'a', 'k', 'e', 's',' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e'}), new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e',' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' });
+        }
+
+        [TestMethod]
+        public void ReverseWordsTest5()
+        {
+            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }), new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' });
+        }
     }
 }

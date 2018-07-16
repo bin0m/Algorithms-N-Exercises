@@ -425,7 +425,7 @@ namespace Algorithms_N_Exercises
                 sb.Append('[');
                 for (int j = 0; j <= matrix.GetUpperBound(1); j++)
                 {
-                    sb.Append('"').Append(matrix[i, j].ToString()).Append('"').Append(',');
+                    sb.Append('"').Append(matrix[i, j]).Append('"').Append(',');
                 }
                 sb.Length--;
                 sb.Append("],");
@@ -442,20 +442,11 @@ namespace Algorithms_N_Exercises
                 return arr;
             }
 
-            //step 1: swap
-            int i = 0;
-            int j = arr.Length - 1;
-            while (i < j)
-            {
-                char temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-                j--;
-            }
+            //step 1: reverse the whole array
+            ReverseChars(arr, 0, arr.Length - 1);
 
             //step 2: reverse every word
-            for (i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 int left = i;
                 while (i < arr.Length && arr[i] != ' ')
@@ -463,17 +454,22 @@ namespace Algorithms_N_Exercises
                     i++;
                 }
                 int right = i - 1;
-                while (left < right)
-                {
-                    char temp = arr[left];
-                    arr[left] = arr[right];
-                    arr[right] = temp;
-                    left++;
-                    right--;
-                }
+                ReverseChars(arr, left, right);
             }
-
             return arr;
+        }
+
+        // helper method for ReverseWords
+        private static void ReverseChars(char[] arr, int start, int end)
+        {
+            while (start < end)
+            {
+                char temp = arr[start];
+                arr[start] = arr[end];
+                arr[end] = temp;
+                start++;
+                end--;
+            }
         }
     }
 }
