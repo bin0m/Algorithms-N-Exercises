@@ -170,5 +170,36 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }), new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' });
         }
+
+        [TestMethod]
+        public void FindGrantsCapTest1()
+        {
+            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 2, 4 }, 3), 1.5);
+        }
+
+        [TestMethod]
+        public void FindGrantsCapTest2()
+        {
+            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] {2, 100, 50, 120, 1000},190),47);
+        }
+
+        [TestMethod]
+        public void FindGrantsCapTest3()
+        {
+            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 2, 4, 6 }, 3), 1);
+        }
+
+        [TestMethod]
+        public void FindGrantsCapTest4()
+        {
+            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 2, 100, 50, 120, 167 }, 400), 128);
+        }
+
+        [TestMethod]
+        public void FindGrantsCapTest5()
+        {
+            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 21, 100, 50, 120, 130, 110 }, 140), 23.8);
+        }
+
     }
 }

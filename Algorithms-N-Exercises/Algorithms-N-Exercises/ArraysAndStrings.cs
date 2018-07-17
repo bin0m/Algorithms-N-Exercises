@@ -551,7 +551,7 @@ namespace Algorithms_N_Exercises
                     grantsCap = grantsArray[i];
                     break;
                 }
-                else if (exceedingBudget < 0)
+                if (exceedingBudget < 0)
                 {
                     grantsCap = Math.Abs(exceedingBudget) / i + grantsArray[i];
                     break;
