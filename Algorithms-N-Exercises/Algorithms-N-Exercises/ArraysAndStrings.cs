@@ -425,7 +425,7 @@ namespace Algorithms_N_Exercises
                 sb.Append('[');
                 for (int j = 0; j <= matrix.GetUpperBound(1); j++)
                 {
-                    sb.Append('"').Append(matrix[i, j].ToString()).Append('"').Append(',');
+                    sb.Append('"').Append(matrix[i, j]).Append('"').Append(',');
                 }
                 sb.Length--;
                 sb.Append("],");
@@ -443,7 +443,7 @@ namespace Algorithms_N_Exercises
             }
             int startCommonTime = Math.Max(slotA[0], slotB[0]);
             int endCommonTime = Math.Min(slotA[1], slotB[1]);
-            return new int[] { startCommonTime, endCommonTime };
+            return new[] { startCommonTime, endCommonTime };
         }
 
         //returns the earliest time slot that works for both of them and is of duration dur
@@ -454,14 +454,13 @@ namespace Algorithms_N_Exercises
             int indexB = 0;
             while (indexA < slotsA.Length / 2 && indexB < slotsB.Length / 2)
             {
-                var commonTime = FindCommonTimeInterval(new int[] { slotsA[indexA, 0], slotsA[indexA, 1] },
-                                       new int[] { slotsB[indexB, 0], slotsB[indexB, 1] });
+                var commonTime = FindCommonTimeInterval(new[] { slotsA[indexA, 0], slotsA[indexA, 1] },
+                                       new[] { slotsB[indexB, 0], slotsB[indexB, 1] });
                 if (commonTime != null)
                 {
                     var maxDuration = commonTime[1] - commonTime[0];
                     if (maxDuration > dur)
                     {
-                        var cut = dur - maxDuration;
                         commonTime[1] = commonTime[0] + dur;
                         return commonTime;
                     }
@@ -482,6 +481,45 @@ namespace Algorithms_N_Exercises
                 }
             }
             return null;
+        }
+
+        // reverses the order of the words in the array in the most efficient manner.
+        // O(n)
+        public static char[] ReverseWords(char[] arr)
+        {
+            if (arr == null || arr.Length <= 1)
+            {
+                return arr;
+            }
+
+            //step 1: reverse the whole array
+            ReverseChars(arr, 0, arr.Length - 1);
+
+            //step 2: reverse every word
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int left = i;
+                while (i < arr.Length && arr[i] != ' ')
+                {
+                    i++;
+                }
+                int right = i - 1;
+                ReverseChars(arr, left, right);
+            }
+            return arr;
+        }
+
+        // helper method for ReverseWords
+        private static void ReverseChars(char[] arr, int start, int end)
+        {
+            while (start < end)
+            {
+                char temp = arr[start];
+                arr[start] = arr[end];
+                arr[end] = temp;
+                start++;
+                end--;
+            }
         }
 
         // finds in the most efficient manner a cap such that the least number of recipients is impacted and that the new budget constraint is met 
