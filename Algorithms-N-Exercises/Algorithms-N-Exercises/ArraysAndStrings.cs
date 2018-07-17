@@ -483,5 +483,49 @@ namespace Algorithms_N_Exercises
             }
             return null;
         }
+
+        // finds in the most efficient manner a cap such that the least number of recipients is impacted and that the new budget constraint is met 
+        // O(nlogn)
+        public static double FindGrantsCap(double[] grantsArray, double newBudget)
+        {
+            //edge cases
+            if (grantsArray == null || grantsArray.Length == 0)
+            {
+                return 0;
+            }
+            double sum = grantsArray.Sum();
+            double exceedingBudget = sum - newBudget;
+            if (exceedingBudget <= 0)
+            {
+                return grantsArray[0];
+            }
+
+            // sort array in descending order
+            Array.Sort(grantsArray);
+            Array.Reverse(grantsArray);
+            double grantsCap = 0;
+            int n = grantsArray.Length;
+            for (int i = 1; i < n; i++)
+            {
+                exceedingBudget -= (grantsArray[i - 1] - grantsArray[i]) * i;
+                if (exceedingBudget == 0)
+                {
+                    grantsCap = grantsArray[i];
+                    break;
+                }
+                else if (exceedingBudget < 0)
+                {
+                    grantsCap = Math.Abs(exceedingBudget) / i + grantsArray[i];
+                    break;
+                }
+            }
+            if (exceedingBudget > 0)
+            {
+                exceedingBudget -= grantsArray[n - 1] * n;
+                grantsCap = Math.Abs(exceedingBudget) / n;
+            }
+
+            return grantsCap;
+        }
     }
 }
