@@ -7,6 +7,11 @@ namespace Algorithms_N_Exercises
 
         static void Main(string[] args)
         {
+            // tuple try
+            Tuple<int, string, bool> tuple = new Tuple<int, string, bool>(1, "cat", true);
+            var tuple2 = Tuple.Create("cat", 2, true);
+
+
             Console.WriteLine($"IsUnique: result={ArraysAndStrings.IsStringUnique("dFf")}, expected=True");
 
             Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb","cbba")}, expected=True");
