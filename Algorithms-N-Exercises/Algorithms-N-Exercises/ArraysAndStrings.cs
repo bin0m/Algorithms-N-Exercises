@@ -565,5 +565,68 @@ namespace Algorithms_N_Exercises
 
             return grantsCap;
         }
+
+        //returns true if the text matches the pattern as a regular expression.
+        //supports the '.' and '*' symbols
+        public static bool IsMatchRegex(string text, string pattern)
+        {
+            return IsMatch(text, pattern, 0, 0);
+        }
+
+        //helper recursive function for IsMatch()
+        //time: O(2^n)
+        //space: O(2^n)
+        private static bool IsMatch(string text, string pattern, int i, int j)
+        {
+            Console.WriteLine($"IsMatch({text}[{i}],{pattern}[{j}])");
+            if (i >= text.Length && j >= pattern.Length)
+            {
+                return true;
+            }
+
+            if ( j >= pattern.Length)
+            {
+                Console.WriteLine($"j >= pattern.Length -> FALSE");
+                return false;
+            }
+
+            if (j + 1 < pattern.Length && pattern[j + 1] == '*')
+            {
+                if (i >= text.Length)
+                {
+                    return IsMatch(text, pattern, i, j + 2);
+                }
+
+                if (pattern[j] == '.' || text[i] == pattern[j])
+                {
+                    return IsMatch(text, pattern, i + 1, j) || IsMatch(text, pattern, i, j + 2);
+                }
+                else
+                {
+                    return IsMatch(text, pattern, i, j + 2);
+                }
+            }
+
+            if (i >= text.Length)
+            {
+                Console.WriteLine($"i >= text.Length -> FALSE");
+                return false;
+            }
+
+
+            if (pattern[j] == '.' || text[i] == pattern[j])
+            {
+                return IsMatch(text, pattern, i + 1, j + 1);
+            }
+
+            if (pattern[j] != text[i])
+            {
+                Console.WriteLine($"pattern[j] != text[i] -> FALSE");
+                return false;
+            }
+            Console.WriteLine($"FALSE");
+            return false;
+
+        }
     }
 }

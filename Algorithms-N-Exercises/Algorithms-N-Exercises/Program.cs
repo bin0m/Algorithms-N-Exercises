@@ -62,10 +62,9 @@ namespace Algorithms_N_Exercises
 
             Console.WriteLine($"ReverseWords: result=[{new string(ArraysAndStrings.ReverseWords(new char[] { 'y', 'o', 'u', ' ', 'm', 'e' }))}], expected=[me you]");
 
-
-
             Console.WriteLine($"MeetingPlanner: result=[{ArraysAndStrings.MeetingPlanner(new[,] { {7,12 }}, new[,] { { 2, 11 } },5)}], expected = []");
 
+            Console.WriteLine($"IsMatchRegex: result={ArraysAndStrings.IsMatchRegex("abaa", "a.*a*")}, expected = True");
 
             Console.ReadLine();
         }

@@ -201,5 +201,41 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 21, 100, 50, 120, 130, 110 }, 140), 23.8);
         }
 
+        [TestMethod]
+        public void IsMatchRegexTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsMatchRegex("", ""));
+        }
+
+        [TestMethod]
+        public void IsMatchRegexTest2()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsMatchRegex("aa", "a"));
+        }
+
+        [TestMethod]
+        public void IsMatchRegexTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsMatchRegex("bb", "bb"));
+        }
+
+        [TestMethod]
+        public void IsMatchRegexTest4()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsMatchRegex("bb", "bb"));
+        }
+
+        [TestMethod]
+        public void IsMatchRegexTest5()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsMatchRegex("aba", "a.a"));
+        }
+
+        [TestMethod]
+        public void IsMatchRegexTest6()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsMatchRegex("abaa", "a.*a*"));
+        }
+
     }
 }
