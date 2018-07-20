@@ -237,5 +237,41 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.IsTrue(ArraysAndStrings.IsMatchRegex("abaa", "a.*a*"));
         }
 
+        [TestMethod]
+        public void IsPalindromePermutationTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPalindromePermutation("a"));
+        }
+
+        [TestMethod]
+        public void IsPalindromePermutationTest2()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsPalindromePermutation("ba"));
+        }
+
+        [TestMethod]
+        public void IsPalindromePermutationTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPalindromePermutation("aA"));
+        }
+
+        [TestMethod]
+        public void IsPalindromePermutationTest4()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPalindromePermutation("bba"));
+        }
+
+        [TestMethod]
+        public void IsPalindromePermutationTest5()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPalindromePermutation("aabb"));
+        }
+
+        [TestMethod]
+        public void IsPalindromePermutationTest6()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsPalindromePermutation("aaab"));
+        }
+
     }
 }
