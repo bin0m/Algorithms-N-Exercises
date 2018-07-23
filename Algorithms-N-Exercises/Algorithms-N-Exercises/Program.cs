@@ -20,9 +20,6 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"IsPalindromePermutation: result={ArraysAndStrings.IsPalindromePermutation("bbcc bc")}, expected=False");
 
             Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pale", "ple")}, expected=True");
-            Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pales", "pale")}, expected=True");
-            Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pale", "bale")}, expected=True");
-            Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pale", "bake")}, expected=False");
 
 
             Console.WriteLine($"IsPrime(\"a\"): result={ArraysAndStrings.IsPrime("a")}, expected=True");

@@ -273,5 +273,40 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.IsFalse(ArraysAndStrings.IsPalindromePermutation("aaab"));
         }
 
+        [TestMethod]
+        public void IsOneAwayTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("", ""));
+        }
+        [TestMethod]
+        public void IsOneAwayTest2()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("a", ""));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("", "a"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest4()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("pale", "ple"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest5()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("pale", "bale"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest6()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsOneAway("pale", "bake"));
+        }
+
     }
 }
