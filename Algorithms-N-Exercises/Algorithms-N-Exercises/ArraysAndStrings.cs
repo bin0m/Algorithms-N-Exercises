@@ -322,13 +322,13 @@ namespace Algorithms_N_Exercises
                 {
                     dict[c]--;
                     if (dict[c] == 0)
-                    {                       
+                    {
                         charCount--;
-                        if(charCount == 0)
+                        if (charCount == 0)
                         {
                             return true;
                         }
-                    }                   
+                    }
                 }
             }
             return false;
@@ -345,7 +345,7 @@ namespace Algorithms_N_Exercises
             var maxCount = 0;
             foreach (string word in words)
             {
-                if( word == string.Empty)
+                if (word == string.Empty)
                 {
                     continue;
                 }
@@ -353,7 +353,7 @@ namespace Algorithms_N_Exercises
                 if (dict.ContainsKey(word))
                 {
                     var count = ++dict[word];
-                    if(count > maxCount)
+                    if (count > maxCount)
                     {
                         maxCount = count;
                     }
@@ -363,10 +363,10 @@ namespace Algorithms_N_Exercises
                     dict.Add(word, 1);
                 }
             }
-            var bucketsByCount = new List<string>[maxCount+1];
-            foreach(var pair in dict)
+            var bucketsByCount = new List<string>[maxCount + 1];
+            foreach (var pair in dict)
             {
-                if(bucketsByCount[pair.Value] == null)
+                if (bucketsByCount[pair.Value] == null)
                 {
                     bucketsByCount[pair.Value] = new List<string>
                     {
@@ -378,20 +378,20 @@ namespace Algorithms_N_Exercises
                     bucketsByCount[pair.Value].Add(pair.Key);
                 }
             }
-            
+
             var answer = new string[dict.Count, 2];
             int index = 0;
-            for( int i = bucketsByCount.Length - 1; i >= 0 ; i--)
+            for (int i = bucketsByCount.Length - 1; i >= 0; i--)
             {
-                if(bucketsByCount[i] != null)
+                if (bucketsByCount[i] != null)
                 {
-                    foreach(var word in bucketsByCount[i])
+                    foreach (var word in bucketsByCount[i])
                     {
                         answer[index, 0] = word;
                         answer[index++, 1] = i.ToString();
-                    }                   
+                    }
                 }
-              
+
             }
             return answer;
         }
@@ -584,7 +584,7 @@ namespace Algorithms_N_Exercises
                 return true;
             }
 
-            if ( j >= pattern.Length)
+            if (j >= pattern.Length)
             {
                 Console.WriteLine($"j >= pattern.Length -> FALSE");
                 return false;
@@ -628,5 +628,58 @@ namespace Algorithms_N_Exercises
             return false;
 
         }
+
+        // finds the smallest substring of str containing all the characters in arr
+        // time: O(n+m)
+        // space O(m)
+        public static string GetShortestUniqueSubstring(char[] arr, string str)
+        {
+            int head = 0;
+            string result = "";
+            int uniqueCounter = 0;
+            var countMap = new Dictionary<char, int>();
+            foreach (char ch in arr)
+            {
+                countMap.Add(ch, 0);
+            }
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (countMap.ContainsKey(str[i]))
+                {
+                    if (countMap[str[i]] == 0)
+                    {
+                        uniqueCounter++;
+                    }
+                    countMap[str[i]]++;
+ 
+                    //push head forward
+                    while (uniqueCounter == arr.Length)
+                    {
+                        int tempLength = i - head + 1;
+                        if (tempLength == arr.Length)
+                        {
+                            return str.Substring(head, tempLength);
+                        }
+                        if (result == "" || tempLength < result.Length)
+                        {
+                            result = str.Substring(head, tempLength);
+                        }
+                        if (countMap.ContainsKey(str[head]))
+                        {
+                            countMap[str[head]]--;
+                            if (countMap[str[head]] == 0)
+                            {
+                                uniqueCounter--;
+                            }
+                        }
+                        head++;
+                    }
+                }
+            }
+
+            return result;
+        }
+
     }
 }

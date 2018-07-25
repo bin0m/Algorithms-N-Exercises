@@ -63,6 +63,8 @@ namespace Algorithms_N_Exercises
 
             Console.WriteLine($"IsMatchRegex: result={ArraysAndStrings.IsMatchRegex("abaa", "a.*a*")}, expected = True");
 
+            Console.WriteLine($"GetShortestUniqueSubstring: result={ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb")}, expected = acb");
+
             Console.ReadLine();
         }
     }

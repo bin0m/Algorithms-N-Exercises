@@ -308,5 +308,41 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.IsFalse(ArraysAndStrings.IsOneAway("pale", "bake"));
         }
 
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest1()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] {'a'}, ""), "");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest2()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "b"), "");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest3()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "a"), "a");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest4()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb"), "acb");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest5()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z' }, "xyyzyzyx"), "zyx");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest6()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyx"), "");
+        }
+
     }
 }
