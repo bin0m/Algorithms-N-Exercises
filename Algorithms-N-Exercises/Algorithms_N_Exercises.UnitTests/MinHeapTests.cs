@@ -84,5 +84,34 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(minHeap.ExtractMin(), 2);
 
         }
+
+        //1,4,5,2,3,7,8,6,10,9
+        public void MinHeapTestExtractMin5()
+        {
+            var minHeap = new MinHeap(3);
+            minHeap.Insert(1);
+            minHeap.Insert(4);
+            minHeap.Insert(5);
+            Assert.AreEqual(minHeap.ExtractMin(), 1);
+            minHeap.Insert(2);
+            Assert.AreEqual(minHeap.ExtractMin(), 2);
+            minHeap.Insert(3);
+            Assert.AreEqual(minHeap.ExtractMin(), 3);
+            minHeap.Insert(7);
+            Assert.AreEqual(minHeap.ExtractMin(), 4);
+            minHeap.Insert(8);
+            Assert.AreEqual(minHeap.ExtractMin(), 5);
+            minHeap.Insert(6);
+            Assert.AreEqual(minHeap.ExtractMin(), 6);
+            minHeap.Insert(10);
+            Assert.AreEqual(minHeap.ExtractMin(), 7);
+            minHeap.Insert(9);
+            Assert.AreEqual(minHeap.ExtractMin(), 8);
+            Assert.AreEqual(minHeap.ExtractMin(), 9);
+            Assert.AreEqual(minHeap.ExtractMin(), 10);
+
+            Assert.IsTrue(minHeap.IsEmpty);
+
+        }
     }
 }
