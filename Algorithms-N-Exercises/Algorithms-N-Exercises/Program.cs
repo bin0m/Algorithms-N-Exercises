@@ -65,6 +65,8 @@ namespace Algorithms_N_Exercises
 
             Console.WriteLine($"GetShortestUniqueSubstring: result={ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb")}, expected = acb");
 
+            Console.WriteLine($"GetShortestUniqueSubstring: result=[{ArraysAndStrings.ArrayToString(ArraysAndStrings.FindArrayQuadruplet(new[] { 2, 7, 4, 0, 9, 5, 1, 3 }, 20))}], expected = [0, 4, 7, 9]");
+
             Console.ReadLine();
         }
     }

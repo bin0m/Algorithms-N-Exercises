@@ -652,7 +652,7 @@ namespace Algorithms_N_Exercises
                         uniqueCounter++;
                     }
                     countMap[str[i]]++;
- 
+
                     //push head forward
                     while (uniqueCounter == arr.Length)
                     {
@@ -681,5 +681,54 @@ namespace Algorithms_N_Exercises
             return result;
         }
 
+        // (4Sum) finds four numbers (quadruplet) in arr that sum == s
+        // return an array of these numbers in an ascending order
+        // time O(n^3)
+        // space (1)
+        public static int[] FindArrayQuadruplet(int[] arr, int s)
+        {
+            Array.Sort(arr);
+            for (int i = 0; i < arr.Length - 3; i++)
+            {
+                for (int j = i + 1; j < arr.Length - 2; j++)
+                {
+                    int sumOfPair1 = arr[i] + arr[j];
+                    int r = s - sumOfPair1;
+                    int low = j + 1;
+                    int high = arr.Length - 1;
+                    //now we look for low and high, such that arr[low]+arr[high] == r
+                    while (low < high)
+                    {
+                        int sumOfPair2 = arr[low] + arr[high];
+                        if (sumOfPair2 == r)
+                        {
+                            return new[] { arr[i], arr[j], arr[low], arr[high] };
+                        }
+                        else if (sumOfPair2 > r)
+                        {
+                            high--;
+                        }
+                        else
+                        {
+                            low++;
+                        }
+                    }
+                }
+            }
+            return new int[0];
+        }
+
+        //helper method to print array
+        // O(n)
+        public static string ArrayToString(int[] arr)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sb.Append(arr[i].ToString()).Append(", ");             
+            }
+            sb.Remove(sb.Length - 2, 2);
+            return sb.ToString();
+        }
     }
 }
