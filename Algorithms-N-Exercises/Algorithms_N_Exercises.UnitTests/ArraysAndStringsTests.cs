@@ -344,5 +344,11 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyx"), "");
         }
 
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest7()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyxr"), "zyxr");
+        }
+
     }
 }
