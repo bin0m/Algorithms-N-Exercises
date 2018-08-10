@@ -725,10 +725,31 @@ namespace Algorithms_N_Exercises
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < arr.Length; i++)
             {
-                sb.Append(arr[i].ToString()).Append(", ");             
+                sb.Append(arr[i].ToString()).Append(", ");
             }
             sb.Remove(sb.Length - 2, 2);
             return sb.ToString();
+        }
+
+        public static Dictionary<string, string> FlattenDictionary(Dictionary<string, object> dict)
+        {
+            var flatDict = new Dictionary<string, string>();
+            foreach (var keyValue in dict)
+            {
+                if( keyValue.Value is string)
+                {
+                    flatDict.Add(keyValue.Key, keyValue.Value as string);
+                }
+                else
+                {
+                    var subDict = FlattenDictionary(keyValue.Value as Dictionary<string, object>);
+                    foreach (var subDictPair in subDict)
+                    {
+                        flatDict.Add($"{keyValue}.{subDictPair.Key}", subDictPair.Value);
+                    }
+                }
+            }
+            return flatDict;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Algorithms_N_Exercises.UnitTests
@@ -348,6 +349,16 @@ namespace Algorithms_N_Exercises.UnitTests
         public void GetShortestUniqueSubstringTest7()
         {
             Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyxr"), "zyxr");
+        }
+
+        [TestMethod]
+        public void FlattenDictionaryTest1()
+        {
+            var inputDict = new Dictionary<string, object>();
+            inputDict.Add("key1", "1");
+            var expectedDict = new Dictionary<string, string>();
+            expectedDict.Add("key1", "1");
+            CollectionAssert.AreEqual(ArraysAndStrings.FlattenDictionary(inputDict), expectedDict);
         }
 
     }
