@@ -322,13 +322,13 @@ namespace Algorithms_N_Exercises
                 {
                     dict[c]--;
                     if (dict[c] == 0)
-                    {                       
+                    {
                         charCount--;
-                        if(charCount == 0)
+                        if (charCount == 0)
                         {
                             return true;
                         }
-                    }                   
+                    }
                 }
             }
             return false;
@@ -345,7 +345,7 @@ namespace Algorithms_N_Exercises
             var maxCount = 0;
             foreach (string word in words)
             {
-                if( word == string.Empty)
+                if (word == string.Empty)
                 {
                     continue;
                 }
@@ -353,7 +353,7 @@ namespace Algorithms_N_Exercises
                 if (dict.ContainsKey(word))
                 {
                     var count = ++dict[word];
-                    if(count > maxCount)
+                    if (count > maxCount)
                     {
                         maxCount = count;
                     }
@@ -363,10 +363,10 @@ namespace Algorithms_N_Exercises
                     dict.Add(word, 1);
                 }
             }
-            var bucketsByCount = new List<string>[maxCount+1];
-            foreach(var pair in dict)
+            var bucketsByCount = new List<string>[maxCount + 1];
+            foreach (var pair in dict)
             {
-                if(bucketsByCount[pair.Value] == null)
+                if (bucketsByCount[pair.Value] == null)
                 {
                     bucketsByCount[pair.Value] = new List<string>
                     {
@@ -378,20 +378,20 @@ namespace Algorithms_N_Exercises
                     bucketsByCount[pair.Value].Add(pair.Key);
                 }
             }
-            
+
             var answer = new string[dict.Count, 2];
             int index = 0;
-            for( int i = bucketsByCount.Length - 1; i >= 0 ; i--)
+            for (int i = bucketsByCount.Length - 1; i >= 0; i--)
             {
-                if(bucketsByCount[i] != null)
+                if (bucketsByCount[i] != null)
                 {
-                    foreach(var word in bucketsByCount[i])
+                    foreach (var word in bucketsByCount[i])
                     {
                         answer[index, 0] = word;
                         answer[index++, 1] = i.ToString();
-                    }                   
+                    }
                 }
-              
+
             }
             return answer;
         }
@@ -584,7 +584,7 @@ namespace Algorithms_N_Exercises
                 return true;
             }
 
-            if ( j >= pattern.Length)
+            if (j >= pattern.Length)
             {
                 Console.WriteLine($"j >= pattern.Length -> FALSE");
                 return false;
@@ -627,6 +627,129 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"FALSE");
             return false;
 
+        }
+
+        // finds the smallest substring of str containing all the characters in arr
+        // time: O(n+m)
+        // space O(m)
+        public static string GetShortestUniqueSubstring(char[] arr, string str)
+        {
+            int head = 0;
+            string result = "";
+            int uniqueCounter = 0;
+            var countMap = new Dictionary<char, int>();
+            foreach (char ch in arr)
+            {
+                countMap.Add(ch, 0);
+            }
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (countMap.ContainsKey(str[i]))
+                {
+                    if (countMap[str[i]] == 0)
+                    {
+                        uniqueCounter++;
+                    }
+                    countMap[str[i]]++;
+
+                    //push head forward
+                    while (uniqueCounter == arr.Length)
+                    {
+                        int tempLength = i - head + 1;
+                        if (tempLength == arr.Length)
+                        {
+                            return str.Substring(head, tempLength);
+                        }
+                        if (result == "" || tempLength < result.Length)
+                        {
+                            result = str.Substring(head, tempLength);
+                        }
+                        if (countMap.ContainsKey(str[head]))
+                        {
+                            countMap[str[head]]--;
+                            if (countMap[str[head]] == 0)
+                            {
+                                uniqueCounter--;
+                            }
+                        }
+                        head++;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        // (4Sum) finds four numbers (quadruplet) in arr that sum == s
+        // return an array of these numbers in an ascending order
+        // time O(n^3)
+        // space (1)
+        public static int[] FindArrayQuadruplet(int[] arr, int s)
+        {
+            Array.Sort(arr);
+            for (int i = 0; i < arr.Length - 3; i++)
+            {
+                for (int j = i + 1; j < arr.Length - 2; j++)
+                {
+                    int sumOfPair1 = arr[i] + arr[j];
+                    int r = s - sumOfPair1;
+                    int low = j + 1;
+                    int high = arr.Length - 1;
+                    //now we look for low and high, such that arr[low]+arr[high] == r
+                    while (low < high)
+                    {
+                        int sumOfPair2 = arr[low] + arr[high];
+                        if (sumOfPair2 == r)
+                        {
+                            return new[] { arr[i], arr[j], arr[low], arr[high] };
+                        }
+                        else if (sumOfPair2 > r)
+                        {
+                            high--;
+                        }
+                        else
+                        {
+                            low++;
+                        }
+                    }
+                }
+            }
+            return new int[0];
+        }
+
+        //helper method to print array
+        // O(n)
+        public static string ArrayToString(int[] arr)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sb.Append(arr[i].ToString()).Append(", ");
+            }
+            sb.Remove(sb.Length - 2, 2);
+            return sb.ToString();
+        }
+
+        public static Dictionary<string, string> FlattenDictionary(Dictionary<string, object> dict)
+        {
+            var flatDict = new Dictionary<string, string>();
+            foreach (var keyValue in dict)
+            {
+                if( keyValue.Value is string)
+                {
+                    flatDict.Add(keyValue.Key, keyValue.Value as string);
+                }
+                else
+                {
+                    var subDict = FlattenDictionary(keyValue.Value as Dictionary<string, object>);
+                    foreach (var subDictPair in subDict)
+                    {
+                        flatDict.Add($"{keyValue}.{subDictPair.Key}", subDictPair.Value);
+                    }
+                }
+            }
+            return flatDict;
         }
 
         // that returns the number of the possible paths the driverless car can take

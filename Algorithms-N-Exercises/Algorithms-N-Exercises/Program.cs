@@ -20,9 +20,6 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"IsPalindromePermutation: result={ArraysAndStrings.IsPalindromePermutation("bbcc bc")}, expected=False");
 
             Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pale", "ple")}, expected=True");
-            Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pales", "pale")}, expected=True");
-            Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pale", "bale")}, expected=True");
-            Console.WriteLine($"IsOneAway: result={ArraysAndStrings.IsOneAway("pale", "bake")}, expected=False");
 
 
             Console.WriteLine($"IsPrime(\"a\"): result={ArraysAndStrings.IsPrime("a")}, expected=True");
@@ -65,6 +62,12 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"MeetingPlanner: result=[{ArraysAndStrings.MeetingPlanner(new[,] { {7,12 }}, new[,] { { 2, 11 } },5)}], expected = []");
 
             Console.WriteLine($"IsMatchRegex: result={ArraysAndStrings.IsMatchRegex("abaa", "a.*a*")}, expected = True");
+
+            Console.WriteLine($"GetShortestUniqueSubstring: result={ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb")}, expected = acb");
+
+            Console.WriteLine($"GetShortestUniqueSubstring: result=[{ArraysAndStrings.ArrayToString(ArraysAndStrings.FindArrayQuadruplet(new[] { 2, 7, 4, 0, 9, 5, 1, 3 }, 20))}], expected = [0, 4, 7, 9]");
+
+            Console.WriteLine($"GetShortestUniqueSubstring: result={MathAndLogicPuzzles.RootOfNumber(27,3)}, expected = 3.0");
 
             Console.WriteLine($"NumOfPathsToDest: result={ArraysAndStrings.NumOfPathsToDest(4)}, expected = 5");
 

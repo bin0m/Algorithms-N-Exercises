@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Algorithms_N_Exercises.UnitTests
@@ -271,6 +272,93 @@ namespace Algorithms_N_Exercises.UnitTests
         public void IsPalindromePermutationTest6()
         {
             Assert.IsFalse(ArraysAndStrings.IsPalindromePermutation("aaab"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("", ""));
+        }
+        [TestMethod]
+        public void IsOneAwayTest2()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("a", ""));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("", "a"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest4()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("pale", "ple"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest5()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsOneAway("pale", "bale"));
+        }
+
+        [TestMethod]
+        public void IsOneAwayTest6()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsOneAway("pale", "bake"));
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest1()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] {'a'}, ""), "");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest2()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "b"), "");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest3()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "a"), "a");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest4()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb"), "acb");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest5()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z' }, "xyyzyzyx"), "zyx");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest6()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyx"), "");
+        }
+
+        [TestMethod]
+        public void GetShortestUniqueSubstringTest7()
+        {
+            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyxr"), "zyxr");
+        }
+
+        [TestMethod]
+        public void FlattenDictionaryTest1()
+        {
+            var inputDict = new Dictionary<string, object>();
+            inputDict.Add("key1", "1");
+            var expectedDict = new Dictionary<string, string>();
+            expectedDict.Add("key1", "1");
+            CollectionAssert.AreEqual(ArraysAndStrings.FlattenDictionary(inputDict), expectedDict);
         }
 
         [TestMethod]
