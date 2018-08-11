@@ -273,5 +273,40 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.IsFalse(ArraysAndStrings.IsPalindromePermutation("aaab"));
         }
 
+        [TestMethod]
+        public void NumOfPathsToDestTest1()
+        {
+            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(1),1);
+        }
+
+        [TestMethod]
+        public void NumOfPathsToDestTest2()
+        {
+            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(2), 1);
+        }
+
+        [TestMethod]
+        public void NumOfPathsToDestTest3()
+        {
+            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(3), 2);
+        }
+
+        [TestMethod]
+        public void NumOfPathsToDestTest4()
+        {
+            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(4), 5);
+        }
+
+        [TestMethod]
+        public void NumOfPathsToDestTest5()
+        {
+            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(5), 14);
+        }
+
+        [TestMethod]
+        public void NumOfPathsToDestTest6()
+        {
+            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(17), 35357670);
+        }
     }
 }

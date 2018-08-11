@@ -66,6 +66,8 @@ namespace Algorithms_N_Exercises
 
             Console.WriteLine($"IsMatchRegex: result={ArraysAndStrings.IsMatchRegex("abaa", "a.*a*")}, expected = True");
 
+            Console.WriteLine($"NumOfPathsToDest: result={ArraysAndStrings.NumOfPathsToDest(4)}, expected = 5");
+
             Console.ReadLine();
         }
     }

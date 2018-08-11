@@ -628,5 +628,38 @@ namespace Algorithms_N_Exercises
             return false;
 
         }
+
+        // that returns the number of the possible paths the driverless car can take
+        // time: O(n^2)
+        // space: O(n^2)
+        public static int NumOfPathsToDest(int n)
+        {
+            int[,] matrix = new int[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i; j < n; j++)
+                {
+                    if (i == 0)
+                    {
+                        // first row
+                        matrix[i, j] = 1;
+
+                    }
+                    else if (i == j)
+                    {
+                        // diagonal
+                        matrix[i, j] = matrix[i - 1, j];
+
+                    }
+                    else
+                    {
+                        matrix[i, j] = matrix[i, j - 1] + matrix[i - 1, j];
+
+                    }
+                }
+
+            }
+            return matrix[n - 1, n - 1];
+        }
     }
 }
