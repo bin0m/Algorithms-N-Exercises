@@ -446,8 +446,9 @@ namespace Algorithms_N_Exercises
             return new[] { startCommonTime, endCommonTime };
         }
 
-        //returns the earliest time slot that works for both of them and is of duration dur
-        // O(n+m)
+        // returns the earliest time slot that works for both of them and is of duration dur
+        // time: O(n+m)
+        // space: O(1)
         public static int[] MeetingPlanner(int[,] slotsA, int[,] slotsB, int dur)
         {
             int indexA = 0;
@@ -484,7 +485,8 @@ namespace Algorithms_N_Exercises
         }
 
         // reverses the order of the words in the array in the most efficient manner.
-        // O(n)
+        // time: O(n)
+        // space: O(1)
         public static char[] ReverseWords(char[] arr)
         {
             if (arr == null || arr.Length <= 1)
@@ -523,7 +525,8 @@ namespace Algorithms_N_Exercises
         }
 
         // finds in the most efficient manner a cap such that the least number of recipients is impacted and that the new budget constraint is met 
-        // O(nlogn)
+        // time: O(nlogn)
+        // space: O(1)
         public static double FindGrantsCap(double[] grantsArray, double newBudget)
         {
             //edge cases
