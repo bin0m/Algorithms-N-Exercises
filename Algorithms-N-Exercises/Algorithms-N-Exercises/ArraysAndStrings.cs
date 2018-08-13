@@ -631,7 +631,7 @@ namespace Algorithms_N_Exercises
 
         // finds the smallest substring of str containing all the characters in arr
         // time: O(n+m)
-        // space O(m)
+        // space: O(m)
         public static string GetShortestUniqueSubstring(char[] arr, string str)
         {
             int head = 0;
@@ -683,8 +683,8 @@ namespace Algorithms_N_Exercises
 
         // (4Sum) finds four numbers (quadruplet) in arr that sum == s
         // return an array of these numbers in an ascending order
-        // time O(n^3)
-        // space (1)
+        // time: O(n^3)
+        // space: O(1)
         public static int[] FindArrayQuadruplet(int[] arr, int s)
         {
             Array.Sort(arr);
@@ -718,7 +718,7 @@ namespace Algorithms_N_Exercises
             return new int[0];
         }
 
-        //helper method to print array
+        // helper method to print array
         // O(n)
         public static string ArrayToString(int[] arr)
         {
@@ -731,6 +731,9 @@ namespace Algorithms_N_Exercises
             return sb.ToString();
         }
 
+        // returns a flattened version of dictionary, that can contain inner dictionaries
+        // time: O(n)
+        // space: O(n)
         public static Dictionary<string, string> FlattenDictionary(Dictionary<string, object> dict)
         {
             var flatDict = new Dictionary<string, string>();
