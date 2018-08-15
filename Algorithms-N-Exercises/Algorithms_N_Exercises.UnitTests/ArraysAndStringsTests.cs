@@ -111,7 +111,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var slotA = new[,] { { 6, 12 } };
             var slotB = new[,] { { 2, 11 } };
             int dur = 5;
-            CollectionAssert.AreEqual(ArraysAndStrings.MeetingPlanner(slotA, slotB, dur), new[] { 6, 11 });
+            CollectionAssert.AreEqual(new[] { 6, 11 }, ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
         }
 
         [TestMethod]
@@ -120,7 +120,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var slotA = new[,] { { 1, 10 } };
             var slotB = new[,] { { 2, 3 }, { 5, 7 } };
             int dur = 2;
-            CollectionAssert.AreEqual(ArraysAndStrings.MeetingPlanner(slotA, slotB, dur), new[] { 5, 7 });
+            CollectionAssert.AreEqual(new[] { 5, 7 }, ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
         }
 
         [TestMethod]
@@ -138,68 +138,68 @@ namespace Algorithms_N_Exercises.UnitTests
             var slotA = new[,] { { 10, 50 }, { 60, 120 }, { 140, 210 } };
             var slotB = new[,] { { 0, 15 }, { 60, 70 } };
             int dur = 8;
-            CollectionAssert.AreEqual(ArraysAndStrings.MeetingPlanner(slotA, slotB, dur), new[] { 60, 68 });
+            CollectionAssert.AreEqual(new[] { 60, 68 }, ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
         }
 
         [TestMethod]
         public void ReverseWordsTest1()
         {
-            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[]{'y','o','u',' ','m','e'}), new char[] { 'm', 'e', ' ', 'y', 'o', 'u' });
+            CollectionAssert.AreEqual(new char[] { 'm', 'e', ' ', 'y', 'o', 'u' }, ArraysAndStrings.ReverseWords(new char[] { 'y', 'o', 'u', ' ', 'm', 'e' }));
         }
 
         [TestMethod]
         public void ReverseWordsTest2()
         {
-            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] {' ', ' '}), new char[] { ' ', ' '});
+            CollectionAssert.AreEqual(new char[] { ' ', ' '}, ArraysAndStrings.ReverseWords(new char[] { ' ', ' ' }));
         }
 
         [TestMethod]
         public void ReverseWordsTest3()
         {
-            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'a', ' ' }), new char[] { ' ', 'a' });
+            CollectionAssert.AreEqual(new char[] { ' ', 'a' }, ArraysAndStrings.ReverseWords(new char[] { 'a', ' ' }));
         }
 
 
         [TestMethod]
         public void ReverseWordsTest4()
         {
-            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't',' ', 'm', 'a', 'k', 'e', 's',' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e'}), new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e',' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' });
+            CollectionAssert.AreEqual(new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e',' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' }, ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }));
         }
 
         [TestMethod]
         public void ReverseWordsTest5()
         {
-            CollectionAssert.AreEqual(ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }), new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' });
+            CollectionAssert.AreEqual(new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' }, ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }));
         }
 
         [TestMethod]
         public void FindGrantsCapTest1()
         {
-            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 2, 4 }, 3), 1.5);
+            Assert.AreEqual(1.5, ArraysAndStrings.FindGrantsCap(new double[] { 2, 4 }, 3));
         }
 
         [TestMethod]
         public void FindGrantsCapTest2()
         {
-            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] {2, 100, 50, 120, 1000},190),47);
+            Assert.AreEqual(47, ArraysAndStrings.FindGrantsCap(new double[] { 2, 100, 50, 120, 1000 }, 190));
         }
 
         [TestMethod]
         public void FindGrantsCapTest3()
         {
-            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 2, 4, 6 }, 3), 1);
+            Assert.AreEqual(1, ArraysAndStrings.FindGrantsCap(new double[] { 2, 4, 6 }, 3));
         }
 
         [TestMethod]
         public void FindGrantsCapTest4()
         {
-            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 2, 100, 50, 120, 167 }, 400), 128);
+            Assert.AreEqual(128, ArraysAndStrings.FindGrantsCap(new double[] { 2, 100, 50, 120, 167 }, 400));
         }
 
         [TestMethod]
         public void FindGrantsCapTest5()
         {
-            Assert.AreEqual(ArraysAndStrings.FindGrantsCap(new double[] { 21, 100, 50, 120, 130, 110 }, 140), 23.8);
+            Assert.AreEqual(23.8, ArraysAndStrings.FindGrantsCap(new double[] { 21, 100, 50, 120, 130, 110 }, 140));
         }
 
         [TestMethod]
@@ -312,43 +312,43 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void GetShortestUniqueSubstringTest1()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] {'a'}, ""), "");
+            Assert.AreEqual("", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, ""));
         }
 
         [TestMethod]
         public void GetShortestUniqueSubstringTest2()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "b"), "");
+            Assert.AreEqual("", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "b"));
         }
 
         [TestMethod]
         public void GetShortestUniqueSubstringTest3()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "a"), "a");
+            Assert.AreEqual("a", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a' }, "a"));
         }
 
         [TestMethod]
         public void GetShortestUniqueSubstringTest4()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb"), "acb");
+            Assert.AreEqual("acb", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a', 'b' }, "-acb"));
         }
 
         [TestMethod]
         public void GetShortestUniqueSubstringTest5()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z' }, "xyyzyzyx"), "zyx");
+            Assert.AreEqual("zyx", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z' }, "xyyzyzyx"));
         }
 
         [TestMethod]
         public void GetShortestUniqueSubstringTest6()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyx"), "");
+            Assert.AreEqual("", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyx"));
         }
 
         [TestMethod]
         public void GetShortestUniqueSubstringTest7()
         {
-            Assert.AreEqual(ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyxr"), "zyxr");
+            Assert.AreEqual("zyxr", ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'x', 'y', 'z', 'r' }, "xyyzyzyxr"));
         }
 
         [TestMethod]
@@ -358,43 +358,43 @@ namespace Algorithms_N_Exercises.UnitTests
             inputDict.Add("key1", "1");
             var expectedDict = new Dictionary<string, string>();
             expectedDict.Add("key1", "1");
-            CollectionAssert.AreEqual(ArraysAndStrings.FlattenDictionary(inputDict), expectedDict);
+            CollectionAssert.AreEqual(expectedDict, ArraysAndStrings.FlattenDictionary(inputDict));
         }
 
         [TestMethod]
         public void NumOfPathsToDestTest1()
         {
-            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(1),1);
+            Assert.AreEqual(1, ArraysAndStrings.NumOfPathsToDest(1));
         }
 
         [TestMethod]
         public void NumOfPathsToDestTest2()
         {
-            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(2), 1);
+            Assert.AreEqual(1, ArraysAndStrings.NumOfPathsToDest(2));
         }
 
         [TestMethod]
         public void NumOfPathsToDestTest3()
         {
-            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(3), 2);
+            Assert.AreEqual(2, ArraysAndStrings.NumOfPathsToDest(3));
         }
 
         [TestMethod]
         public void NumOfPathsToDestTest4()
         {
-            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(4), 5);
+            Assert.AreEqual(5, ArraysAndStrings.NumOfPathsToDest(4));
         }
 
         [TestMethod]
         public void NumOfPathsToDestTest5()
         {
-            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(5), 14);
+            Assert.AreEqual(14, ArraysAndStrings.NumOfPathsToDest(5));
         }
 
         [TestMethod]
         public void NumOfPathsToDestTest6()
         {
-            Assert.AreEqual(ArraysAndStrings.NumOfPathsToDest(17), 35357670);
+            Assert.AreEqual(35357670, ArraysAndStrings.NumOfPathsToDest(17));
         }
     }
 }
