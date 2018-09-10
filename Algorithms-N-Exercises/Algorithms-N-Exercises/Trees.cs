@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.CompilerServices;
 
 namespace Algorithms_N_Exercises
-{
+{   
     public class Trees
     {
         public class TreeNode
