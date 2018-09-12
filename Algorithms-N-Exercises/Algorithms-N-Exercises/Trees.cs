@@ -90,14 +90,14 @@ namespace Algorithms_N_Exercises
             {
                 TreeNode node = queue1.Dequeue();
                 currentList.AddLast(node);
-                if(node.Right != null)
+                if (node.Left != null)
                 {
                     queue2.Enqueue(node.Left);
                 }
-                if (node.Left != null)
+                if (node.Right != null)
                 {
                     queue2.Enqueue(node.Right);
-                }
+                }              
                 if(queue1.Count == 0)
                 {
                     queue1 = queue2;
