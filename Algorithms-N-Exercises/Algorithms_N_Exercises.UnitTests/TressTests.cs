@@ -14,6 +14,25 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void ListOfDepthsTest1()
         {
+            var res01 = ListOfDepths(CreateBinaryTree(new int?[] { 3 }));
+
+            Assert.AreEqual(1, res01.Count());
+            Assert.AreEqual(3, res01[0]?.First?.Value?.Val);          
+        }
+
+        [TestMethod]
+        public void ListOfDepthsTest2()
+        {
+            var res01 = ListOfDepths(CreateBinaryTree(new int?[] { 3, 0 }));
+
+            Assert.AreEqual(2, res01.Count());
+            Assert.AreEqual(3, res01[0]?.First?.Value?.Val);
+            Assert.AreEqual(0, res01[0]?.First?.Value?.Val);
+        }
+
+        [TestMethod]
+        public void ListOfDepthsTest3()
+        {
             var res01 = ListOfDepths(CreateBinaryTree(new int?[] { 3, 9, 20, null, null, 15, 7 }));
 
             Assert.AreEqual(3, res01.Count());
@@ -22,7 +41,6 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(20, res01[1]?.Last?.Value?.Val);
             Assert.AreEqual(15, res01[2]?.First?.Value?.Val);
             Assert.AreEqual(7, res01[2]?.Last?.Value?.Val);
-
         }
     }
 }
