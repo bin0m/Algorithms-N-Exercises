@@ -23,11 +23,11 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void ListOfDepthsTest2()
         {
-            var res01 = ListOfDepths(CreateBinaryTree(new int?[] { 3, 0 }));
+            var res01 = ListOfDepths(CreateBinaryTree(new int?[] { -1, -2 }));
 
             Assert.AreEqual(2, res01.Count());
-            Assert.AreEqual(3, res01[0]?.First?.Value?.Val);
-            Assert.AreEqual(0, res01[1]?.First?.Value?.Val);
+            Assert.AreEqual(-1, res01[0]?.First?.Value?.Val);
+            Assert.AreEqual(-2, res01[1]?.First?.Value?.Val);
         }
 
         [TestMethod]
