@@ -64,5 +64,53 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(15, res01[2]?.First?.Value?.Val);
             Assert.AreEqual(7, res01[2]?.Last?.Value?.Val);
         }
+
+        [TestMethod]
+        public void CheckBalancedTest1()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest2()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest3()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest4()
+        {
+            Assert.AreEqual(false, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, null, 4 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest5()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest6()
+        {
+            Assert.AreEqual(false, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, null, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest7()
+        {
+            Assert.AreEqual(false, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6, null, 8, 9, 10, 11, 12 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest8()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6, 7, null, null, null, null, 12 })));
+        }
     }
 }
