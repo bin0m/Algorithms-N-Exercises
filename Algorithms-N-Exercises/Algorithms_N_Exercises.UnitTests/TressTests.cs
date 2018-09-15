@@ -119,6 +119,36 @@ namespace Algorithms_N_Exercises.UnitTests
             CollectionAssert.AreEqual(new List<int>(){1}, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1 })));
         }
 
+        [TestMethod]
+        public void TraverseInOrderTest2()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderTest3()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderTest4()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 1, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderTest5()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 5, 1, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderTest6()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 5, 1, 6, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6 })));
+        }
+
 
     }
 }
