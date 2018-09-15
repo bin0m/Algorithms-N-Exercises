@@ -159,5 +159,34 @@ namespace Algorithms_N_Exercises
             return sequence;
         }
 
+        public static List<int> TraverseInOrderIterative(TreeNode root)
+        { 
+            var sequence = new List<int>();
+            var stack = new Stack<TreeNode>();
+            stack.Push(root);
+            while (stack.Count > 0)
+            {
+                var treeNode = stack.Pop();
+                if (treeNode == null)
+                {
+                    continue;
+                }
+
+                if (treeNode.Left == null)
+                {
+                    sequence.Add(treeNode.Val);
+                    stack.Push(treeNode.Right);
+                }
+                else
+                {
+                    var nodeClone = new TreeNode(treeNode.Val);
+                    nodeClone.Right = treeNode.Right;
+                    stack.Push(nodeClone);
+                    stack.Push(treeNode.Left);
+                }
+            }
+            return sequence;
+        }
+
     }
 }
