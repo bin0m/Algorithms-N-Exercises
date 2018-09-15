@@ -147,5 +147,17 @@ namespace Algorithms_N_Exercises
             return 1 + Math.Max(leftDepth, rightDepth);
         }
 
+        public static List<int> TraverseInOrderRecursive(TreeNode root)
+        {
+            if (root == null)
+            {
+                return new List<int>();
+            }
+            var sequence = new List<int>(TraverseInOrderRecursive(root.Left));
+            sequence.Add(root.Val);
+            sequence.AddRange(TraverseInOrderRecursive(root.Right));
+            return sequence;
+        }
+
     }
 }

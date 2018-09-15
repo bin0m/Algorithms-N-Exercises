@@ -112,5 +112,13 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6, 7, null, null, null, null, 12 })));
         }
+
+        [TestMethod]
+        public void TraverseInOrderTest1()
+        {
+            CollectionAssert.AreEqual(new List<int>(){1}, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+
     }
 }
