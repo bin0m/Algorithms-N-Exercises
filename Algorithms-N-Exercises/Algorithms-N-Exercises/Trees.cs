@@ -162,29 +162,28 @@ namespace Algorithms_N_Exercises
         public static List<int> TraverseInOrderIterative(TreeNode root)
         { 
             var sequence = new List<int>();
-            var stack = new Stack<TreeNode>();
-            stack.Push(root);
-            while (stack.Count > 0)
+            var myStack = new Stack<TreeNode>();
+            TreeNode currentNode = root;
+            while (myStack.Count > 0 || currentNode != null)
             {
-                var treeNode = stack.Pop();
-                if (treeNode == null)
+                //Reach the left most Node of the current Node
+                while (currentNode != null)
                 {
-                    continue;
+                    /* place pointer to a tree node on 
+                   the stack before traversing 
+                  the node's left subtree */
+                    myStack.Push(currentNode);
+                    currentNode = currentNode.Left;
                 }
 
-                if (treeNode.Left == null)
-                {
-                    sequence.Add(treeNode.Val);
-                    stack.Push(treeNode.Right);
-                }
-                else
-                {
-                    var nodeClone = new TreeNode(treeNode.Val);
-                    nodeClone.Right = treeNode.Right;
-                    stack.Push(nodeClone);
-                    stack.Push(treeNode.Left);
-                }
+                // Current must be NULL at this point
+                currentNode = myStack.Pop();
+                sequence.Add(currentNode.Val);
+
+                // we have visited the node and its left subtree.Now, it's right subtree's turn
+                currentNode = currentNode.Right;
             }
+        
             return sequence;
         }
 
