@@ -202,9 +202,13 @@ namespace Algorithms_N_Exercises
                     myStack.Push(currentNode.Left);
                 }
             }
-
             return sequence;
         }
 
+        public static List<int> TraversePostOrderIterative(TreeNode root)
+        {
+            var sequence = new List<int>();
+            return sequence;
+        }
     }
 }
