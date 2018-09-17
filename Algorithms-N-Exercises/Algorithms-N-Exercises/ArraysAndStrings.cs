@@ -790,5 +790,31 @@ namespace Algorithms_N_Exercises
             }
             return matrix[n - 1, n - 1];
         }
+
+        // sort the array into a wave 
+        // arrange the elements into a sequence such that a1 >= a2 <= a3 >= a4 <= a5..
+        // time: O(n)
+        // size: O(1)
+        public static List<int> SortToWave(List<int> A)
+        {
+            if (A == null || A.Count() < 2)
+            {
+                return A;
+            }
+            A.Sort();
+            for (int i = 1; i < A.Count(); i += 2)
+            {
+                Swap(A, i, i - 1);
+            }
+
+            return A;
+        }
+
+        private static void Swap(List<int> A, int i, int j)
+        {
+            int temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+        }
     }
 }
