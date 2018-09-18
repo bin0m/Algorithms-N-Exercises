@@ -64,5 +64,169 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(15, res01[2]?.First?.Value?.Val);
             Assert.AreEqual(7, res01[2]?.Last?.Value?.Val);
         }
+
+        [TestMethod]
+        public void CheckBalancedTest1()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest2()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest3()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest4()
+        {
+            Assert.AreEqual(false, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, null, 4 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest5()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest6()
+        {
+            Assert.AreEqual(false, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, null, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest7()
+        {
+            Assert.AreEqual(false, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6, null, 8, 9, 10, 11, 12 })));
+        }
+
+        [TestMethod]
+        public void CheckBalancedTest8()
+        {
+            Assert.AreEqual(true, CheckBalanced(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6, 7, null, null, null, null, 12 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderRecursiveTest1()
+        {
+            CollectionAssert.AreEqual(new List<int>(){1}, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderRecursiveTest2()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderRecursiveTest3()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderRecursiveTest4()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 1, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderRecursiveTest5()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 5, 1, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderRecursiveTest6()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 5, 1, 6, 3 }, TraverseInOrderRecursive(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6 })));
+        }
+
+
+        [TestMethod]
+        public void TraverseInOrderIterativeTest1()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1 }, TraverseInOrderIterative(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderIterativeTest2()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1 }, TraverseInOrderIterative(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderIterativeTest3()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1, 3 }, TraverseInOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderIterativeTest4()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 1, 3 }, TraverseInOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderIterativeTest5()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 5, 1, 3 }, TraverseInOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void TraverseInOrderIterativeTest6()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 5, 1, 6, 3 }, TraverseInOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6 })));
+        }
+
+        public void TraversePreOrderIterativeTest1()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+        [TestMethod]
+        public void TraversePreOrderIterativeTest2()
+        {
+            CollectionAssert.AreEqual(new List<int>() {  1, 2  }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void TraversePreOrderIterativeTest3()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1, 2, 3 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void TraversePreOrderIterativeTest4()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1, 2, 4, 3 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void TraversePreOrderIterativeTest5()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1, 2, 4, 5, 3 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void TraversePreOrderIterativeTest6()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1, 2, 4, 5, 3, 6 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6 })));
+        }
+
+
+        [TestMethod]
+        public void TraversePreOrderIterativeTest7()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1, 2, 5, 3, 6 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6 })));
+        }
+
     }
 }

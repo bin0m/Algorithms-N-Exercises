@@ -147,5 +147,68 @@ namespace Algorithms_N_Exercises
             return 1 + Math.Max(leftDepth, rightDepth);
         }
 
+        public static List<int> TraverseInOrderRecursive(TreeNode root)
+        {
+            if (root == null)
+            {
+                return new List<int>();
+            }
+            var sequence = new List<int>(TraverseInOrderRecursive(root.Left));
+            sequence.Add(root.Val);
+            sequence.AddRange(TraverseInOrderRecursive(root.Right));
+            return sequence;
+        }
+
+        public static List<int> TraverseInOrderIterative(TreeNode root)
+        { 
+            var sequence = new List<int>();
+            var myStack = new Stack<TreeNode>();
+            TreeNode currentNode = root;
+            while (myStack.Count > 0 || currentNode != null)
+            {
+                //Reach the left most Node of the current Node
+                while (currentNode != null)
+                {
+                    /* place pointer to a tree node on 
+                   the stack before traversing 
+                  the node's left subtree */
+                    myStack.Push(currentNode);
+                    currentNode = currentNode.Left;
+                }
+
+                // Current must be NULL at this point
+                currentNode = myStack.Pop();
+                sequence.Add(currentNode.Val);
+
+                // we have visited the node and its left subtree.Now, it's right subtree's turn
+                currentNode = currentNode.Right;
+            }
+        
+            return sequence;
+        }
+
+        public static List<int> TraversePreOrderIterative(TreeNode root)
+        {
+            var sequence = new List<int>();
+            var myStack = new Stack<TreeNode>();
+            myStack.Push(root);
+            while (myStack.Count > 0)
+            {
+                var currentNode = myStack.Pop();
+                if (currentNode != null)
+                {
+                    sequence.Add(currentNode.Val);
+                    myStack.Push(currentNode.Right);
+                    myStack.Push(currentNode.Left);
+                }
+            }
+            return sequence;
+        }
+
+        public static List<int> TraversePostOrderIterative(TreeNode root)
+        {
+            var sequence = new List<int>();
+            return sequence;
+        }
     }
 }
