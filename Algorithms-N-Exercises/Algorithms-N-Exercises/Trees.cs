@@ -147,6 +147,7 @@ namespace Algorithms_N_Exercises
             return 1 + Math.Max(leftDepth, rightDepth);
         }
 
+        // In odrer (recursive) 
         public static List<int> TraverseInOrderRecursive(TreeNode root)
         {
             if (root == null)
@@ -159,6 +160,7 @@ namespace Algorithms_N_Exercises
             return sequence;
         }
 
+        // In Order (iteratively)
         public static List<int> TraverseInOrderIterative(TreeNode root)
         { 
             var sequence = new List<int>();
@@ -187,6 +189,7 @@ namespace Algorithms_N_Exercises
             return sequence;
         }
 
+        // Pre Order (iteratively)
         public static List<int> TraversePreOrderIterative(TreeNode root)
         {
             var sequence = new List<int>();
@@ -205,6 +208,7 @@ namespace Algorithms_N_Exercises
             return sequence;
         }
 
+        // Post Order (iteratively)
         public static List<int> TraversePostOrderIterative(TreeNode root)
         {
             var sequence = new List<int>();
