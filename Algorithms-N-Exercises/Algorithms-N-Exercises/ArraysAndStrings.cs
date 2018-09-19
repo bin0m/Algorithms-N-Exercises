@@ -816,5 +816,36 @@ namespace Algorithms_N_Exercises
             A[i] = A[j];
             A[j] = temp;
         }
+
+        // sorting problem 
+        // Given [3, 30, 34, 5, 9], the largest formed number is 9534330
+        public static string LargestNumber(List<int> A)
+        {
+            List<string> a2 = A.ConvertAll<string>(x => x.ToString());
+
+
+            a2.Sort((a, b) =>
+            {
+                long ab = long.Parse(a + b);
+                long ba = long.Parse(b + a);
+                if (ab > ba)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 1;
+                }
+            });
+
+
+            if (a2[0][0].Equals('0'))
+            {
+                return "0";
+            }
+            var res = String.Concat(a2.ToArray());
+
+            return res;
+        }
     }
 }
