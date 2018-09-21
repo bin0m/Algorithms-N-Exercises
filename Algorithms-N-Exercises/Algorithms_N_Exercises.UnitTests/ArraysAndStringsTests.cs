@@ -396,5 +396,35 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(35357670, ArraysAndStrings.NumOfPathsToDest(17));
         }
+
+        [TestMethod]
+        public void IsPrimeTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPrime("a"));
+        }
+
+        [TestMethod]
+        public void IsPrimeTest2()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPrime("ab"));
+        }
+
+        [TestMethod]
+        public void IsPrimeTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPrime("aba"));
+        }
+
+        [TestMethod]
+        public void IsPrimeTest4()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsPrime("aa"));
+        }
+
+        [TestMethod]
+        public void IsPrimeTest5()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsPrime("abab"));
+        }
     }
 }
