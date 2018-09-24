@@ -228,5 +228,47 @@ namespace Algorithms_N_Exercises.UnitTests
             CollectionAssert.AreEqual(new List<int>() { 1, 2, 5, 3, 6 }, TraversePreOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6 })));
         }
 
+        [TestMethod]
+        public void TraversePostOrderIterativeTest1()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1 })));
+        }
+
+        [TestMethod]
+        public void TraversePostOrderIterativeTest2()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2 })));
+        }
+
+        [TestMethod]
+        public void TraversePostOrderIterativeTest3()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 2, 3, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3 })));
+        }
+
+        [TestMethod]
+        public void TraversePostOrderIterativeTest4()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 2, 3, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4 })));
+        }
+
+        [TestMethod]
+        public void TraversePostOrderIterativeTest5()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 5, 2, 3, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5 })));
+        }
+
+        [TestMethod]
+        public void TraversePostOrderIterativeTest6()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 4, 5, 2, 6, 3, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, 4, 5, 6 })));
+        }
+
+        [TestMethod]
+        public void TraversePostOrderIterativeTest7()
+        {
+            CollectionAssert.AreEqual(new List<int>() { 5, 2, 6, 7, 3, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6, 7 })));
+        }
+
     }
 }

@@ -212,6 +212,26 @@ namespace Algorithms_N_Exercises
         public static List<int> TraversePostOrderIterative(TreeNode root)
         {
             var sequence = new List<int>();
+            var stack1 = new Stack<TreeNode>();
+            var stack2 = new Stack<TreeNode>();
+            stack1.Push(root);
+            while(stack1.Count > 0 )
+            {
+                var currNode = stack1.Pop();
+                if(currNode.Left != null)
+                {
+                    stack1.Push(currNode.Left);
+                }
+                if (currNode.Right != null)
+                {
+                    stack1.Push(currNode.Right);
+                }
+                stack2.Push(currNode);
+            }
+            while(stack2.Count > 0)
+            {
+                sequence.Add(stack2.Pop().Val);
+            }
             return sequence;
         }
     }
