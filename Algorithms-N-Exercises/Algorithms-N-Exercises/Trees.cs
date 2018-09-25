@@ -208,7 +208,8 @@ namespace Algorithms_N_Exercises
             return sequence;
         }
 
-        // Post Order (iteratively)
+        // Post Order (iteratively) 
+        // Space: using 2 stacks
         public static List<int> TraversePostOrderIterative(TreeNode root)
         {
             var sequence = new List<int>();
