@@ -438,5 +438,11 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.IsFalse(ArraysAndStrings.IsPrime("ababc"));
         }
+
+        [TestMethod]
+        public void IsPrimeTest8()
+        {
+            Assert.IsTrue(ArraysAndStrings.IsPrime("abcabdc"));
+        }
     }
 }
