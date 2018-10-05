@@ -430,19 +430,25 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void IsPrimeTest6()
         {
-            Assert.IsFalse(ArraysAndStrings.IsPrime("abcab"));
+            Assert.IsTrue(ArraysAndStrings.IsPrime("abcab"));
         }
 
         [TestMethod]
         public void IsPrimeTest7()
         {
-            Assert.IsFalse(ArraysAndStrings.IsPrime("ababc"));
+            Assert.IsFalse(ArraysAndStrings.IsPrime("abcabc"));
         }
 
         [TestMethod]
         public void IsPrimeTest8()
         {
             Assert.IsTrue(ArraysAndStrings.IsPrime("abcabdc"));
+        }
+
+        [TestMethod]
+        public void IsPrimeTest9()
+        {
+            Assert.IsFalse(ArraysAndStrings.IsPrime("ababab"));
         }
 
         [TestMethod]
