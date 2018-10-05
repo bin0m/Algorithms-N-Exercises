@@ -444,5 +444,36 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.IsTrue(ArraysAndStrings.IsPrime("abcabdc"));
         }
+
+        [TestMethod]
+        public void CanBeWrittenFromTest1()
+        {
+            Assert.IsTrue(ArraysAndStrings.CanBeWrittenFrom("a", "a"));
+        }
+
+        [TestMethod]
+        public void CanBeWrittenFromTest2()
+        {
+            Assert.IsFalse(ArraysAndStrings.CanBeWrittenFrom("aa", "abcd"));
+        }
+
+        [TestMethod]
+        public void CanBeWrittenFromTest3()
+        {
+            Assert.IsTrue(ArraysAndStrings.CanBeWrittenFrom("a,O,", "qpz,,%ar0O"));
+        }
+
+        [TestMethod]
+        public void CanBeWrittenFromTest4()
+        {
+            Assert.IsFalse(ArraysAndStrings.CanBeWrittenFrom("a,O,", "qpz,%ar0O"));
+        }
+
+        [TestMethod]
+        public void CanBeWrittenFromTest5()
+        {
+            Assert.IsFalse(ArraysAndStrings.CanBeWrittenFrom("abba", "Banda b"));
+        }
+
     }
 }
