@@ -199,7 +199,10 @@ namespace Algorithms_N_Exercises
             return true;
         }
 
-        // String is prime, when it does not contain repeating sequences
+
+        // A String is called prime if it can't be constructed by concatenating multiple (more than one) equal strings.
+        // For example:
+        // "abac" is prime, but "xyxy" is not("xyxy" = "xy" + "xy").
         // O(n^3)
         public static bool IsPrime(String str)
         {
