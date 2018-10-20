@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArraysAndStringsTests.cs" />
+    <Compile Include="ConsoleOutput.cs" />
     <Compile Include="DesignPatternsTests\SingletonTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MinHeapTests.cs" />

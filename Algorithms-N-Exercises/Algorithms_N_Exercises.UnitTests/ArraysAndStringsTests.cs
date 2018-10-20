@@ -481,5 +481,20 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.IsFalse(ArraysAndStrings.CanBeWrittenFrom("abba", "Banda b"));
         }
 
+        [TestMethod]
+        public void MinimumBribesTest1()
+        {
+            var input = new[] {1};
+            var expected = "0";
+
+            // Needed to test a method which writes to the Console to validate the output
+            var currentConsoleOut = Console.Out;
+            using (var consoleOutput = new ConsoleOutput())
+            {
+                ArraysAndStrings.MinimumBribes(input);
+                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
+            }
+            Assert.AreEqual(currentConsoleOut, Console.Out);
+        }
     }
 }
