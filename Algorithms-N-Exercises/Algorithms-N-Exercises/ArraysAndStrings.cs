@@ -850,5 +850,46 @@ namespace Algorithms_N_Exercises
 
             return res;
         }
+
+        // prints min number of bribes(swaps) needed to make array be ordered a[i]=i
+        public static void MinimumBribes(int[] a)
+        {
+            int bribes = 0;
+            bool sorted = false;
+            while (!sorted)
+            {
+                sorted = true;
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (a[i] == i + 1)
+                        continue;
+                    if (a[i] > i + 3)
+                    {
+                        Console.WriteLine("Too chaotic");
+                        return;
+                    }
+                    if (a[i] == i + 2 || a[i] == i + 3)
+                    {
+                        if (a[i] > a[i + 1])
+                        {
+                            Swap(a, i, i + 1);
+                            bribes++;
+                        }
+                    }
+                    if (a[i] != i + 1)
+                    {
+                        sorted = false;
+                    }
+                }
+            }
+            Console.WriteLine(bribes);
+        }
+
+        public static void Swap(int[] a, int i, int j)
+        {
+            int temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
     }
 }
