@@ -487,14 +487,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var input = new[] {1};
             var expected = "0";
 
-            // Needed to test a method which writes to the Console to validate the output
-            var currentConsoleOut = Console.Out;
-            using (var consoleOutput = new ConsoleOutput())
-            {
-                ArraysAndStrings.MinimumBribes(input);
-                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
-            }
-            Assert.AreEqual(currentConsoleOut, Console.Out);
+            MinimumBribeTestHelper(input, expected);
         }
 
         [TestMethod]
@@ -503,14 +496,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var input = new[] { 2, 1 };
             var expected = "1";
 
-            // Needed to test a method which writes to the Console to validate the output
-            var currentConsoleOut = Console.Out;
-            using (var consoleOutput = new ConsoleOutput())
-            {
-                ArraysAndStrings.MinimumBribes(input);
-                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
-            }
-            Assert.AreEqual(currentConsoleOut, Console.Out);
+            MinimumBribeTestHelper(input, expected);
         }
 
         [TestMethod]
@@ -519,14 +505,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var input = new[] { 2, 3, 1 };
             var expected = "2";
 
-            // Needed to test a method which writes to the Console to validate the output
-            var currentConsoleOut = Console.Out;
-            using (var consoleOutput = new ConsoleOutput())
-            {
-                ArraysAndStrings.MinimumBribes(input);
-                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
-            }
-            Assert.AreEqual(currentConsoleOut, Console.Out);
+            MinimumBribeTestHelper(input, expected);
         }
 
         [TestMethod]
@@ -535,14 +514,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var input = new[] { 3, 2, 1 };
             var expected = "3";
 
-            // Needed to test a method which writes to the Console to validate the output
-            var currentConsoleOut = Console.Out;
-            using (var consoleOutput = new ConsoleOutput())
-            {
-                ArraysAndStrings.MinimumBribes(input);
-                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
-            }
-            Assert.AreEqual(currentConsoleOut, Console.Out);
+            MinimumBribeTestHelper(input, expected);
         }
 
         [TestMethod]
@@ -551,14 +523,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var input = new[] { 4, 3, 2, 1 };
             var expected = "Too chaotic";
 
-            // Needed to test a method which writes to the Console to validate the output
-            var currentConsoleOut = Console.Out;
-            using (var consoleOutput = new ConsoleOutput())
-            {
-                ArraysAndStrings.MinimumBribes(input);
-                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
-            }
-            Assert.AreEqual(currentConsoleOut, Console.Out);
+            MinimumBribeTestHelper(input, expected);
         }
 
         [TestMethod]
@@ -568,13 +533,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var expected = "4";
 
             // Needed to test a method which writes to the Console to validate the output
-            var currentConsoleOut = Console.Out;
-            using (var consoleOutput = new ConsoleOutput())
-            {
-                ArraysAndStrings.MinimumBribes(input);
-                Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
-            }
-            Assert.AreEqual(currentConsoleOut, Console.Out);
+            MinimumBribeTestHelper(input, expected);
         }
 
         [TestMethod]
@@ -583,6 +542,11 @@ namespace Algorithms_N_Exercises.UnitTests
             var input = new[] { 3, 4, 2, 1 };
             var expected = "5";
 
+            MinimumBribeTestHelper(input, expected);
+        }
+
+        private void MinimumBribeTestHelper(int[] input, string expected)
+        {
             // Needed to test a method which writes to the Console to validate the output
             var currentConsoleOut = Console.Out;
             using (var consoleOutput = new ConsoleOutput())
@@ -590,6 +554,7 @@ namespace Algorithms_N_Exercises.UnitTests
                 ArraysAndStrings.MinimumBribes(input);
                 Assert.AreEqual(expected + "\r\n", consoleOutput.GetOuput());
             }
+
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
     }
