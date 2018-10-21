@@ -557,5 +557,53 @@ namespace Algorithms_N_Exercises.UnitTests
 
             Assert.AreEqual(currentConsoleOut, Console.Out);
         }
+
+        [TestMethod]
+        public void SumStringNumbersTest1()
+        {
+            Assert.AreEqual("", ArraysAndStrings.SumStringNumbers(null, null));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest2()
+        {
+            Assert.AreEqual("2", ArraysAndStrings.SumStringNumbers("2", null));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest3()
+        {
+            Assert.AreEqual("3", ArraysAndStrings.SumStringNumbers("", "3"));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest4()
+        {
+            Assert.AreEqual("4", ArraysAndStrings.SumStringNumbers("4", "0"));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest5()
+        {
+            Assert.AreEqual("5", ArraysAndStrings.SumStringNumbers("1", "4"));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest6()
+        {
+            Assert.AreEqual("16", ArraysAndStrings.SumStringNumbers("9", "7"));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest7()
+        {
+            Assert.AreEqual("100", ArraysAndStrings.SumStringNumbers("15", "85"));
+        }
+
+        [TestMethod]
+        public void SumStringNumbersTest8()
+        {
+            Assert.AreEqual("5170", ArraysAndStrings.SumStringNumbers("6", "5164"));
+        }
     }
 }
