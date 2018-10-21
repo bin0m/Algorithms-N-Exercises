@@ -16,6 +16,7 @@ namespace Algorithms_N_Exercises
             {
                 return true;
             }
+
             int[] mem = new int[256];
 
             foreach (char c in str)
@@ -39,6 +40,7 @@ namespace Algorithms_N_Exercises
             {
                 return true;
             }
+
             var chars = str.ToArray();
             Array.Sort(chars);
             for (int i = 1; i < chars.Length; i++)
@@ -48,6 +50,7 @@ namespace Algorithms_N_Exercises
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -60,14 +63,17 @@ namespace Algorithms_N_Exercises
             {
                 return false;
             }
+
             if (str1 == String.Empty && str2 == String.Empty)
             {
                 return true;
             }
+
             if (str1 == String.Empty || str2 == String.Empty)
             {
                 return false;
             }
+
             if (str1.Length != str2.Length)
             {
                 return false;
@@ -117,6 +123,7 @@ namespace Algorithms_N_Exercises
                 {
                     abc[c - 'A']++;
                 }
+
                 if (c >= 'a' && c <= 'z')
                 {
                     abc[c - 'a']++;
@@ -135,10 +142,12 @@ namespace Algorithms_N_Exercises
                         {
                             return false;
                         }
+
                         singleExists = true;
                     }
                 }
             }
+
             return true;
         }
 
@@ -164,6 +173,7 @@ namespace Algorithms_N_Exercises
                     dict[c] = 1;
                 }
             }
+
             bool wasOneDifference = false;
             foreach (char c2 in str2)
             {
@@ -210,6 +220,7 @@ namespace Algorithms_N_Exercises
             {
                 return true;
             }
+
             int n = str.Length;
             //check differnt size of substrings from 1 to n/2
             for (int size = 1; size <= n / 2; size++)
@@ -219,6 +230,7 @@ namespace Algorithms_N_Exercises
                 {
                     continue;
                 }
+
                 bool partsAreEqual = true;
                 // compare every part to first part
                 for (int part = 1; part < parts && partsAreEqual; part++)
@@ -232,11 +244,13 @@ namespace Algorithms_N_Exercises
                         }
                     }
                 }
+
                 if (partsAreEqual)
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -249,6 +263,7 @@ namespace Algorithms_N_Exercises
             {
                 return false;
             }
+
             int size = matrix.GetUpperBound(0) + 1;
 
             for (int line = 0; line < size; line++)
@@ -262,6 +277,7 @@ namespace Algorithms_N_Exercises
                     matrix[i, size - line - 1] = temp;
                 }
             }
+
             return true;
         }
 
@@ -277,9 +293,11 @@ namespace Algorithms_N_Exercises
                 {
                     sb.Append(matrix[i, j].ToString().PadLeft(2)).Append(',');
                 }
+
                 sb.Length--;
                 sb.AppendLine("],");
             }
+
             return sb.ToString();
         }
 
@@ -288,11 +306,11 @@ namespace Algorithms_N_Exercises
             // 1
             double[] balance = new double[10];
             // 2
-            double[] balance2 = { 2340.0, 4523.69, 3421.0 };
+            double[] balance2 = {2340.0, 4523.69, 3421.0};
             // 3
-            int[] marks = new int[5] { 99, 98, 92, 97, 95 };
+            int[] marks = new int[5] {99, 98, 92, 97, 95};
             // 4 
-            int[] marks2 = new int[] { 99, 98, 92, 97, 95 };
+            int[] marks2 = new int[] {99, 98, 92, 97, 95};
             // 5
             int[] arr2 = { };
         }
@@ -334,6 +352,7 @@ namespace Algorithms_N_Exercises
                     }
                 }
             }
+
             return false;
         }
 
@@ -366,6 +385,7 @@ namespace Algorithms_N_Exercises
                     dict.Add(word, 1);
                 }
             }
+
             var bucketsByCount = new List<string>[maxCount + 1];
             foreach (var pair in dict)
             {
@@ -396,6 +416,7 @@ namespace Algorithms_N_Exercises
                 }
 
             }
+
             return answer;
         }
 
@@ -415,6 +436,7 @@ namespace Algorithms_N_Exercises
                     sb.Append(char.ToLower(c));
                 }
             }
+
             return sb.ToString();
         }
 
@@ -430,9 +452,11 @@ namespace Algorithms_N_Exercises
                 {
                     sb.Append('"').Append(matrix[i, j]).Append('"').Append(',');
                 }
+
                 sb.Length--;
                 sb.Append("],");
             }
+
             return sb.ToString();
         }
 
@@ -444,9 +468,10 @@ namespace Algorithms_N_Exercises
             {
                 return null;
             }
+
             int startCommonTime = Math.Max(slotA[0], slotB[0]);
             int endCommonTime = Math.Min(slotA[1], slotB[1]);
-            return new[] { startCommonTime, endCommonTime };
+            return new[] {startCommonTime, endCommonTime};
         }
 
         // returns the earliest time slot that works for both of them and is of duration dur
@@ -458,8 +483,8 @@ namespace Algorithms_N_Exercises
             int indexB = 0;
             while (indexA < slotsA.Length / 2 && indexB < slotsB.Length / 2)
             {
-                var commonTime = FindCommonTimeInterval(new[] { slotsA[indexA, 0], slotsA[indexA, 1] },
-                                       new[] { slotsB[indexB, 0], slotsB[indexB, 1] });
+                var commonTime = FindCommonTimeInterval(new[] {slotsA[indexA, 0], slotsA[indexA, 1]},
+                    new[] {slotsB[indexB, 0], slotsB[indexB, 1]});
                 if (commonTime != null)
                 {
                     var maxDuration = commonTime[1] - commonTime[0];
@@ -475,7 +500,7 @@ namespace Algorithms_N_Exercises
                 }
 
                 if (indexA == slotsA.GetUpperBound(0) ||
-                   (slotsA[indexA, 1] > slotsB[indexB, 1]) && (indexB != slotsB.GetUpperBound(0)))
+                    (slotsA[indexA, 1] > slotsB[indexB, 1]) && (indexB != slotsB.GetUpperBound(0)))
                 {
                     indexB++;
                 }
@@ -484,6 +509,7 @@ namespace Algorithms_N_Exercises
                     indexA++;
                 }
             }
+
             return null;
         }
 
@@ -508,9 +534,11 @@ namespace Algorithms_N_Exercises
                 {
                     i++;
                 }
+
                 int right = i - 1;
                 ReverseChars(arr, left, right);
             }
+
             return arr;
         }
 
@@ -537,6 +565,7 @@ namespace Algorithms_N_Exercises
             {
                 return 0;
             }
+
             double sum = grantsArray.Sum();
             double exceedingBudget = sum - newBudget;
             if (exceedingBudget <= 0)
@@ -557,12 +586,14 @@ namespace Algorithms_N_Exercises
                     grantsCap = grantsArray[i];
                     break;
                 }
+
                 if (exceedingBudget < 0)
                 {
                     grantsCap = Math.Abs(exceedingBudget) / i + grantsArray[i];
                     break;
                 }
             }
+
             if (exceedingBudget > 0)
             {
                 exceedingBudget -= grantsArray[n - 1] * n;
@@ -630,6 +661,7 @@ namespace Algorithms_N_Exercises
                 Console.WriteLine($"pattern[j] != text[i] -> FALSE");
                 return false;
             }
+
             Console.WriteLine($"FALSE");
             return false;
 
@@ -657,6 +689,7 @@ namespace Algorithms_N_Exercises
                     {
                         uniqueCounter++;
                     }
+
                     countMap[str[i]]++;
 
                     //push head forward
@@ -667,10 +700,12 @@ namespace Algorithms_N_Exercises
                         {
                             return str.Substring(head, tempLength);
                         }
+
                         if (result == "" || tempLength < result.Length)
                         {
                             result = str.Substring(head, tempLength);
                         }
+
                         if (countMap.ContainsKey(str[head]))
                         {
                             countMap[str[head]]--;
@@ -679,6 +714,7 @@ namespace Algorithms_N_Exercises
                                 uniqueCounter--;
                             }
                         }
+
                         head++;
                     }
                 }
@@ -708,7 +744,7 @@ namespace Algorithms_N_Exercises
                         int sumOfPair2 = arr[low] + arr[high];
                         if (sumOfPair2 == r)
                         {
-                            return new[] { arr[i], arr[j], arr[low], arr[high] };
+                            return new[] {arr[i], arr[j], arr[low], arr[high]};
                         }
                         else if (sumOfPair2 > r)
                         {
@@ -721,6 +757,7 @@ namespace Algorithms_N_Exercises
                     }
                 }
             }
+
             return new int[0];
         }
 
@@ -733,6 +770,7 @@ namespace Algorithms_N_Exercises
             {
                 sb.Append(arr[i].ToString()).Append(", ");
             }
+
             sb.Remove(sb.Length - 2, 2);
             return sb.ToString();
         }
@@ -745,7 +783,7 @@ namespace Algorithms_N_Exercises
             var flatDict = new Dictionary<string, string>();
             foreach (var keyValue in dict)
             {
-                if( keyValue.Value is string)
+                if (keyValue.Value is string)
                 {
                     flatDict.Add(keyValue.Key, keyValue.Value as string);
                 }
@@ -758,6 +796,7 @@ namespace Algorithms_N_Exercises
                     }
                 }
             }
+
             return flatDict;
         }
 
@@ -791,6 +830,7 @@ namespace Algorithms_N_Exercises
                 }
 
             }
+
             return matrix[n - 1, n - 1];
         }
 
@@ -804,6 +844,7 @@ namespace Algorithms_N_Exercises
             {
                 return A;
             }
+
             A.Sort();
             for (int i = 1; i < A.Count(); i += 2)
             {
@@ -846,6 +887,7 @@ namespace Algorithms_N_Exercises
             {
                 return "0";
             }
+
             var res = String.Concat(a2.ToArray());
 
             return res;
@@ -868,6 +910,7 @@ namespace Algorithms_N_Exercises
                         Console.WriteLine("Too chaotic");
                         return;
                     }
+
                     if (a[i] == i + 2 || a[i] == i + 3)
                     {
                         if (a[i] > a[i + 1])
@@ -876,12 +919,14 @@ namespace Algorithms_N_Exercises
                             bribes++;
                         }
                     }
+
                     if (a[i] != i + 1)
                     {
                         sorted = false;
                     }
                 }
             }
+
             Console.WriteLine(bribes);
         }
 
@@ -891,5 +936,110 @@ namespace Algorithms_N_Exercises
             a[i] = a[j];
             a[j] = temp;
         }
+
+
+        // Sum 2 numbers in strings, without using casting to numbers
+        public static string SumStringNumbers(string s1, string s2)
+        {
+            // edge cases
+            if (string.IsNullOrEmpty(s1))
+            {
+                if (string.IsNullOrEmpty(s2))
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return s2;
+                }
+            }
+
+            if (string.IsNullOrEmpty(s2))
+            {
+                return s1;
+            }
+
+            string longerS;
+            string shorterS;
+            if (s1.Length < s2.Length)
+            {
+                longerS = s2;
+                shorterS = s1;
+            }
+            else
+            {
+                longerS = s1;
+                shorterS = s2;
+            }
+
+            int indexShorter = shorterS.Length - 1;
+            int indexLonger = longerS.Length - 1;
+
+            var answer = new char[longerS.Length];
+            int indexAnswer = 0;
+
+            bool oneFromLastSum = false;
+            while (indexShorter >= 0)
+            {
+                string sumChars = SumChars(shorterS[indexShorter], longerS[indexLonger], oneFromLastSum);
+                answer[indexAnswer] = sumChars[sumChars.Length - 1];
+                oneFromLastSum = sumChars.Length > 1;
+                
+                indexShorter--;
+                indexLonger--;
+                indexAnswer++;
+            }
+
+            while (indexLonger >= 0)
+            {
+                if (oneFromLastSum)
+                {
+                    string sumChars = SumChars(longerS[indexLonger], '0', oneFromLastSum);
+                    answer[indexAnswer] = sumChars[sumChars.Length - 1];
+                    oneFromLastSum = sumChars.Length > 1;
+                }
+                else
+                {
+                    answer[indexAnswer] = longerS[indexLonger];
+                }
+               
+                indexLonger--;
+                indexAnswer++;
+            }
+
+            if (oneFromLastSum)
+            {
+                char[] answerPlusOne = new char[answer.Length + 1];
+                Array.Copy(answer,answerPlusOne, answer.Length);
+                answerPlusOne[answer.Length] = '1';
+                answer = answerPlusOne;
+            }
+
+            Array.Reverse(answer);
+
+            return new string(answer);
+        }
+
+        // ASCII 0-9 (48-57)
+        public static string SumChars(char c1, char c2, bool toAddOne = false)
+        {
+            //edge case
+            if (c1 < '0' || c1 > '9' || c2 < '0' || c2 > '9')
+            {
+                return string.Empty;
+            }
+
+            int sum = (c1 + c2 - '0') + (toAddOne?1:0);
+            if (sum > '9')
+            {
+                sum -= 10;
+                return "1" + Convert.ToChar(sum);
+            }
+
+            return Convert.ToChar(sum) + "";
+        }
+
+
+    
     }
 }
