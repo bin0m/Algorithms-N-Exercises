@@ -605,5 +605,35 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual("5170", ArraysAndStrings.SumStringNumbers("6", "5164"));
         }
+
+        [TestMethod]
+        public void FindHowMuchCentsToSpendTest1()
+        {
+            Assert.AreEqual(150, ArraysAndStrings.findHowMuchCentsToSpend(4,12,new long[]{20,30,70,90}));
+        }
+
+        [TestMethod]
+        public void FindHowMuchCentsToSpendTest2()
+        {
+            Assert.AreEqual(10, ArraysAndStrings.findHowMuchCentsToSpend(4, 3, new long[] { 10000, 1000, 100, 10 }));
+        }
+
+        [TestMethod]
+        public void FindHowMuchCentsToSpendTest3()
+        {
+            Assert.AreEqual(30, ArraysAndStrings.findHowMuchCentsToSpend(4, 3, new long[] { 10, 100, 1000, 10000 }));
+        }
+
+        [TestMethod]
+        public void FindHowMuchCentsToSpendTest4()
+        {
+            Assert.AreEqual(44981600785557577, ArraysAndStrings.findHowMuchCentsToSpend(5, 787787787, new long[] { 123456789, 234567890, 345678901, 456789012 , 987654321 }));
+        }
+
+        [TestMethod]
+        public void FindHowMuchCentsToSpendTest5()
+        {
+            Assert.AreEqual(170, ArraysAndStrings.findHowMuchCentsToSpend(4, 13, new long[] { 26, 30, 70, 85 }));
+        }
     }
 }

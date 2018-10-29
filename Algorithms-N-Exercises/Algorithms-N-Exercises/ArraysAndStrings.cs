@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Algorithms_N_Exercises
 {
@@ -1039,7 +1040,53 @@ namespace Algorithms_N_Exercises
             return Convert.ToChar(sum) + "";
         }
 
+        // n — the number of types of bottles in the store 
+        // L — the required amount of child milk in liters.
+        // c1, c2, ..., cn — the costs of bottles of different types.
+        // Output a single integer — the smallest number of cents you have to pay in order to buy at least L liters of child milk.
+        public static long findHowMuchCentsToSpend(int n, int L, long[] c)
+        {
+            var minHeap = new System.Collections.Generic.List<Tuple<float, long, long>>(n);
+            long powerOfTwo = 1;
+            for (int i = 0; i < n; i++)
+            {
+                minHeap.Add(
+                    new Tuple<float, long, long>(
+                        (float)c[i] / powerOfTwo, // Item1 - cost per 1 Liter
+                        c[i],                     // Item2 - cost total
+                        powerOfTwo));             // Item3 - volume
+                powerOfTwo *= 2;
+            }
 
-    
+            minHeap.Sort((x, y) => x.Item1.CompareTo(y.Item1));
+
+            long centsSpent = 0;
+
+            while (L > 0)
+            {
+                var min = minHeap[0];
+                if (L >= min.Item3)
+                {
+                    centsSpent += min.Item2;
+                    L -= (int)min.Item3;
+                }
+                else
+                {
+                    var modifiedMin = new Tuple<float, long, long>((float)min.Item2 / L, min.Item2, L);
+                    if (minHeap[1].Item1 < modifiedMin.Item1)
+                    {
+                        minHeap.RemoveAt(0);
+                    }
+                    else
+                    {
+                        minHeap[0] = modifiedMin;
+                    }
+                }
+            }
+            return centsSpent;
+        }
+
+
+
     }
 }
