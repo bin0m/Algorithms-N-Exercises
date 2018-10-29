@@ -625,6 +625,12 @@ namespace Algorithms_N_Exercises.UnitTests
         }
 
         [TestMethod]
+        public void FindHowMuchCentsToSpendTest6()
+        {
+            Assert.AreEqual(120, ArraysAndStrings.findHowMuchCentsToSpend(4, 12, new long[] { 10, 100, 1000, 10000 }));
+        }
+
+        [TestMethod]
         public void FindHowMuchCentsToSpendTest4()
         {
             Assert.AreEqual(44981600785557577, ArraysAndStrings.findHowMuchCentsToSpend(5, 787787787, new long[] { 123456789, 234567890, 345678901, 456789012 , 987654321 }));
