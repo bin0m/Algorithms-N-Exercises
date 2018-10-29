@@ -1046,44 +1046,41 @@ namespace Algorithms_N_Exercises
         // Output a single integer — the smallest number of cents you have to pay in order to buy at least L liters of child milk.
         public static long findHowMuchCentsToSpend(int n, int L, long[] c)
         {
-            var minHeap = new System.Collections.Generic.List<Tuple<float, long, long>>(n);
-            long powerOfTwo = 1;
-            for (int i = 0; i < n; i++)
+            // make c[i] = min(c[i], ..., c[n])
+            for (int i = n - 2; i >= 0; i--)
             {
-                minHeap.Add(
-                    new Tuple<float, long, long>(
-                        (float)c[i] / powerOfTwo, // Item1 - cost per 1 Liter
-                        c[i],                     // Item2 - cost total
-                        powerOfTwo));             // Item3 - volume
-                powerOfTwo *= 2;
-            }
-
-            minHeap.Sort((x, y) => x.Item1.CompareTo(y.Item1));
-
-            long centsSpent = 0;
-
-            while (L > 0)
-            {
-                var min = minHeap[0];
-                if (L >= min.Item3)
+                if (c[i + 1] < c[i])
                 {
-                    centsSpent += min.Item2;
-                    L -= (int)min.Item3;
-                }
-                else
-                {
-                    var modifiedMin = new Tuple<float, long, long>((float)min.Item2 / L, min.Item2, L);
-                    if (minHeap[1].Item1 < modifiedMin.Item1)
-                    {
-                        minHeap.RemoveAt(0);
-                    }
-                    else
-                    {
-                        minHeap[0] = modifiedMin;
-                    }
+                    c[i] = c[i + 1];
                 }
             }
-            return centsSpent;
+            long biggestVolume = (long) Math.Pow(2, n - 1);
+
+            var minSpend = new long[biggestVolume + 1];
+            minSpend[0] = 0;
+            minSpend[1] = c[0];
+            long lowerVolume = 1;
+            long upperVolume = 2;
+            int upperVolumeIndex = 1;
+
+
+            for (int i = 2; i < biggestVolume + 1; i++)
+            {
+                if (i > upperVolume)
+                {
+                    lowerVolume = upperVolume;
+                    upperVolume *= 2;
+                    upperVolumeIndex++;
+                }
+
+                minSpend[i] = Math.Min(
+                    c[upperVolumeIndex],
+                    minSpend[lowerVolume] + minSpend[i - lowerVolume]);
+
+            }
+
+            long sumSpend = L / biggestVolume * minSpend[biggestVolume] + minSpend[L % biggestVolume];
+            return sumSpend;
         }
 
 
