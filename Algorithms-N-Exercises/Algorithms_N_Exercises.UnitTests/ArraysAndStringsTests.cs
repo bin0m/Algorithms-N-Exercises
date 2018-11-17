@@ -364,13 +364,47 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void FlattenDictionaryTest2()
         {
-            var inputDict = new Dictionary<string, object>();
-            inputDict.Add("key1", "1");
-            inputDict.Add("key2", new Dictionary<string, object>(){{"a","24"}, { "", "25" } });
-            var expectedDict = new Dictionary<string, string>();
-            expectedDict.Add("key1", "1");
-            expectedDict.Add("key2.a", "24");
-            expectedDict.Add("key2", "25");
+            var inputDict = new Dictionary<string, object>
+            {
+                {"key1", "1"},
+                {"key2", new Dictionary<string, object>()
+                {
+                    {"a", "24"},
+                    { "", "25"}
+                }}
+            };
+            var expectedDict = new Dictionary<string, string>
+            {
+                { "key1", "1"},
+                { "key2.a", "24"},
+                { "key2", "25"}
+            };
+            CollectionAssert.AreEqual(expectedDict, ArraysAndStrings.FlattenDictionary(inputDict));
+        }
+
+        [TestMethod]
+        public void FlattenDictionaryTest3()
+        {
+            var inputDict = new Dictionary<string, object>
+            {
+                { "key1", "1"},
+                { "", new Dictionary<string, object>()
+                {
+                    { "key12", "24"},
+                    { "key23", new Dictionary<string, object>()
+                    {
+                        { "a", "345"},
+                        { "b", "346"}
+                    }}
+                }}
+            };
+            var expectedDict = new Dictionary<string, string>
+            {
+                { "key1", "1"},
+                { "key12", "24"},
+                { "key23.a", "345"},
+                { "key23.b", "346"}
+            };
             CollectionAssert.AreEqual(expectedDict, ArraysAndStrings.FlattenDictionary(inputDict));
         }
 
