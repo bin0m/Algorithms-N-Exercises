@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -307,11 +308,11 @@ namespace Algorithms_N_Exercises
             // 1
             double[] balance = new double[10];
             // 2
-            double[] balance2 = {2340.0, 4523.69, 3421.0};
+            double[] balance2 = { 2340.0, 4523.69, 3421.0 };
             // 3
-            int[] marks = new int[5] {99, 98, 92, 97, 95};
+            int[] marks = new int[5] { 99, 98, 92, 97, 95 };
             // 4 
-            int[] marks2 = new int[] {99, 98, 92, 97, 95};
+            int[] marks2 = new int[] { 99, 98, 92, 97, 95 };
             // 5
             int[] arr2 = { };
         }
@@ -472,7 +473,7 @@ namespace Algorithms_N_Exercises
 
             int startCommonTime = Math.Max(slotA[0], slotB[0]);
             int endCommonTime = Math.Min(slotA[1], slotB[1]);
-            return new[] {startCommonTime, endCommonTime};
+            return new[] { startCommonTime, endCommonTime };
         }
 
         // returns the earliest time slot that works for both of them and is of duration dur
@@ -484,8 +485,8 @@ namespace Algorithms_N_Exercises
             int indexB = 0;
             while (indexA < slotsA.Length / 2 && indexB < slotsB.Length / 2)
             {
-                var commonTime = FindCommonTimeInterval(new[] {slotsA[indexA, 0], slotsA[indexA, 1]},
-                    new[] {slotsB[indexB, 0], slotsB[indexB, 1]});
+                var commonTime = FindCommonTimeInterval(new[] { slotsA[indexA, 0], slotsA[indexA, 1] },
+                    new[] { slotsB[indexB, 0], slotsB[indexB, 1] });
                 if (commonTime != null)
                 {
                     var maxDuration = commonTime[1] - commonTime[0];
@@ -745,7 +746,7 @@ namespace Algorithms_N_Exercises
                         int sumOfPair2 = arr[low] + arr[high];
                         if (sumOfPair2 == r)
                         {
-                            return new[] {arr[i], arr[j], arr[low], arr[high]};
+                            return new[] { arr[i], arr[j], arr[low], arr[high] };
                         }
                         else if (sumOfPair2 > r)
                         {
@@ -784,20 +785,32 @@ namespace Algorithms_N_Exercises
             var flatDict = new Dictionary<string, string>();
             foreach (var keyValue in dict)
             {
+
                 if (keyValue.Value is string)
                 {
-                    flatDict.Add(keyValue.Key, keyValue.Value as string);
+                    flatDict[keyValue.Key] = keyValue.Value as string;
                 }
-                else
+
+                if (keyValue.Value is Dictionary<string, Object>)
                 {
-                    var subDict = FlattenDictionary(keyValue.Value as Dictionary<string, object>);
-                    foreach (var subDictPair in subDict)
+                    var nestedDictionary = FlattenDictionary(keyValue.Value as Dictionary<string, Object>);
+                    foreach (var nestedPair in nestedDictionary)
                     {
-                        flatDict.Add($"{keyValue}.{subDictPair.Key}", subDictPair.Value);
+                        if (nestedPair.Key == string.Empty)
+                        {
+                            flatDict[keyValue.Key] = nestedPair.Value;
+                        }
+                        else if (keyValue.Key == string.Empty)
+                        {
+                            flatDict[nestedPair.Key] = nestedPair.Value;
+                        }
+                        else
+                        {
+                            flatDict[$"{keyValue.Key }.{nestedPair.Key}"] = nestedPair.Value;
+                        }
                     }
                 }
             }
-
             return flatDict;
         }
 
@@ -829,7 +842,6 @@ namespace Algorithms_N_Exercises
 
                     }
                 }
-
             }
 
             return matrix[n - 1, n - 1];
@@ -985,7 +997,7 @@ namespace Algorithms_N_Exercises
                 string sumChars = SumChars(shorterS[indexShorter], longerS[indexLonger], oneFromLastSum);
                 answer[indexAnswer] = sumChars[sumChars.Length - 1];
                 oneFromLastSum = sumChars.Length > 1;
-                
+
                 indexShorter--;
                 indexLonger--;
                 indexAnswer++;
@@ -1003,7 +1015,7 @@ namespace Algorithms_N_Exercises
                 {
                     answer[indexAnswer] = longerS[indexLonger];
                 }
-               
+
                 indexLonger--;
                 indexAnswer++;
             }
@@ -1011,7 +1023,7 @@ namespace Algorithms_N_Exercises
             if (oneFromLastSum)
             {
                 char[] answerPlusOne = new char[answer.Length + 1];
-                Array.Copy(answer,answerPlusOne, answer.Length);
+                Array.Copy(answer, answerPlusOne, answer.Length);
                 answerPlusOne[answer.Length] = '1';
                 answer = answerPlusOne;
             }
@@ -1030,7 +1042,7 @@ namespace Algorithms_N_Exercises
                 return string.Empty;
             }
 
-            int sum = (c1 + c2 - '0') + (toAddOne?1:0);
+            int sum = (c1 + c2 - '0') + (toAddOne ? 1 : 0);
             if (sum > '9')
             {
                 sum -= 10;
@@ -1054,7 +1066,7 @@ namespace Algorithms_N_Exercises
                     c[i] = c[i + 1];
                 }
             }
-            long biggestVolume = (long) Math.Pow(2, n - 1);
+            long biggestVolume = (long)Math.Pow(2, n - 1);
 
             var minSpend = new long[biggestVolume + 1];
             minSpend[0] = 0;
@@ -1083,7 +1095,37 @@ namespace Algorithms_N_Exercises
             return sumSpend;
         }
 
+        public static Dictionary<string, string> FlattenDictionary2(Dictionary<string, Object> objDict)
+        {
+            var dict = new Dictionary<string, string>();
+            foreach (var keyValue in objDict)
+            {
 
+                if (keyValue.Value is string s)
+                {
+                    dict[keyValue.Key] = s;
+                }
 
+                if (keyValue.Value is Dictionary<string, Object> d)
+                {
+                    var nestedDictionary = FlattenDictionary2(d);
+                    foreach (var nestedPair in nestedDictionary)
+                    {
+                        if (nestedPair.Key == string.Empty)
+                        {
+                            dict[keyValue.Key] = nestedPair.Value;
+                        }
+                        else
+                        {
+                            dict[$"{keyValue.Key }.{nestedPair.Key}"] = nestedPair.Value;
+                        }
+                    }
+                }
+            }
+
+            return dict;
+        }
     }
+
 }
+

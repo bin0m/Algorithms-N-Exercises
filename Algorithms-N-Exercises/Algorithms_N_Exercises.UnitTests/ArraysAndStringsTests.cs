@@ -362,6 +362,19 @@ namespace Algorithms_N_Exercises.UnitTests
         }
 
         [TestMethod]
+        public void FlattenDictionaryTest2()
+        {
+            var inputDict = new Dictionary<string, object>();
+            inputDict.Add("key1", "1");
+            inputDict.Add("key2", new Dictionary<string, object>(){{"a","24"}, { "", "25" } });
+            var expectedDict = new Dictionary<string, string>();
+            expectedDict.Add("key1", "1");
+            expectedDict.Add("key2.a", "24");
+            expectedDict.Add("key2", "25");
+            CollectionAssert.AreEqual(expectedDict, ArraysAndStrings.FlattenDictionary(inputDict));
+        }
+
+        [TestMethod]
         public void NumOfPathsToDestTest1()
         {
             Assert.AreEqual(1, ArraysAndStrings.NumOfPathsToDest(1));
