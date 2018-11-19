@@ -688,5 +688,47 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(170, ArraysAndStrings.findHowMuchCentsToSpend(4, 13, new long[] { 26, 30, 70, 85 }));
         }
+
+        [TestMethod]
+        public void SpiralCopyTest1()
+        {
+            CollectionAssert.AreEqual(new[]{1}, ArraysAndStrings.SpiralCopy(new int[,]{{1}}));
+        }
+
+        [TestMethod]
+        public void SpiralCopyTest2()
+        {
+            CollectionAssert.AreEqual(new[] { 1, 2 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2 } }));
+        }
+
+        [TestMethod]
+        public void SpiralCopyTest3()
+        {
+            CollectionAssert.AreEqual(new[] { 1, 2 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1 }, { 2 } }));
+        }
+
+        [TestMethod]
+        public void SpiralCopyTest4()
+        {
+            CollectionAssert.AreEqual(new[] { 1, 2, 4, 3 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2 }, { 3, 4 } }));
+        }
+
+        [TestMethod]
+        public void SpiralCopyTest5()
+        {
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 6, 5, 4 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3 }, { 4, 5, 6 } }));
+        }
+
+        [TestMethod]
+        public void SpiralCopyTest6()
+        {
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 6, 9, 8, 7, 4, 5 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }));
+        }
+
+        [TestMethod]
+        public void SpiralCopyTest7()
+        {
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3, 4 , 5 }, { 6,7,8,9,10 }, { 11, 12, 13, 14 ,15 }, { 16, 17, 18, 19, 20 } }));
+        }
     }
 }

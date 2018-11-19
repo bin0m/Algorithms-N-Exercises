@@ -1095,35 +1095,53 @@ namespace Algorithms_N_Exercises
             return sumSpend;
         }
 
-        public static Dictionary<string, string> FlattenDictionary2(Dictionary<string, Object> objDict)
+        // Copies inputMatrix’s values into a 1D array in a spiral order, clockwise.
+        // time: O(N*M)
+        // space: O(N*M)
+        public static int[] SpiralCopy(int[,] inputMatrix)
         {
-            var dict = new Dictionary<string, string>();
-            foreach (var keyValue in objDict)
-            {
+            int rowStart = 0;
+            int rowEnd = inputMatrix.GetLength(0) - 1;
+            int colStart = 0;
+            int colEnd = inputMatrix.GetLength(1) - 1;
 
-                if (keyValue.Value is string s)
+            int[] arr = new int[(rowEnd + 1 )* (colEnd + 1)];
+            int index = 0;
+            //arr[index++] = inputMatrix[0, 0];
+            while (rowStart <= rowEnd && colStart <= colEnd)
+            {
+                for (int col = colStart ; col <= colEnd; col++)
                 {
-                    dict[keyValue.Key] = s;
+                    arr[index++] = inputMatrix[rowStart, col];
                 }
 
-                if (keyValue.Value is Dictionary<string, Object> d)
+                for (int row = rowStart + 1; row <= rowEnd; row++)
                 {
-                    var nestedDictionary = FlattenDictionary2(d);
-                    foreach (var nestedPair in nestedDictionary)
+                    arr[index++] = inputMatrix[row, colEnd];
+                }
+
+                if(rowEnd > rowStart)
+                {
+                    for (int col = colEnd - 1; col >= colStart; col--)
                     {
-                        if (nestedPair.Key == string.Empty)
-                        {
-                            dict[keyValue.Key] = nestedPair.Value;
-                        }
-                        else
-                        {
-                            dict[$"{keyValue.Key }.{nestedPair.Key}"] = nestedPair.Value;
-                        }
+                        arr[index++] = inputMatrix[rowEnd, col];
                     }
                 }
-            }
 
-            return dict;
+                rowStart++;
+
+                if (colEnd > colStart)
+                {
+                    for (int row = rowEnd - 1; row >= rowStart; row--)
+                    {
+                        arr[index++] = inputMatrix[row, colStart];
+                    }
+                }
+                rowEnd--;
+                colStart++;
+                colEnd--;
+            }
+            return arr;
         }
     }
 
