@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ArraysAndStrings.cs" />
     <Compile Include="DesignPatterns\Singleton.cs" />
+    <Compile Include="Graphs.cs" />
     <Compile Include="LinkedLists.cs" />
     <Compile Include="MathAndLogicPuzzles.cs" />
     <Compile Include="MinHeap.cs" />
