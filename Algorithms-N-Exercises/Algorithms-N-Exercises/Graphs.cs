@@ -87,5 +87,68 @@ namespace Algorithms_N_Exercises
             
         }
 
+
+        // time: O(n*m)
+        // space: O(n*m)
+        public static int GetNumberOfIslands(int[,] binaryMatrix)
+        {
+            // edge cases 
+            if (binaryMatrix == null)
+            {
+                return 0;
+            }
+            int n = binaryMatrix.GetLength(0);       // number of rows
+            int m = binaryMatrix.GetLength(1);       // number of columns
+            if (n == 0 || m == 0)
+            {
+                return 0;
+            }
+
+            bool[,] colorMatrix = new bool[n, m];
+            int islandsCount = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (binaryMatrix[i, j] == 1 && colorMatrix[i, j] == false)
+                    {
+
+                        islandsCount++;
+                        MarkIsland(binaryMatrix, colorMatrix, i, j);
+                    }
+                }
+            }
+
+            return islandsCount;
+        }
+
+        // helper for GetNumberOfIslands
+        // time: O(n*m)
+        // recursively marks single Island
+        private static void MarkIsland(int[,] binaryMatrix, bool[,] colorMatrix, int i, int j)
+        {
+
+            int n = binaryMatrix.GetLength(0);       // number of rows
+            int m = binaryMatrix.GetLength(1);       // number of columns
+            //return if out of bounds or already marked
+            if (!(i >= 0 && i < n && j >= 0 && j < m && binaryMatrix[i, j] == 1 && colorMatrix[i, j] == false))
+            {
+                return;
+            }
+            //Console.WriteLine("recursive i="+i+",j="+j);
+            //mark
+            colorMatrix[i, j] = true;
+
+            // right
+            MarkIsland(binaryMatrix, colorMatrix, i, j + 1);
+            // down
+            MarkIsland(binaryMatrix, colorMatrix, i + 1, j);
+            // up
+            MarkIsland(binaryMatrix, colorMatrix, i - 1, j);
+            // left
+            MarkIsland(binaryMatrix, colorMatrix, i, j - 1);
+        }
+
+
     }
 }
