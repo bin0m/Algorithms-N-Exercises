@@ -102,7 +102,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var slotA = new[,] { { 7, 12 } };
             var slotB = new[,] { { 2, 11 } };
             int dur = 5;
-            Assert.IsNull(ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
+            CollectionAssert.AreEqual(new int[0], ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace Algorithms_N_Exercises.UnitTests
             var slotA = new[,] { { 0, 5 }, { 50, 70 }, { 120, 125 } };
             var slotB = new[,] { { 0, 50 } };
             int dur = 8;
-            Assert.IsNull(ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
+            CollectionAssert.AreEqual(new int[0], ArraysAndStrings.MeetingPlanner(slotA, slotB, dur));
         }
 
         [TestMethod]
