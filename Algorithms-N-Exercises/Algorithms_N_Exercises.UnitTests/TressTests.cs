@@ -270,5 +270,40 @@ namespace Algorithms_N_Exercises.UnitTests
             CollectionAssert.AreEqual(new List<int>() { 5, 2, 6, 7, 3, 1 }, TraversePostOrderIterative(CreateBinaryTree(new int?[] { 1, 2, 3, null, 5, 6, 7 })));
         }
 
+        [TestMethod]
+        public void FindInOrderSuccessorTest1()
+        {
+            var sampleTree = CreateBinaryTree(new int?[] {4, 2, 5, 1, 3});
+            Assert.AreSame(GetNode(sampleTree,2), FindInOrderSuccessor(GetNode(sampleTree, 1)));
+        }
+
+        [TestMethod]
+        public void FindInOrderSuccessorTest2()
+        {
+            var sampleTree = CreateBinaryTree(new int?[] { 4, 2, 5, 1, 3 });
+            Assert.AreSame(GetNode(sampleTree, 3), FindInOrderSuccessor(GetNode(sampleTree, 2)));
+        }
+
+        [TestMethod]
+        public void FindInOrderSuccessorTest3()
+        {
+            var sampleTree = CreateBinaryTree(new int?[] { 4, 2, 5, 1, 3 });
+            Assert.AreSame(GetNode(sampleTree, 4), FindInOrderSuccessor(GetNode(sampleTree, 3)));
+        }
+
+        [TestMethod]
+        public void FindInOrderSuccessorTest4()
+        {
+            var sampleTree = CreateBinaryTree(new int?[] { 4, 2, 5, 1, 3 });
+            Assert.AreSame(null, FindInOrderSuccessor(GetNode(sampleTree, 5)));
+        }
+
+        [TestMethod]
+        public void FindInOrderSuccessorTest5()
+        {
+            var sampleTree = CreateBinaryTree(new int?[] { 4, 2, 5, 1, 3 });
+            Assert.AreNotSame(GetNode(sampleTree, 2), FindInOrderSuccessor(GetNode(sampleTree, 3)));
+        }
+
     }
 }

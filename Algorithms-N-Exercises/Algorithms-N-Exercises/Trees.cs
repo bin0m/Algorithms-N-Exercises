@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.CompilerServices;
 
 namespace Algorithms_N_Exercises
-{   
+{
     public class Trees
     {
         public class TreeNode
@@ -12,7 +12,12 @@ namespace Algorithms_N_Exercises
             public int Val;
             public TreeNode Left;
             public TreeNode Right;
-            public TreeNode(int x) { Val = x; }
+            public TreeNode Parent;
+
+            public TreeNode(int x)
+            {
+                Val = x;
+            }
         }
 
         // helper method
@@ -32,7 +37,7 @@ namespace Algorithms_N_Exercises
                 TreeNode current = queue.Dequeue();
                 if (arr[i] != null)
                 {
-                    current.Left = new TreeNode(arr[i].Value);
+                    current.Left = new TreeNode(arr[i].Value) {Parent = current};
                     queue.Enqueue(current.Left);
                 }
 
@@ -40,7 +45,7 @@ namespace Algorithms_N_Exercises
                 {
                     if (arr[i + 1] != null)
                     {
-                        current.Right = new TreeNode(arr[i + 1].Value);
+                        current.Right = new TreeNode(arr[i + 1].Value) { Parent = current };
                         queue.Enqueue(current.Right);
                     }
 
@@ -73,8 +78,42 @@ namespace Algorithms_N_Exercises
                     sb.Append("null,");
                 }
             }
+
             sb.Append(']');
             return sb.ToString();
+        }
+
+        // helper method to get Node by key Binary Tree
+        internal static TreeNode GetNode(TreeNode root, int key)
+        {
+            if (root == null)
+            {
+                return null;
+            }
+                
+            // traverse tree preorder
+            var myStack = new Stack<TreeNode>();
+            myStack.Push(root);
+            while (myStack.Count > 0)
+            {
+                var currNode = myStack.Pop();
+                if (currNode.Val == key)
+                {
+                    return currNode;
+                }
+
+                if (currNode.Right != null)
+                {
+                    myStack.Push(currNode.Right);
+                }
+
+                if (currNode.Left != null)
+                {
+                    myStack.Push(currNode.Left);
+                }
+            }
+            // key not found
+            return null;
         }
 
         // List Of Depths of binary Tree
@@ -86,7 +125,7 @@ namespace Algorithms_N_Exercises
             var queue2 = new Queue<TreeNode>();
             queue1.Enqueue(root);
             var currentList = new LinkedList<TreeNode>();
-            while(queue1.Count > 0)
+            while (queue1.Count > 0)
             {
                 TreeNode node = queue1.Dequeue();
                 currentList.AddLast(node);
@@ -94,11 +133,13 @@ namespace Algorithms_N_Exercises
                 {
                     queue2.Enqueue(node.Left);
                 }
+
                 if (node.Right != null)
                 {
                     queue2.Enqueue(node.Right);
-                }              
-                if(queue1.Count == 0)
+                }
+
+                if (queue1.Count == 0)
                 {
                     queue1 = queue2;
                     queue2 = new Queue<TreeNode>();
@@ -106,6 +147,7 @@ namespace Algorithms_N_Exercises
                     currentList = new LinkedList<TreeNode>();
                 }
             }
+
             return lists;
         }
 
@@ -125,20 +167,20 @@ namespace Algorithms_N_Exercises
         // helper method for CheckBalanced()
         private static int GetDepthAndCheckBalanced(TreeNode root)
         {
-            if(!_isBalanced)
+            if (!_isBalanced)
             {
                 //return error value, when it is already known that tree is not balanced
                 return int.MinValue;
             }
-            
-            if(root == null)
+
+            if (root == null)
             {
                 return -1;
             }
 
             int leftDepth = GetDepthAndCheckBalanced(root.Left);
             int rightDepth = GetDepthAndCheckBalanced(root.Right);
-            if(Math.Abs(leftDepth - rightDepth) > 1)
+            if (Math.Abs(leftDepth - rightDepth) > 1)
             {
                 _isBalanced = false;
                 return int.MinValue;
@@ -154,6 +196,7 @@ namespace Algorithms_N_Exercises
             {
                 return new List<int>();
             }
+
             var sequence = new List<int>(TraverseInOrderRecursive(root.Left));
             sequence.Add(root.Val);
             sequence.AddRange(TraverseInOrderRecursive(root.Right));
@@ -162,7 +205,7 @@ namespace Algorithms_N_Exercises
 
         // In Order (iteratively)
         public static List<int> TraverseInOrderIterative(TreeNode root)
-        { 
+        {
             var sequence = new List<int>();
             var myStack = new Stack<TreeNode>();
             TreeNode currentNode = root;
@@ -185,7 +228,7 @@ namespace Algorithms_N_Exercises
                 // we have visited the node and its left subtree.Now, it's right subtree's turn
                 currentNode = currentNode.Right;
             }
-        
+
             return sequence;
         }
 
@@ -205,6 +248,7 @@ namespace Algorithms_N_Exercises
                     myStack.Push(currentNode.Left);
                 }
             }
+
             return sequence;
         }
 
@@ -216,24 +260,65 @@ namespace Algorithms_N_Exercises
             var stack1 = new Stack<TreeNode>();
             var stack2 = new Stack<TreeNode>();
             stack1.Push(root);
-            while(stack1.Count > 0 )
+            while (stack1.Count > 0)
             {
                 var currNode = stack1.Pop();
-                if(currNode.Left != null)
+                if (currNode.Left != null)
                 {
                     stack1.Push(currNode.Left);
                 }
+
                 if (currNode.Right != null)
                 {
                     stack1.Push(currNode.Right);
                 }
+
                 stack2.Push(currNode);
             }
-            while(stack2.Count > 0)
+
+            while (stack2.Count > 0)
             {
                 sequence.Add(stack2.Pop().Val);
             }
+
             return sequence;
+        }
+
+        // returns the Inorder Successor of inputNode. If inputNode has no Inorder Successor, return null.
+        public static TreeNode FindInOrderSuccessor(TreeNode inputNode)
+        {
+            //edge case
+            if (inputNode == null)
+            {
+                return null;
+            }
+
+            // 1. if it has Right child
+            if (inputNode.Right != null)
+            {
+                var currNode = inputNode.Right;
+                while (currNode.Left != null)
+                {
+                    currNode = currNode.Left;
+                }
+                // return most left child node
+                return currNode;
+            }
+
+            // 2. if it doesn't have right child
+            var current = inputNode;
+            while (current.Parent != null)
+            {
+                if (current.Parent.Left == current)
+                {
+                    // return parent that have our node in left subTree
+                    return current.Parent;
+                }
+
+                current = current.Parent;
+            }
+
+            return null;
         }
     }
 }
