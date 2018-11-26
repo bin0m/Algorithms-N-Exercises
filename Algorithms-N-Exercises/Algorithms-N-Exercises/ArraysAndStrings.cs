@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 namespace Algorithms_N_Exercises
 {
@@ -462,18 +460,18 @@ namespace Algorithms_N_Exercises
             return sb.ToString();
         }
 
+
         // helper method for MeetingPlanner
-        // O(1)
-        private static int[] FindCommonTimeInterval(int[] slotA, int[] slotB)
+        private static int[] FindCommonSlot(int startA, int endA, int startB, int endB)
         {
-            if (slotA[0] > slotB[1] || slotB[0] > slotA[1])
+            int commonStart = Math.Max(startA, startB);
+            int commonEnd = Math.Min(endA, endB);
+            if (commonEnd <= commonStart)
             {
-                return null;
+                return new int[0];
             }
 
-            int startCommonTime = Math.Max(slotA[0], slotB[0]);
-            int endCommonTime = Math.Min(slotA[1], slotB[1]);
-            return new[] { startCommonTime, endCommonTime };
+            return new int[2] { commonStart, commonEnd };
         }
 
         // returns the earliest time slot that works for both of them and is of duration dur
@@ -481,28 +479,34 @@ namespace Algorithms_N_Exercises
         // space: O(1)
         public static int[] MeetingPlanner(int[,] slotsA, int[,] slotsB, int dur)
         {
+            //edge cases
+            if (slotsA == null || slotsB == null || dur <= 0)
+            {
+                return new int[0];
+            }
+            int lenA = slotsA.GetLength(0);
+            int lenB = slotsB.GetLength(0);
+
+            //edge cases
+            if (lenA < 1 || lenB < 1 || (lenA + lenB) == 1)
+            {
+                return new int[0];
+            }
+
             int indexA = 0;
             int indexB = 0;
-            while (indexA < slotsA.Length / 2 && indexB < slotsB.Length / 2)
-            {
-                var commonTime = FindCommonTimeInterval(new[] { slotsA[indexA, 0], slotsA[indexA, 1] },
-                    new[] { slotsB[indexB, 0], slotsB[indexB, 1] });
-                if (commonTime != null)
-                {
-                    var maxDuration = commonTime[1] - commonTime[0];
-                    if (maxDuration > dur)
-                    {
-                        commonTime[1] = commonTime[0] + dur;
-                        return commonTime;
-                    }
-                    else if (maxDuration == dur)
-                    {
-                        return commonTime;
-                    }
-                }
 
-                if (indexA == slotsA.GetUpperBound(0) ||
-                    (slotsA[indexA, 1] > slotsB[indexB, 1]) && (indexB != slotsB.GetUpperBound(0)))
+            //slotsA = [[10, 50], [60, 120], [140, 210]]
+            //slotsB = [[0, 15], [60, 70]]
+            //dur = 8
+            while (indexA < lenA && indexB < lenB)
+            {
+                int[] commonSlot = FindCommonSlot(slotsA[indexA, 0], slotsA[indexA, 1], slotsB[indexB, 0], slotsB[indexB, 1]);
+                if (commonSlot.Length > 0 && (commonSlot[1] - commonSlot[0]) >= dur)
+                {
+                    return new int[2] { commonSlot[0], commonSlot[0] + dur };
+                }
+                if (slotsA[indexA, 1] > slotsB[indexB, 1])
                 {
                     indexB++;
                 }
@@ -512,8 +516,11 @@ namespace Algorithms_N_Exercises
                 }
             }
 
-            return null;
+            return new int[0];
         }
+
+
+
 
         // reverses the order of the words in the array in the most efficient manner.
         // time: O(n)
@@ -1105,12 +1112,12 @@ namespace Algorithms_N_Exercises
             int colStart = 0;
             int colEnd = inputMatrix.GetLength(1) - 1;
 
-            int[] arr = new int[(rowEnd + 1 )* (colEnd + 1)];
+            int[] arr = new int[(rowEnd + 1) * (colEnd + 1)];
             int index = 0;
             //arr[index++] = inputMatrix[0, 0];
             while (rowStart <= rowEnd && colStart <= colEnd)
             {
-                for (int col = colStart ; col <= colEnd; col++)
+                for (int col = colStart; col <= colEnd; col++)
                 {
                     arr[index++] = inputMatrix[rowStart, col];
                 }
@@ -1120,7 +1127,7 @@ namespace Algorithms_N_Exercises
                     arr[index++] = inputMatrix[row, colEnd];
                 }
 
-                if(rowEnd > rowStart)
+                if (rowEnd > rowStart)
                 {
                     for (int col = colEnd - 1; col >= colStart; col--)
                     {
@@ -1202,6 +1209,5 @@ namespace Algorithms_N_Exercises
             return true;
         }
     }
-
 }
 
