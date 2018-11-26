@@ -1144,6 +1144,9 @@ namespace Algorithms_N_Exercises
             return arr;
         }
 
+
+        // Check if a string has all characters with same frequency with one variation allowed
+        // time: O(N)
         public static bool IsSameCharFrequency(string str)
         {
             if (string.IsNullOrEmpty(str))
