@@ -730,5 +730,89 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3, 4 , 5 }, { 6,7,8,9,10 }, { 11, 12, 13, 14 ,15 }, { 16, 17, 18, 19, 20 } }));
         }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest1()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency(""));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest2()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("a"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest3()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("aaa"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest4()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("abbb"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest5()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("abbccdd"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest6()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("abbb"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest7()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("aabbb"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest8()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("aaabbbb"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest9()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("abbccc"));
+        }
+        
+        [TestMethod]
+        public void IsSameCharFrequencyTest10()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("aabbcd"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest11()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("aabbbb"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest12()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("aabbcccddd"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest13()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsSameCharFrequency("aacccddd"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyTest14()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("aabbcccc")); 
+        }
     }
 }

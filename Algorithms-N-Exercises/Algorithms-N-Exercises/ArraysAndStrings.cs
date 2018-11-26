@@ -1143,6 +1143,61 @@ namespace Algorithms_N_Exercises
             }
             return arr;
         }
+
+        public static bool IsSameCharFrequency(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return true;
+            }
+            var charFreq = new Dictionary<char, int>();
+            foreach (var c in str)
+            {
+                if (charFreq.ContainsKey(c))
+                {
+                    charFreq[c]++;
+                }
+                else
+                {
+                    charFreq[c] = 1;
+                }
+            }
+            var freqFreq = new Dictionary<int,int>();
+            foreach (var freq in charFreq.Values)
+            {
+                if (freqFreq.ContainsKey(freq))
+                {
+                    freqFreq[freq]++;
+                }
+                else
+                {
+                    freqFreq[freq] = 1;
+                }
+            }
+
+            if (freqFreq.Count > 2)
+            {
+                return false;
+            }
+
+            if (freqFreq.Count == 2)
+            {
+                int firstFreqCount = freqFreq.Values.First();
+                int lastFreqCount = freqFreq.Values.Last();
+                if (firstFreqCount > 1 && lastFreqCount > 1)
+                {
+                    return false;
+                }
+
+                int firstFreq = freqFreq.Keys.First();
+                int lastFreq = freqFreq.Keys.Last();
+                if (Math.Abs(firstFreq - lastFreq) > 1)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
 }
