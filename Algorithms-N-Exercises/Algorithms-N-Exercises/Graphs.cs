@@ -149,6 +149,90 @@ namespace Algorithms_N_Exercises
             MarkIsland(binaryMatrix, colorMatrix, i, j - 1);
         }
 
+        // Given undirected graph where each edge is the same weight.
+        // n: the integer number of nodes
+        // m: the integer number of edges
+        // edges: a 2D array of start and end nodes for edges
+        // s: the node to start traversals from
+        // Returns: Shortest distance to each of the other nodes from a given starting position using the (BFS).
+        //          Distances are to be reported in node number order, ascending. 
+        //          If a node is unreachable, return -1 for that node. Each of the edges weighs 6 units of distance.
+        public static int[] GetShortestDistances(int n, int m, int[][] edges, int s)
+        {
+            const int EDGE_DISTANCE = 6;
+
+            // helper lookup of neighboors for every vertex
+            List<int>[] neighbours = new List<int>[n];
+            for (int i = 0; i < n; i++)
+            {
+                neighbours[i] = new List<int>();
+            }
+
+            // decrease number of node, because we start from 0, not from 1
+            s--;
+
+            // fill lookup of neighboors for every vertex
+            for (int i = 0; i < m; i++)
+            {
+                int v1 = edges[i][0] - 1;
+                int v2 = edges[i][1] - 1;
+                neighbours[v1].Add(v2);
+                neighbours[v2].Add(v1);
+            }
+
+            bool[] visited = new bool[n];
+            int[] dist = new int[n];
+
+            // init dist values to -1 default
+            for (int i = 0; i < n; i++)
+            {
+                dist[i] = -1;
+            }
+
+            // debug info
+            // n=3 
+            // m=1
+            // edges = [[2 3]]
+            // neighboors = [ {} {2} {1} ]
+            // s = 1
+            // queue = {}
+            // dist =  [-1  0 -1 ]
+            // visited [ 0  1  1 ]
+            // curr = 1
+            // w = 2
+            
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(s);
+            dist[s] = 0;
+            visited[s] = true;
+
+            while (queue.Count > 0)
+            {
+                var curr = queue.Dequeue();
+
+                foreach (var w in neighbours[curr])
+                {
+                    if (!visited[w])
+                    {
+                        visited[w] = true;
+                        dist[w] = dist[curr] + EDGE_DISTANCE;
+                        queue.Enqueue(w);
+                    }
+                }
+            }
+
+            int[] distWithoutStart = new int[n - 1];
+            int j = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (i == s)
+                {
+                    continue;
+                }
+                distWithoutStart[j++] = dist[i];
+            }
+            return distWithoutStart;
+        }
 
     }
 }

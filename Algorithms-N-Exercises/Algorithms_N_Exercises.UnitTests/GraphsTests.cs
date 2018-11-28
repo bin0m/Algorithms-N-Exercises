@@ -46,5 +46,17 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(3, Graphs.GetNumberOfIslands(new[,] { { 1, 0, 1 }, { 0, 1, 0 } }));
         }
 
+
+        [TestMethod]
+        public void GetShortestDistancesTest1()
+        {
+            CollectionAssert.AreEqual(new[]{ -1, 6 }, Graphs.GetShortestDistances(3, 1, new[]{new[]{2,3}}, 2));
+        }
+
+        [TestMethod]
+        public void GetShortestDistancesTest2()
+        {
+            CollectionAssert.AreEqual(new[] { 6, 6, -1 }, Graphs.GetShortestDistances(4, 2, new[] { new[] { 1, 2 }, new[] { 1, 3 } }, 1));
+        }
     }
 }
