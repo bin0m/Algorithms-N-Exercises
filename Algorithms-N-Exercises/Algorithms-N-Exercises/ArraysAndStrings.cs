@@ -1208,6 +1208,28 @@ namespace Algorithms_N_Exercises
             }
             return true;
         }
+
+        // east -> 3 1 4 2 3 1 -> west
+        //  4          |
+        //  3      |   |   |
+        //  2      |   | | | 
+        //  1      | | | | | |
+        // input:  3 1 4 2 3 1
+        // output:     4   3 1
+        public static List<int> GetHousesWithDawnView(IEnumerable<int> housesHeights)
+        {
+            var houses = new Stack<int>();
+            foreach (var houseHeight in housesHeights)
+            {
+                while (houses.Count > 0 && houses.Peek() < houseHeight)
+                {
+                    houses.Pop();
+                }
+                houses.Push(houseHeight);
+            }
+
+            return houses.ToList();
+        }
     }
 }
 
