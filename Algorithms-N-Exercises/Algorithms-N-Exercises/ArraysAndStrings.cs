@@ -1230,6 +1230,56 @@ namespace Algorithms_N_Exercises
 
             return houses.ToList();
         }
+
+        public static bool IsContainSubstringPermutation(string str, string substr)
+        {
+            if (str == null || substr == null)
+            {
+                throw new ArgumentException();
+            }
+            if(substr == "")
+            {
+                return true;
+            }
+            if (substr.Length > str.Length)
+            {
+                return false;
+            }
+            var substrMap = new Dictionary<char, int>();
+            var currentWindowMap = new Dictionary<char, int> ();
+            foreach(char c in substr)
+            {
+                if(substrMap.ContainsKey(c))
+                {
+                    substrMap[c]++;
+                }
+                else
+                {
+                    substrMap[c] = 1;
+                }
+            }
+
+            int start = 0;
+            int end = substr.Length - 1;
+            for(int i = 0; i <= end; i++)
+            {
+                if (currentWindowMap.ContainsKey(str[i]))
+                {
+                    currentWindowMap[str[i]]++;
+                }
+                else
+                {
+                    currentWindowMap[str[i]] = 1;
+                }
+            }
+
+            while()
+            {
+
+            }
+
+            return false;
+        }
     }
 }
 
