@@ -1273,10 +1273,19 @@ namespace Algorithms_N_Exercises
                 }
             }
 
-            while()
+            do
             {
-
-            }
+                //Compare Maps
+                foreach (var keyValue in substrMap)
+                {
+                    if (currentWindowMap[keyValue.Key] != keyValue.Value)
+                    {
+                        return false;
+                    }
+                }
+                start++;
+                end++;
+            } while (end < str.Length);
 
             return false;
         }
