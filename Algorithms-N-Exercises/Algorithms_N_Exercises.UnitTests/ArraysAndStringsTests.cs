@@ -814,5 +814,54 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("aabbcccc")); 
         }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest1()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("a","a"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest2()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("a", "b"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest3()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("ab", "b"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest4()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("abab", "bb"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest5()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("abcac", "acc"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest6()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("bacabc", "acc"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest7()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("ccbacabcaca", "acac"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest8()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("ccbacabcac", "acac"));
+        }
+
     }
 }
