@@ -863,5 +863,53 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("ccbacabcac", "acac"));
         }
 
+        [TestMethod]
+        public void DeletionDistanceTest1()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.DeletionDistance("a", "b"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest2()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.DeletionDistance("a", "ba"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest3()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.DeletionDistance("ab", "ba"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest4()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.DeletionDistance("abc", "ba"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest5()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.DeletionDistance("", "hit"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest6()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.DeletionDistance("heat", "hit"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest7()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.DeletionDistance("hot", "not"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest8()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.DeletionDistance("abc", "adbc"));
+        }
+
     }
 }
