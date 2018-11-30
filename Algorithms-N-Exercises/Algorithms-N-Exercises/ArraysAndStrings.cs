@@ -1524,6 +1524,34 @@ namespace Algorithms_N_Exercises
 
             return false;
         }
+
+        /*
+         * The deletion distance of two strings is the minimum number of characters you need to delete in the two strings
+         * in order to get the same string. For instance, the deletion distance between "heat" and "hit" is 3
+         */
+        public static int DeletionDistance(string str1, string str2)
+        {
+            int[,] memo = new int[str1.Length+1, str2.Length+1];
+            for (int i = 0; i <= str1.Length; i++)
+            {
+                for (int j = 0; j <= str2.Length; j++)
+                {
+                    if (i == 0 || j == 0)
+                    {
+                        memo[i, j] = i + j;
+                    }
+                    else if (str1[i-1] == str2[j-1])
+                    {
+                        memo[i, j] = memo[i - 1, j - 1];
+                    }
+                    else
+                    {
+                        memo[i, j] = Math.Min(memo[i, j - 1], memo[i - 1, j]) + 1;
+                    }
+                }
+            }
+            return memo[str1.Length, str2.Length];
+        }
     }
 }
 
