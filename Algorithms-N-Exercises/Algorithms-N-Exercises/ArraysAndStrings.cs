@@ -1198,9 +1198,14 @@ namespace Algorithms_N_Exercises
                 {
                     return false;
                 }
-
+                
                 int firstFreq = freqFreq.Keys.First();
                 int lastFreq = freqFreq.Keys.Last();
+                if(firstFreq == 1 && firstFreqCount == 1
+                    || lastFreq == 1 && lastFreqCount == 1)
+                {
+                    return true;
+                }
                 if (Math.Abs(firstFreq - lastFreq) > 1)
                 {
                     return false;
