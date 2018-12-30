@@ -911,5 +911,47 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(1, ArraysAndStrings.DeletionDistance("abc", "adbc"));
         }
 
+        [TestMethod]
+        public void MinWindowTest1()
+        {
+            Assert.AreEqual("a", ArraysAndStrings.minWindow("a", "a"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest2()
+        {
+            Assert.AreEqual("a", ArraysAndStrings.minWindow("bac", "a"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest3()
+        {
+            Assert.AreEqual("ac", ArraysAndStrings.minWindow("bac", "ca"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest4()
+        {
+            Assert.AreEqual("", ArraysAndStrings.minWindow("bac", "cac"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest5()
+        {
+            Assert.AreEqual("t stri", ArraysAndStrings.minWindow("this is a test string", "tist"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest6()
+        {
+            Assert.AreEqual("ksfor", ArraysAndStrings.minWindow("geeksforgeeks", "ork"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest7()
+        {
+            Assert.AreEqual("BANC", ArraysAndStrings.minWindow("ADOBECODEBANC", "ABC"));
+        }
+
     }
 }
