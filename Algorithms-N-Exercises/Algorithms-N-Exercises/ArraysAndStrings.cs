@@ -1552,84 +1552,69 @@ namespace Algorithms_N_Exercises
             }
             return memo[str1.Length, str2.Length];
         }
+       
 
-        /*Given a string S and a string T, find the minimum window in S which will contain all the characters in T in
-         *linear time complexity.
-         * time: O(n)
-         * space: O(n)
-         */
-
+        /*Given a string A and a string B, find the minimum window in A which will contain all the characters in B in
+       *linear time complexity.
+       * time: O(n)
+       * space: O(n)
+       */
         public static string minWindow(string A, string B)
         {
-            //edge case
+            // Edge case
             if (A.Length < B.Length)
             {
                 return "";
             }
-            string minWin = "";
-            var bHashSet = new HashSet<char>();
-            var currHashSet = new HashSet<char>();
-            var currFreq = new Dictionary<char, int>();
+
+            int counter = 0;
+            var table = new Dictionary<char, int>();
             foreach (var c in B)
             {
-                if (!bHashSet.Contains(c))
+                if (table.ContainsKey(c))
                 {
-                    bHashSet.Add(c);
-                    currHashSet.Add(c);
-                    currFreq[c] = -1;
+                    table[c]++;
                 }
                 else
                 {
-                    currFreq[c]--;
+                    table[c] = 1;
+                    counter++;
                 }
             }
-            int from = 0;
-            int to = 0;
-            while (to < A.Length)
+
+            int begin = 0;
+            int end = 0;
+            string minWindow = "";
+            while (end < A.Length)
             {
-                if (bHashSet.Contains(A[to]))
+                char endChar = A[end];
+                if (table.ContainsKey(endChar))
                 {
-                    currFreq[A[to]]++;
-                    if (currHashSet.Contains(A[to]))
-                    {
-                        if (currFreq[A[to]] == 0)
-                        {
-                            currHashSet.Remove(A[to]);
-                            if (currHashSet.Count == 0)
-                            {
-                                if (minWin.Length == 0 || to - from + 1 < minWin.Length)
-                                {
-                                    minWin = A.Substring(from, to - from + 1);
-                                }
-
-                                while (from <= to)
-                                {
-                                    if (bHashSet.Contains(A[from]))
-                                    {
-                                        currFreq[A[from]]--;
-
-                                        if (currFreq[A[from]] < 0)
-                                        {
-                                            if (to - from + 1 < minWin.Length)
-                                            {
-                                                minWin = A.Substring(from, to - from + 1);
-                                            }
-
-                                            currHashSet.Add(A[from]);
-                                            from++;
-                                            break;
-                                        }
-                                    }
-
-                                    from++;
-                                }
-                            }
-                        }
-                    }
+                    table[endChar]--;
+                    if (table[endChar] == 0) counter--;
                 }
-                to++;
+
+                end++;
+
+                while (counter == 0)
+                {
+                    if (minWindow == "" || end - begin < minWindow.Length)
+                    {
+                        minWindow = A.Substring(begin, end - begin);
+                    }
+
+                    char beginChar = A[begin];
+                    if (table.ContainsKey(beginChar))
+                    {
+                        table[beginChar]++;
+                        if (table[beginChar] == 1) counter++;
+                    }
+
+                    begin++;
+                }
             }
-            return minWin;
+
+            return minWindow;
         }
     }
 }
