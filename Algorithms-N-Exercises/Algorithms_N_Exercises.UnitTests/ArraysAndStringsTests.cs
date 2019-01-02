@@ -953,5 +953,14 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual("BANC", ArraysAndStrings.minWindow("ADOBECODEBANC", "ABC"));
         }
 
+        [TestMethod]
+        public void SpellcheckerTest1()
+        {
+            string[] wordlist = {"KiTe", "kite", "hare", "Hare"};
+            string[] queries =  {"kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"};
+            string[] expected = {"kite", "KiTe", "KiTe", "Hare", "hare",  "",     "",    "KiTe", "",     "KiTe"};
+            CollectionAssert.AreEqual(expected, ArraysAndStrings.Spellchecker(wordlist, queries));
+        }
+
     }
 }

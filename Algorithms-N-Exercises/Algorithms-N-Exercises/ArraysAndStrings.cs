@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Algorithms_N_Exercises
 {
@@ -1615,6 +1616,74 @@ namespace Algorithms_N_Exercises
             }
 
             return minWindow;
+        }
+
+        /*
+         * Vowel Spellchecker
+         * Given a wordlist, we want to implement a spellchecker that converts a query word into a correct word.
+         * For a given query word, the spell checker handles two categories of spelling mistakes:
+         * 1.Capitalization: If the query matches a word in the wordlist (case-insensitive), then the query word is returned with the same case as the case in the wordlist.
+         * 2. Vowel Errors: If after replacing the vowels ('a', 'e', 'i', 'o', 'u') of the query word with any vowel individually,
+         *  it matches a word in the wordlist (case-insensitive), then the query word is returned with the same case as the match in the wordlist.
+         */
+        public static string[] Spellchecker(string[] wordlist, string[] queries)
+        {
+            var wordSet = new HashSet<string>();
+            foreach (string word in wordlist)
+            {
+                wordSet.Add(word);
+            }
+
+            var lowCaseWords = new Dictionary<string, int>();
+            for (int i = 0; i < wordlist.Length; i++)
+            {
+                string lowCaseWord = wordlist[i].ToLower();
+                if (!lowCaseWords.ContainsKey(lowCaseWord))
+                {
+                    lowCaseWords[lowCaseWord] = i;
+                }
+            }
+
+            var noVowelsWords = new Dictionary<string, int>();
+            for (int i = 0; i < wordlist.Length; i++)
+            {
+                string noVowelsWord = RemoveVowels(wordlist[i]);
+                if (!noVowelsWords.ContainsKey(noVowelsWord))
+                {
+                    noVowelsWords[noVowelsWord] = i;
+                }
+            }
+
+            string[] res = new string[queries.Length];
+            for (int i = 0; i < queries.Length; i++)
+            {
+                if (wordSet.Contains(queries[i]))
+                {
+                    res[i] = queries[i];
+                }
+                else if (lowCaseWords.TryGetValue(queries[i].ToLower(), out int value))
+                {
+                    res[i] = wordlist[value];
+                }
+                else if (noVowelsWords.TryGetValue(RemoveVowels(queries[i]), out int value2))
+                {
+                    res[i] = wordlist[value2];
+                }
+                else
+                {
+                    res[i] = "";
+                }
+            }
+
+            return res;
+
+        }
+
+
+        private static string RemoveVowels(string s)
+        {
+            string res = Regex.Replace(s.ToLower(), "[aeiou]", "*", RegexOptions.IgnoreCase);
+            return res;
         }
     }
 }
