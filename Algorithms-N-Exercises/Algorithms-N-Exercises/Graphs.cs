@@ -234,5 +234,118 @@ namespace Algorithms_N_Exercises
             return distWithoutStart;
         }
 
+        /*
+         * We want to find the longest (as determined by the number of characters) absolute path to a file within our system.
+         * For example, in the second example above, the longest absolute path is "user/documents/lectures/notes.txt",
+         * and its length is 33 (not including the double quotes).
+         */
+        public static int longestPath(string fileSystem)
+        {
+            if (string.IsNullOrEmpty(fileSystem))
+            {
+                return 0;
+            }
+            string[] nodes = fileSystem.Split('\f');
+            List<int> roots = GetRootsList(nodes);
+            int max = 0;
+            foreach (int id in roots)
+            {
+                int ajacencyLength = GetLongestPathDFS(id, nodes);
+                max = Math.Max(ajacencyLength, max);
+            }
+            return max;
+        }
+
+        static int GetLongestPathDFS(int nodeId, string[] nodes)
+        {
+            int length = GetLength(nodes[nodeId]);
+            if (IsFile(nodes[nodeId]))
+            {
+                return length;
+            }
+
+            List<int> adjacencyList = GetAdjacencyList(nodeId, nodes);
+            int max = 0;
+            foreach (int id in adjacencyList)
+            {
+                int ajacencyLength = GetLongestPathDFS(id, nodes);
+                max = Math.Max(ajacencyLength, max);
+            }
+            if (max > 0)
+            {
+                max = max + length + 1;
+            }
+            return max;
+        }
+
+        static List<int> GetAdjacencyList(int nodeId, string[] nodes)
+        {
+            // nodeId = 0
+            // nodes = {dir}
+            int rootLevel = GetLevel(nodes[nodeId]);
+            List<int> list = new List<int>();
+            for (int i = nodeId + 1; i < nodes.Length; i++)
+            {
+                int level = GetLevel(nodes[i]);
+                if (level == rootLevel)
+                {
+                    // i node is on the same level, it means no more children for nodeId
+                    break;
+                }
+                else if (level == rootLevel + 1)
+                {
+                    list.Add(i);
+                }
+            }
+            return list;
+        }
+
+        static List<int> GetRootsList(string[] nodes)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                int level = GetLevel(nodes[i]);
+                if (level == 0)
+                {
+                    list.Add(i);
+                }
+            }
+            return list;
+        }
+
+        static bool IsFile(string name)
+        {
+            return name.Contains('.');
+        }
+
+        static int GetLevel(string name)
+        {
+            int level = 0;
+            foreach (char c in name)
+            {
+                if (c != '\t')
+                {
+                    break;
+                }
+                level++;
+            }
+            return level;
+        }
+
+        static int GetLength(string name)
+        {
+            int length = 0;
+            for (int i = 0; i < name.Length; i++)
+            {
+                if (name[i] != '\t')
+                {
+                    length = name.Length - i;
+                    break;
+                }
+            }
+            return length;
+        }
+
     }
 }
