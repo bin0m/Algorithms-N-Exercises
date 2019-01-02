@@ -45,7 +45,7 @@ namespace Algorithms_N_Exercises
                 {
                     if (arr[i + 1] != null)
                     {
-                        current.Right = new TreeNode(arr[i + 1].Value) { Parent = current };
+                        current.Right = new TreeNode(arr[i + 1].Value) {Parent = current};
                         queue.Enqueue(current.Right);
                     }
 
@@ -90,7 +90,7 @@ namespace Algorithms_N_Exercises
             {
                 return null;
             }
-                
+
             // traverse tree preorder
             var myStack = new Stack<TreeNode>();
             myStack.Push(root);
@@ -112,6 +112,7 @@ namespace Algorithms_N_Exercises
                     myStack.Push(currNode.Left);
                 }
             }
+
             // key not found
             return null;
         }
@@ -301,6 +302,7 @@ namespace Algorithms_N_Exercises
                 {
                     currNode = currNode.Left;
                 }
+
                 // return most left child node
                 return currNode;
             }
@@ -319,6 +321,48 @@ namespace Algorithms_N_Exercises
             }
 
             return null;
+        }
+
+        /*
+         * Given a root of a Binary Search Tree (BST) and a number num, implement an efficient function findLargestSmallerKey that finds the largest
+         * key in the tree that is smaller than num. If such a number doesn’t exist, return -1. Assume that all keys in the tree are nonnegative.
+         */
+        public static int FindLargestSmallerBSTKey(TreeNode rootNode, int num)
+        {
+            if (rootNode == null)
+            {
+                return -1;
+            }
+
+            if (rootNode.Val < num)
+            {
+                return Math.Max(rootNode.Val, FindLargestSmallerBSTKey(rootNode.Right, num));
+            }
+
+            return FindLargestSmallerBSTKey(rootNode.Left, num);
+        }
+
+        // Iterative version of FindLargestSmallerBSTKey
+        public static int FindLargestSmallerBSTKeyIterative(TreeNode rootNode, int num)
+        {
+            TreeNode curr = rootNode;
+
+            int smaller = -1;
+
+            while (curr != null)
+            {
+                if (curr.Val < num)
+                {
+                    smaller = Math.Max(smaller, curr.Val);
+                    curr = curr.Right;
+                }
+                else
+                {
+                    curr = curr.Left;
+                }
+            }
+
+            return smaller;
         }
     }
 }
