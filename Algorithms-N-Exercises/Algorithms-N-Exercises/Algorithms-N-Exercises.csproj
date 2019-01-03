@@ -53,6 +53,7 @@
     <Compile Include="QueueViaStacks.cs" />
     <Compile Include="Sorting.cs" />
     <Compile Include="Trees.cs" />
+    <Compile Include="UnionFind.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

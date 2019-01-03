@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms_N_Exercises
 {
@@ -84,7 +82,38 @@ namespace Algorithms_N_Exercises
             }
 
             return c_lib * (cityAreas.AreaCount + unconnectedCitites) + c_road * (n - cityAreas.AreaCount - unconnectedCitites);
-            
+
+        }
+
+        // Another solution to RoadsAndLibraries using UnionFind data structure
+        static long RoadsAndLibraries2(int n, int c_lib, int c_road, int[][] cities)
+        {
+            if (c_road >= c_lib)
+            {
+                return c_lib * n;
+            }
+            // n = 3
+            // c_lib = 2
+            // c_road = 1
+            // cityArea = { 1 1 0 }
+            // areaCounter = 1
+
+            var unionFind = new UnionFind(n);
+            foreach (var cityPair in cities)
+            {
+                unionFind.Union(cityPair[0] - 1, cityPair[1] - 1);
+            }
+            var cityCentersList = new int[n];
+            for (var i = 0; i < n; ++i)
+            {
+                ++cityCentersList[unionFind.Find(i)];
+            }               
+            var cost = 0L;
+            for (var i = 0; i < n; ++i)
+                if (cityCentersList[i] > 0)
+                    cost += c_lib + (long)(cityCentersList[i] - 1) * c_road;
+
+            return cost;
         }
 
 
@@ -200,7 +229,7 @@ namespace Algorithms_N_Exercises
             // visited [ 0  1  1 ]
             // curr = 1
             // w = 2
-            
+
             Queue<int> queue = new Queue<int>();
             queue.Enqueue(s);
             dist[s] = 0;
