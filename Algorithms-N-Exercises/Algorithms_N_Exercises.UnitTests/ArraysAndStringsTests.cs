@@ -814,5 +814,153 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(false, ArraysAndStrings.IsSameCharFrequency("aabbcccc")); 
         }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest1()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("a","a"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest2()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("a", "b"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest3()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("ab", "b"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest4()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("abab", "bb"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest5()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("abcac", "acc"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest6()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("bacabc", "acc"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest7()
+        {
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("ccbacabcaca", "acac"));
+        }
+
+        [TestMethod]
+        public void IsContainSubstringPermutationTest8()
+        {
+            Assert.AreEqual(false, ArraysAndStrings.IsContainSubstringPermutation3("ccbacabcac", "acac"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest1()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.DeletionDistance("a", "b"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest2()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.DeletionDistance("a", "ba"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest3()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.DeletionDistance("ab", "ba"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest4()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.DeletionDistance("abc", "ba"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest5()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.DeletionDistance("", "hit"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest6()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.DeletionDistance("heat", "hit"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest7()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.DeletionDistance("hot", "not"));
+        }
+
+        [TestMethod]
+        public void DeletionDistanceTest8()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.DeletionDistance("abc", "adbc"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest1()
+        {
+            Assert.AreEqual("a", ArraysAndStrings.minWindow("a", "a"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest2()
+        {
+            Assert.AreEqual("a", ArraysAndStrings.minWindow("bac", "a"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest3()
+        {
+            Assert.AreEqual("ac", ArraysAndStrings.minWindow("bac", "ca"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest4()
+        {
+            Assert.AreEqual("", ArraysAndStrings.minWindow("bac", "cac"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest5()
+        {
+            Assert.AreEqual("t stri", ArraysAndStrings.minWindow("this is a test string", "tist"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest6()
+        {
+            Assert.AreEqual("ksfor", ArraysAndStrings.minWindow("geeksforgeeks", "ork"));
+        }
+
+        [TestMethod]
+        public void MinWindowTest7()
+        {
+            Assert.AreEqual("BANC", ArraysAndStrings.minWindow("ADOBECODEBANC", "ABC"));
+        }
+
+        [TestMethod]
+        public void SpellcheckerTest1()
+        {
+            string[] wordlist = {"KiTe", "kite", "hare", "Hare"};
+            string[] queries =  {"kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"};
+            string[] expected = {"kite", "KiTe", "KiTe", "Hare", "hare",  "",     "",    "KiTe", "",     "KiTe"};
+            CollectionAssert.AreEqual(expected, ArraysAndStrings.Spellchecker(wordlist, queries));
+        }
+
     }
 }

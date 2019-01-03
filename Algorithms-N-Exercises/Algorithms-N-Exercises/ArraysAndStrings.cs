@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Algorithms_N_Exercises
 {
@@ -1236,13 +1237,17 @@ namespace Algorithms_N_Exercises
             return houses.ToList();
         }
 
+
+        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
+        // time: O(N*M)
+        // space: O(N+M)
         public static bool IsContainSubstringPermutation(string str, string substr)
         {
             if (str == null || substr == null)
             {
                 throw new ArgumentException();
             }
-            if(substr == "")
+            if (substr == "")
             {
                 return true;
             }
@@ -1278,21 +1283,412 @@ namespace Algorithms_N_Exercises
                 }
             }
 
-            do
+            while (true)
             {
                 //Compare Maps
+                bool isContained = true;
                 foreach (var keyValue in substrMap)
                 {
-                    if (currentWindowMap[keyValue.Key] != keyValue.Value)
+                    if (!currentWindowMap.ContainsKey(keyValue.Key) || currentWindowMap[keyValue.Key] != keyValue.Value)
                     {
-                        return false;
+                        isContained = false;
+                        break;
                     }
                 }
+
+                if (isContained == true)
+                {
+                    return true;
+                }
+
                 start++;
                 end++;
-            } while (end < str.Length);
+
+                if (end >= str.Length)
+                {
+                    break;
+                }
+
+                // remove from window
+                currentWindowMap[str[start - 1]]--;
+
+                // add to window
+                if (currentWindowMap.ContainsKey(str[end]))
+                {
+                    currentWindowMap[str[end]]++;
+                }
+                else
+                {
+                    currentWindowMap[str[end]] = 1;
+                }
+
+            } 
 
             return false;
+        }
+
+        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
+        // time: O(N+M)
+        // space: O(N+M)
+        public static bool IsContainSubstringPermutation2(string str, string substr)
+        {
+            if (str == null || substr == null)
+            {
+                throw new ArgumentException();
+            }
+            if (substr == "")
+            {
+                return true;
+            }
+            if (substr.Length > str.Length)
+            {
+                return false;
+            }
+            var diffMap = new Dictionary<char, int>();
+        
+            foreach (char c in substr)
+            {
+                if (diffMap.ContainsKey(c))
+                {
+                    diffMap[c]--;
+                }
+                else
+                {
+                    diffMap[c] = -1;
+                }
+            }
+
+            int start = 0;
+            int end = substr.Length - 1;
+            for (int i = 0; i <= end; i++)
+            {
+                IncreaseValueAndRemoveWhenBecomesToZero(diffMap, str, i);
+            }
+
+            while (true)
+            {
+                if (diffMap.Count == 0)
+                {
+                    return true;
+                }
+
+                start++;
+                end++;
+
+                if (end >= str.Length)
+                {
+                    break;
+                }
+
+                // add str[end] to window
+                IncreaseValueAndRemoveWhenBecomesToZero(diffMap, str, end);
+
+                // remove str[start - 1] from window
+                DecreaseValueAndRemoveWhenBecomesToZero(diffMap, str, start - 1);
+
+            }
+
+            return false;
+        }
+
+        // helper for IsContainSubstringPermutation2
+        // O(1)
+        private static void IncreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str, int indexInString)
+        {
+            if (diffMap.ContainsKey(str[indexInString]))
+            {
+                diffMap[str[indexInString]]++;
+                if (diffMap[str[indexInString]] == 0)
+                {
+                    diffMap.Remove(str[indexInString]);
+                }
+            }
+            else
+            {
+                diffMap[str[indexInString]] = 1;
+            }
+        }
+
+        //helper for IsContainSubstringPermutation2
+        private static void DecreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str,  int indexInString)
+        {
+            if (diffMap.ContainsKey(str[indexInString]))
+            {
+                diffMap[str[indexInString]]--;
+                if (diffMap[str[indexInString]] == 0)
+                {
+                    diffMap.Remove(str[indexInString]);
+                }
+            }
+            else
+            {
+                diffMap[str[indexInString]] = -1;
+            }
+        }
+
+        
+
+        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
+        // time: O(N+M)
+        // space: O(N+M)
+        public static bool IsContainSubstringPermutation3(string str, string substr)
+        {
+            if (str == null || substr == null)
+            {
+                throw new ArgumentException();
+            }
+            if (substr == "")
+            {
+                return true;
+            }
+            if (substr.Length > str.Length)
+            {
+                return false;
+            }
+            var diffMap = new Dictionary<char, int>();
+
+            foreach (char c in substr)
+            {
+                if (diffMap.ContainsKey(c))
+                {
+                    diffMap[c]--;
+                }
+                else
+                {
+                    diffMap[c] = -1;
+                }
+            }
+
+            int start = 0;
+            int end = substr.Length - 1;
+            int diffCount = diffMap.Count;
+
+            for (int i = 0; i <= end; i++)
+            {
+                if (diffMap.ContainsKey(str[i]))
+                {
+                    diffMap[str[i]]++;
+                    if (diffMap[str[i]] == 0)
+                    {
+                        diffCount--;
+                    }
+                }
+                else
+                {
+                    diffMap[str[i]] = 1;
+                    diffCount++;
+                }
+            }
+
+            while (true)
+            {
+                if (diffCount == 0)
+                {
+                    return true;
+                }
+
+                start++;
+                end++;
+
+                if (end >= str.Length)
+                {
+                    break;
+                }
+
+
+
+                // add to window
+                if (diffMap.ContainsKey(str[end]))
+                {
+                    diffMap[str[end]]++;
+                    if (diffMap[str[end]] == 0)
+                    {
+                        diffCount--;
+                    }
+                }
+                else
+                {
+                    diffMap[str[end]] = 1;
+                    diffCount++;
+                }
+
+                // remove from window
+                if (diffMap.ContainsKey(str[start - 1]))
+                {
+                    diffMap[str[start - 1]]--;
+                    if (diffMap[str[start - 1]] == 0)
+                    {
+                        diffCount--;
+                    }
+                }
+                else
+                {
+                    diffCount++;
+                }
+
+            }
+
+            return false;
+        }
+
+        /*
+         * The deletion distance of two strings is the minimum number of characters you need to delete in the two strings
+         * in order to get the same string. For instance, the deletion distance between "heat" and "hit" is 3
+         */
+        public static int DeletionDistance(string str1, string str2)
+        {
+            int[,] memo = new int[str1.Length+1, str2.Length+1];
+            for (int i = 0; i <= str1.Length; i++)
+            {
+                for (int j = 0; j <= str2.Length; j++)
+                {
+                    if (i == 0 || j == 0)
+                    {
+                        memo[i, j] = i + j;
+                    }
+                    else if (str1[i-1] == str2[j-1])
+                    {
+                        memo[i, j] = memo[i - 1, j - 1];
+                    }
+                    else
+                    {
+                        memo[i, j] = Math.Min(memo[i, j - 1], memo[i - 1, j]) + 1;
+                    }
+                }
+            }
+            return memo[str1.Length, str2.Length];
+        }
+       
+
+        /*Given a string A and a string B, find the minimum window in A which will contain all the characters in B in
+       *linear time complexity.
+       * time: O(n)
+       * space: O(n)
+       */
+        public static string minWindow(string A, string B)
+        {
+            // Edge case
+            if (A.Length < B.Length)
+            {
+                return "";
+            }
+
+            int counter = 0;
+            var table = new Dictionary<char, int>();
+            foreach (var c in B)
+            {
+                if (table.ContainsKey(c))
+                {
+                    table[c]++;
+                }
+                else
+                {
+                    table[c] = 1;
+                    counter++;
+                }
+            }
+
+            int begin = 0;
+            int end = 0;
+            string minWindow = "";
+            while (end < A.Length)
+            {
+                char endChar = A[end];
+                if (table.ContainsKey(endChar))
+                {
+                    table[endChar]--;
+                    if (table[endChar] == 0) counter--;
+                }
+
+                end++;
+
+                while (counter == 0)
+                {
+                    if (minWindow == "" || end - begin < minWindow.Length)
+                    {
+                        minWindow = A.Substring(begin, end - begin);
+                    }
+
+                    char beginChar = A[begin];
+                    if (table.ContainsKey(beginChar))
+                    {
+                        table[beginChar]++;
+                        if (table[beginChar] == 1) counter++;
+                    }
+
+                    begin++;
+                }
+            }
+
+            return minWindow;
+        }
+
+        /*
+         * Vowel Spellchecker
+         * Given a wordlist, we want to implement a spellchecker that converts a query word into a correct word.
+         * For a given query word, the spell checker handles two categories of spelling mistakes:
+         * 1.Capitalization: If the query matches a word in the wordlist (case-insensitive), then the query word is returned with the same case as the case in the wordlist.
+         * 2. Vowel Errors: If after replacing the vowels ('a', 'e', 'i', 'o', 'u') of the query word with any vowel individually,
+         *  it matches a word in the wordlist (case-insensitive), then the query word is returned with the same case as the match in the wordlist.
+         */
+        public static string[] Spellchecker(string[] wordlist, string[] queries)
+        {
+            var wordSet = new HashSet<string>();
+            foreach (string word in wordlist)
+            {
+                wordSet.Add(word);
+            }
+
+            var lowCaseWords = new Dictionary<string, int>();
+            for (int i = 0; i < wordlist.Length; i++)
+            {
+                string lowCaseWord = wordlist[i].ToLower();
+                if (!lowCaseWords.ContainsKey(lowCaseWord))
+                {
+                    lowCaseWords[lowCaseWord] = i;
+                }
+            }
+
+            var noVowelsWords = new Dictionary<string, int>();
+            for (int i = 0; i < wordlist.Length; i++)
+            {
+                string noVowelsWord = RemoveVowels(wordlist[i]);
+                if (!noVowelsWords.ContainsKey(noVowelsWord))
+                {
+                    noVowelsWords[noVowelsWord] = i;
+                }
+            }
+
+            string[] res = new string[queries.Length];
+            for (int i = 0; i < queries.Length; i++)
+            {
+                if (wordSet.Contains(queries[i]))
+                {
+                    res[i] = queries[i];
+                }
+                else if (lowCaseWords.TryGetValue(queries[i].ToLower(), out int value))
+                {
+                    res[i] = wordlist[value];
+                }
+                else if (noVowelsWords.TryGetValue(RemoveVowels(queries[i]), out int value2))
+                {
+                    res[i] = wordlist[value2];
+                }
+                else
+                {
+                    res[i] = "";
+                }
+            }
+
+            return res;
+
+        }
+
+
+        private static string RemoveVowels(string s)
+        {
+            string res = Regex.Replace(s.ToLower(), "[aeiou]", "*", RegexOptions.IgnoreCase);
+            return res;
         }
     }
 }

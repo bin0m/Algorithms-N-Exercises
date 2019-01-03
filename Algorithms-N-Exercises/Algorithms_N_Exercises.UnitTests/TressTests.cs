@@ -305,5 +305,42 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreNotSame(GetNode(sampleTree, 2), FindInOrderSuccessor(GetNode(sampleTree, 3)));
         }
 
+
+        [TestMethod]
+        public void FindLargestSmallerBSTKeyTest1()
+        {
+            Assert.AreEqual(5, FindLargestSmallerBSTKeyIterative(CreateBinaryTree(new int?[] { 5 }), 10));
+        }
+
+        [TestMethod]
+        public void FindLargestSmallerBSTKeyTest2()
+        {
+            Assert.AreEqual(-1, FindLargestSmallerBSTKeyIterative(CreateBinaryTree(new int?[] { 5 }), 5));
+        }
+
+        [TestMethod]
+        public void FindLargestSmallerBSTKeyTest3()
+        {
+            Assert.AreEqual(4, FindLargestSmallerBSTKeyIterative(CreateBinaryTree(new int?[] { 6, 3, 7 , 1, 4 }), 6));
+        }
+
+        [TestMethod]
+        public void FindLargestSmallerBSTKeyTest4()
+        {
+            Assert.AreEqual(3, FindLargestSmallerBSTKeyIterative(CreateBinaryTree(new int?[] { 6, 3, 7, 1, 4 }), 4));
+        }
+
+        [TestMethod]
+        public void FindLargestSmallerBSTKeyTest5()
+        {
+            Assert.AreEqual(6, FindLargestSmallerBSTKeyIterative(CreateBinaryTree(new int?[] { 6, 3, 7, 1, 4 }), 7));
+        }
+
+        [TestMethod]
+        public void FindLargestSmallerBSTKeyTest6()
+        {
+            Assert.AreEqual(8, FindLargestSmallerBSTKeyIterative(CreateBinaryTree(new int?[] { 6, 3, 10, 1, 4, 8, 12}), 9));
+        }
+
     }
 }
