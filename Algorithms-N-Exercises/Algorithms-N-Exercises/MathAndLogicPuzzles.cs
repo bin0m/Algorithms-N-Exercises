@@ -61,5 +61,24 @@ namespace Algorithms_N_Exercises
                 return nk / n;
             return -1;
         }
+
+        /*
+         Imagine you place a knight chess piece on a phone dial pad. This chess piece moves 
+         in an uppercase “L” shape: two steps horizontally followed by one vertically, 
+         or one step horizontally then two vertically. Suppose you dial keys on the keypad
+         using only hops a knight can make. How many distinct numbers can you dial in N hops
+         from a particular starting position?
+         1 2 3
+         4 5 6
+         7 8 9
+           0
+         start=1 n=1 : 16, 18
+                 n=2 : 161, 167, 181, 183
+                 n=3 : 1616, 1618, 1672, 1676, 1816, 1618, 1834, 1838
+         */
+        public static int HowManyDistinctNumbersCanKnightHopOnDialPad(int start, int n)
+        {
+            return 0;
+        }
     }
 }
