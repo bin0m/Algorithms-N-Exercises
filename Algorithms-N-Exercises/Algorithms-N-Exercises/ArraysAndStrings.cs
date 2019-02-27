@@ -485,6 +485,7 @@ namespace Algorithms_N_Exercises
             {
                 return new int[0];
             }
+
             int lenA = slotsA.GetLength(0);
             int lenB = slotsB.GetLength(0);
 
@@ -502,11 +503,13 @@ namespace Algorithms_N_Exercises
             //dur = 8
             while (indexA < lenA && indexB < lenB)
             {
-                int[] commonSlot = FindCommonSlot(slotsA[indexA, 0], slotsA[indexA, 1], slotsB[indexB, 0], slotsB[indexB, 1]);
+                int[] commonSlot = FindCommonSlot(slotsA[indexA, 0], slotsA[indexA, 1], slotsB[indexB, 0],
+                    slotsB[indexB, 1]);
                 if (commonSlot.Length > 0 && (commonSlot[1] - commonSlot[0]) >= dur)
                 {
                     return new int[2] { commonSlot[0], commonSlot[0] + dur };
                 }
+
                 if (slotsA[indexA, 1] > slotsB[indexB, 1])
                 {
                     indexB++;
@@ -814,11 +817,12 @@ namespace Algorithms_N_Exercises
                         }
                         else
                         {
-                            flatDict[$"{keyValue.Key }.{nestedPair.Key}"] = nestedPair.Value;
+                            flatDict[$"{keyValue.Key}.{nestedPair.Key}"] = nestedPair.Value;
                         }
                     }
                 }
             }
+
             return flatDict;
         }
 
@@ -1074,6 +1078,7 @@ namespace Algorithms_N_Exercises
                     c[i] = c[i + 1];
                 }
             }
+
             long biggestVolume = (long)Math.Pow(2, n - 1);
 
             var minSpend = new long[biggestVolume + 1];
@@ -1145,10 +1150,12 @@ namespace Algorithms_N_Exercises
                         arr[index++] = inputMatrix[row, colStart];
                     }
                 }
+
                 rowEnd--;
                 colStart++;
                 colEnd--;
             }
+
             return arr;
         }
 
@@ -1161,6 +1168,7 @@ namespace Algorithms_N_Exercises
             {
                 return true;
             }
+
             var charFreq = new Dictionary<char, int>();
             foreach (var c in str)
             {
@@ -1173,7 +1181,8 @@ namespace Algorithms_N_Exercises
                     charFreq[c] = 1;
                 }
             }
-            var freqFreq = new Dictionary<int,int>();
+
+            var freqFreq = new Dictionary<int, int>();
             foreach (var freq in charFreq.Values)
             {
                 if (freqFreq.ContainsKey(freq))
@@ -1199,19 +1208,21 @@ namespace Algorithms_N_Exercises
                 {
                     return false;
                 }
-                
+
                 int firstFreq = freqFreq.Keys.First();
                 int lastFreq = freqFreq.Keys.Last();
-                if(firstFreq == 1 && firstFreqCount == 1
+                if (firstFreq == 1 && firstFreqCount == 1
                     || lastFreq == 1 && lastFreqCount == 1)
                 {
                     return true;
                 }
+
                 if (Math.Abs(firstFreq - lastFreq) > 1)
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -1231,6 +1242,7 @@ namespace Algorithms_N_Exercises
                 {
                     houses.Pop();
                 }
+
                 houses.Push(houseHeight);
             }
 
@@ -1247,19 +1259,22 @@ namespace Algorithms_N_Exercises
             {
                 throw new ArgumentException();
             }
+
             if (substr == "")
             {
                 return true;
             }
+
             if (substr.Length > str.Length)
             {
                 return false;
             }
+
             var substrMap = new Dictionary<char, int>();
-            var currentWindowMap = new Dictionary<char, int> ();
-            foreach(char c in substr)
+            var currentWindowMap = new Dictionary<char, int>();
+            foreach (char c in substr)
             {
-                if(substrMap.ContainsKey(c))
+                if (substrMap.ContainsKey(c))
                 {
                     substrMap[c]++;
                 }
@@ -1271,7 +1286,7 @@ namespace Algorithms_N_Exercises
 
             int start = 0;
             int end = substr.Length - 1;
-            for(int i = 0; i <= end; i++)
+            for (int i = 0; i <= end; i++)
             {
                 if (currentWindowMap.ContainsKey(str[i]))
                 {
@@ -1322,7 +1337,7 @@ namespace Algorithms_N_Exercises
                     currentWindowMap[str[end]] = 1;
                 }
 
-            } 
+            }
 
             return false;
         }
@@ -1336,16 +1351,19 @@ namespace Algorithms_N_Exercises
             {
                 throw new ArgumentException();
             }
+
             if (substr == "")
             {
                 return true;
             }
+
             if (substr.Length > str.Length)
             {
                 return false;
             }
+
             var diffMap = new Dictionary<char, int>();
-        
+
             foreach (char c in substr)
             {
                 if (diffMap.ContainsKey(c))
@@ -1393,7 +1411,8 @@ namespace Algorithms_N_Exercises
 
         // helper for IsContainSubstringPermutation2
         // O(1)
-        private static void IncreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str, int indexInString)
+        private static void IncreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str,
+            int indexInString)
         {
             if (diffMap.ContainsKey(str[indexInString]))
             {
@@ -1410,7 +1429,8 @@ namespace Algorithms_N_Exercises
         }
 
         //helper for IsContainSubstringPermutation2
-        private static void DecreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str,  int indexInString)
+        private static void DecreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str,
+            int indexInString)
         {
             if (diffMap.ContainsKey(str[indexInString]))
             {
@@ -1426,7 +1446,7 @@ namespace Algorithms_N_Exercises
             }
         }
 
-        
+
 
         // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
         // time: O(N+M)
@@ -1437,14 +1457,17 @@ namespace Algorithms_N_Exercises
             {
                 throw new ArgumentException();
             }
+
             if (substr == "")
             {
                 return true;
             }
+
             if (substr.Length > str.Length)
             {
                 return false;
             }
+
             var diffMap = new Dictionary<char, int>();
 
             foreach (char c in substr)
@@ -1537,7 +1560,7 @@ namespace Algorithms_N_Exercises
          */
         public static int DeletionDistance(string str1, string str2)
         {
-            int[,] memo = new int[str1.Length+1, str2.Length+1];
+            int[,] memo = new int[str1.Length + 1, str2.Length + 1];
             for (int i = 0; i <= str1.Length; i++)
             {
                 for (int j = 0; j <= str2.Length; j++)
@@ -1546,7 +1569,7 @@ namespace Algorithms_N_Exercises
                     {
                         memo[i, j] = i + j;
                     }
-                    else if (str1[i-1] == str2[j-1])
+                    else if (str1[i - 1] == str2[j - 1])
                     {
                         memo[i, j] = memo[i - 1, j - 1];
                     }
@@ -1556,9 +1579,10 @@ namespace Algorithms_N_Exercises
                     }
                 }
             }
+
             return memo[str1.Length, str2.Length];
         }
-       
+
 
         /*Given a string A and a string B, find the minimum window in A which will contain all the characters in B in
        *linear time complexity.
@@ -1690,6 +1714,43 @@ namespace Algorithms_N_Exercises
             string res = Regex.Replace(s.ToLower(), "[aeiou]", "*", RegexOptions.IgnoreCase);
             return res;
         }
+
+        /*
+         * A Toeplitz matrix is a matrix where every left-to-right-descending diagonal has the same element. Given a non-empty matrix arr,
+         * write a function that returns true if and only if it is a Toeplitz matrix.
+         * The matrix can be any dimensions, not necessarily square.
+         * time: O(N*M)
+         */
+        public static bool IsToeplitzMatrix(int[,] mat)
+        {
+            int rows = mat.GetLength(0);
+            int cols = mat.GetLength(1);
+
+            for (int c = 0; c < cols; c++)
+            {
+                int start = mat[0,c];
+                for (int k = 1; k < Math.Min(rows, cols - c); k++)
+                {
+                    if (mat[k,c + k] != start)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            for (int r = 0; r < rows; r++)
+            {
+                int start = mat[r,0];
+                for (int k = 1; k < Math.Min(cols, rows - r); k++)
+                {
+                    if (mat[r + k,k] != start)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
     }
 }
-

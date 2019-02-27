@@ -1,0 +1,40 @@
+
+class HelloWorld
+{
+  public static bool IsToeplitzMatrix(int[][] mat)
+  {
+    int cols = mat.GetLength(0);    
+    int rows = mat.GetLength(1);
+    
+    for(int c = 0; c < cols; r++)
+    {
+      int start = mat[0][c];
+      for(int k = 1; k < Math.Min(rows,cols-c); k++)
+      {
+        if(mat[k][c+k] != start)
+        {
+          return false;
+        }
+      }
+    }
+    
+    for(int r = 0; i < rows; r++)
+    {
+      int start = mat[r][0];
+      for(int k = 1; r < Math.Min(cols,rows-r); k++)
+      {
+        if(mat[r+k][k] != start)
+        {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+    static void Main()
+    {
+        int[][] mat = new int[][]{{1,2}{3,1}};
+        System.Console.WriteLine($"answer is {IsToeplitzMatrix(mat)}");
+    }
+}

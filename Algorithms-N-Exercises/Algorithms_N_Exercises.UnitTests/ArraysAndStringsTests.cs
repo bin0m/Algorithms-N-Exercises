@@ -962,5 +962,39 @@ namespace Algorithms_N_Exercises.UnitTests
             CollectionAssert.AreEqual(expected, ArraysAndStrings.Spellchecker(wordlist, queries));
         }
 
+        [TestMethod]
+        public void IsToeplitzMatrixTest1()
+        {
+            int[,] mat = new int[,] { { 1 } };
+            Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
+        }
+
+        public void IsToeplitzMatrixTest2()
+        {
+            int[,] mat = new int[,] { { 1, 2 } };
+            Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
+        }
+
+        [TestMethod]
+        public void IsToeplitzMatrixTest3()
+        {
+            int[,] mat = new int[,] { { 1, 2 }, { 3, 1 } };
+            Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
+        }
+
+        [TestMethod]
+        public void IsToeplitzMatrixTest4()
+        {
+            int[,] mat = new int[,] { { 1, 1 }, { 1, 2 } };
+            Assert.AreEqual(false, ArraysAndStrings.IsToeplitzMatrix(mat));
+        }
+
+        [TestMethod]
+        public void IsToeplitzMatrixTest5()
+        {
+            int[,] mat = new int[,] { { 1, 2, 3, 4 }, { 5, 1, 2, 3 }, { 6, 5, 1, 2 } };
+            Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
+        }
+
     }
 }
