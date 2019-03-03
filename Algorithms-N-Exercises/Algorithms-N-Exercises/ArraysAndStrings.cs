@@ -1758,5 +1758,44 @@ namespace Algorithms_N_Exercises
             return true;
         }
 
+        // Move all zeroes in the array to the end of the array. You should preserve the relative order of items in the array.
+        // time: O(n)
+        // space: O(1)
+        public static int[] MoveZerosToEnd(int[] arr)
+        {
+            // edge cases
+            if (arr.Length < 2)
+            {
+                return arr;
+            }
+
+            int zeros = 0;
+            int firstZeroIndex = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == 0)
+                {
+                    zeros++;
+                }
+                else
+                {
+                    if (zeros > 0)
+                    {
+                        Swap(firstZeroIndex, i, arr);
+                        firstZeroIndex++;
+                    }
+                }
+            }
+
+            return arr;
+        }
+
+        private static void Swap(int i1, int i2, int[] arr)
+        {
+            int temp = arr[i1];
+            arr[i1] = arr[i2];
+            arr[i2] = temp;
+        }
     }
 }

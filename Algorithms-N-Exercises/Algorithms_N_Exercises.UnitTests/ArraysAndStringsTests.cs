@@ -965,35 +965,64 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void IsToeplitzMatrixTest1()
         {
-            int[,] mat = new int[,] { { 1 } };
+            int[,] mat = { { 1 } };
             Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
         }
 
         public void IsToeplitzMatrixTest2()
         {
-            int[,] mat = new int[,] { { 1, 2 } };
+            int[,] mat = { { 1, 2 } };
             Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
         }
 
         [TestMethod]
         public void IsToeplitzMatrixTest3()
         {
-            int[,] mat = new int[,] { { 1, 2 }, { 3, 1 } };
+            int[,] mat = { { 1, 2 }, { 3, 1 } };
             Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
         }
 
         [TestMethod]
         public void IsToeplitzMatrixTest4()
         {
-            int[,] mat = new int[,] { { 1, 1 }, { 1, 2 } };
+            int[,] mat = { { 1, 1 }, { 1, 2 } };
             Assert.AreEqual(false, ArraysAndStrings.IsToeplitzMatrix(mat));
         }
 
         [TestMethod]
         public void IsToeplitzMatrixTest5()
         {
-            int[,] mat = new int[,] { { 1, 2, 3, 4 }, { 5, 1, 2, 3 }, { 6, 5, 1, 2 } };
+            int[,] mat = { { 1, 2, 3, 4 }, { 5, 1, 2, 3 }, { 6, 5, 1, 2 } };
             Assert.AreEqual(true, ArraysAndStrings.IsToeplitzMatrix(mat));
+        }
+
+
+        [TestMethod]
+        public void MoveZerosToEndTest1()
+        {
+            int[] arr = { };
+            CollectionAssert.AreEqual(new int[] {}, ArraysAndStrings.MoveZerosToEnd(arr));
+        }
+
+        [TestMethod]
+        public void MoveZerosToEndTest2()
+        {
+            int[] arr = { 0 };
+            CollectionAssert.AreEqual(new [] { 0 }, ArraysAndStrings.MoveZerosToEnd(arr));
+        }
+
+        [TestMethod]
+        public void MoveZerosToEndTest3()
+        {
+            int[] arr = { 0, 1};
+            CollectionAssert.AreEqual(new [] {1,0 }, ArraysAndStrings.MoveZerosToEnd(arr));
+        }
+
+        [TestMethod]
+        public void MoveZerosToEndTest4()
+        {
+            int[] arr = { 6, 1, 0, 3, 0, -1, 2 };
+            CollectionAssert.AreEqual(new [] { 6, 1, 3, -1, 2, 0, 0 }, ArraysAndStrings.MoveZerosToEnd(arr));
         }
 
     }
