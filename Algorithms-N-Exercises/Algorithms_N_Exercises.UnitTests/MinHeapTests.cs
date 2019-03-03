@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Algorithms_N_Exercises.UnitTests
 {

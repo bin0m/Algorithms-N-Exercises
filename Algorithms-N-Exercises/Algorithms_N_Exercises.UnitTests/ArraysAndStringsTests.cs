@@ -144,32 +144,32 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void ReverseWordsTest1()
         {
-            CollectionAssert.AreEqual(new char[] { 'm', 'e', ' ', 'y', 'o', 'u' }, ArraysAndStrings.ReverseWords(new char[] { 'y', 'o', 'u', ' ', 'm', 'e' }));
+            CollectionAssert.AreEqual(new[] { 'm', 'e', ' ', 'y', 'o', 'u' }, ArraysAndStrings.ReverseWords(new[] { 'y', 'o', 'u', ' ', 'm', 'e' }));
         }
 
         [TestMethod]
         public void ReverseWordsTest2()
         {
-            CollectionAssert.AreEqual(new char[] { ' ', ' '}, ArraysAndStrings.ReverseWords(new char[] { ' ', ' ' }));
+            CollectionAssert.AreEqual(new[] { ' ', ' '}, ArraysAndStrings.ReverseWords(new[] { ' ', ' ' }));
         }
 
         [TestMethod]
         public void ReverseWordsTest3()
         {
-            CollectionAssert.AreEqual(new char[] { ' ', 'a' }, ArraysAndStrings.ReverseWords(new char[] { 'a', ' ' }));
+            CollectionAssert.AreEqual(new[] { ' ', 'a' }, ArraysAndStrings.ReverseWords(new[] { 'a', ' ' }));
         }
 
 
         [TestMethod]
         public void ReverseWordsTest4()
         {
-            CollectionAssert.AreEqual(new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e',' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' }, ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }));
+            CollectionAssert.AreEqual(new[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e',' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' }, ArraysAndStrings.ReverseWords(new[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }));
         }
 
         [TestMethod]
         public void ReverseWordsTest5()
         {
-            CollectionAssert.AreEqual(new char[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' }, ArraysAndStrings.ReverseWords(new char[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }));
+            CollectionAssert.AreEqual(new[] { 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'e', 'r', 'f', 'e', 'c', 't' }, ArraysAndStrings.ReverseWords(new[] { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ', 'm', 'a', 'k', 'e', 's', ' ', 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' }));
         }
 
         [TestMethod]
@@ -656,79 +656,79 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void FindHowMuchCentsToSpendTest1()
         {
-            Assert.AreEqual(150, ArraysAndStrings.findHowMuchCentsToSpend(4,12,new long[]{20,30,70,90}));
+            Assert.AreEqual(150, ArraysAndStrings.FindHowMuchCentsToSpend(4,12,new long[]{20,30,70,90}));
         }
 
         [TestMethod]
         public void FindHowMuchCentsToSpendTest2()
         {
-            Assert.AreEqual(10, ArraysAndStrings.findHowMuchCentsToSpend(4, 3, new long[] { 10000, 1000, 100, 10 }));
+            Assert.AreEqual(10, ArraysAndStrings.FindHowMuchCentsToSpend(4, 3, new long[] { 10000, 1000, 100, 10 }));
         }
 
         [TestMethod]
         public void FindHowMuchCentsToSpendTest3()
         {
-            Assert.AreEqual(30, ArraysAndStrings.findHowMuchCentsToSpend(4, 3, new long[] { 10, 100, 1000, 10000 }));
+            Assert.AreEqual(30, ArraysAndStrings.FindHowMuchCentsToSpend(4, 3, new long[] { 10, 100, 1000, 10000 }));
         }
 
         [TestMethod]
         public void FindHowMuchCentsToSpendTest6()
         {
-            Assert.AreEqual(120, ArraysAndStrings.findHowMuchCentsToSpend(4, 12, new long[] { 10, 100, 1000, 10000 }));
+            Assert.AreEqual(120, ArraysAndStrings.FindHowMuchCentsToSpend(4, 12, new long[] { 10, 100, 1000, 10000 }));
         }
 
         [TestMethod]
         public void FindHowMuchCentsToSpendTest4()
         {
-            Assert.AreEqual(44981600785557577, ArraysAndStrings.findHowMuchCentsToSpend(5, 787787787, new long[] { 123456789, 234567890, 345678901, 456789012 , 987654321 }));
+            Assert.AreEqual(44981600785557577, ArraysAndStrings.FindHowMuchCentsToSpend(5, 787787787, new long[] { 123456789, 234567890, 345678901, 456789012 , 987654321 }));
         }
 
         [TestMethod]
         public void FindHowMuchCentsToSpendTest5()
         {
-            Assert.AreEqual(170, ArraysAndStrings.findHowMuchCentsToSpend(4, 13, new long[] { 26, 30, 70, 85 }));
+            Assert.AreEqual(170, ArraysAndStrings.FindHowMuchCentsToSpend(4, 13, new long[] { 26, 30, 70, 85 }));
         }
 
         [TestMethod]
         public void SpiralCopyTest1()
         {
-            CollectionAssert.AreEqual(new[]{1}, ArraysAndStrings.SpiralCopy(new int[,]{{1}}));
+            CollectionAssert.AreEqual(new[]{1}, ArraysAndStrings.SpiralCopy(new[,]{{1}}));
         }
 
         [TestMethod]
         public void SpiralCopyTest2()
         {
-            CollectionAssert.AreEqual(new[] { 1, 2 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2 } }));
+            CollectionAssert.AreEqual(new[] { 1, 2 }, ArraysAndStrings.SpiralCopy(new[,] { { 1, 2 } }));
         }
 
         [TestMethod]
         public void SpiralCopyTest3()
         {
-            CollectionAssert.AreEqual(new[] { 1, 2 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1 }, { 2 } }));
+            CollectionAssert.AreEqual(new[] { 1, 2 }, ArraysAndStrings.SpiralCopy(new[,] { { 1 }, { 2 } }));
         }
 
         [TestMethod]
         public void SpiralCopyTest4()
         {
-            CollectionAssert.AreEqual(new[] { 1, 2, 4, 3 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2 }, { 3, 4 } }));
+            CollectionAssert.AreEqual(new[] { 1, 2, 4, 3 }, ArraysAndStrings.SpiralCopy(new[,] { { 1, 2 }, { 3, 4 } }));
         }
 
         [TestMethod]
         public void SpiralCopyTest5()
         {
-            CollectionAssert.AreEqual(new[] { 1, 2, 3, 6, 5, 4 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3 }, { 4, 5, 6 } }));
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 6, 5, 4 }, ArraysAndStrings.SpiralCopy(new[,] { { 1, 2, 3 }, { 4, 5, 6 } }));
         }
 
         [TestMethod]
         public void SpiralCopyTest6()
         {
-            CollectionAssert.AreEqual(new[] { 1, 2, 3, 6, 9, 8, 7, 4, 5 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }));
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 6, 9, 8, 7, 4, 5 }, ArraysAndStrings.SpiralCopy(new[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }));
         }
 
         [TestMethod]
         public void SpiralCopyTest7()
         {
-            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12 }, ArraysAndStrings.SpiralCopy(new int[,] { { 1, 2, 3, 4 , 5 }, { 6,7,8,9,10 }, { 11, 12, 13, 14 ,15 }, { 16, 17, 18, 19, 20 } }));
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12 }, ArraysAndStrings.SpiralCopy(new[,] { { 1, 2, 3, 4 , 5 }, { 6,7,8,9,10 }, { 11, 12, 13, 14 ,15 }, { 16, 17, 18, 19, 20 } }));
         }
 
         [TestMethod]
@@ -914,43 +914,43 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void MinWindowTest1()
         {
-            Assert.AreEqual("a", ArraysAndStrings.minWindow("a", "a"));
+            Assert.AreEqual("a", ArraysAndStrings.MinWindow("a", "a"));
         }
 
         [TestMethod]
         public void MinWindowTest2()
         {
-            Assert.AreEqual("a", ArraysAndStrings.minWindow("bac", "a"));
+            Assert.AreEqual("a", ArraysAndStrings.MinWindow("bac", "a"));
         }
 
         [TestMethod]
         public void MinWindowTest3()
         {
-            Assert.AreEqual("ac", ArraysAndStrings.minWindow("bac", "ca"));
+            Assert.AreEqual("ac", ArraysAndStrings.MinWindow("bac", "ca"));
         }
 
         [TestMethod]
         public void MinWindowTest4()
         {
-            Assert.AreEqual("", ArraysAndStrings.minWindow("bac", "cac"));
+            Assert.AreEqual("", ArraysAndStrings.MinWindow("bac", "cac"));
         }
 
         [TestMethod]
         public void MinWindowTest5()
         {
-            Assert.AreEqual("t stri", ArraysAndStrings.minWindow("this is a test string", "tist"));
+            Assert.AreEqual("t stri", ArraysAndStrings.MinWindow("this is a test string", "tist"));
         }
 
         [TestMethod]
         public void MinWindowTest6()
         {
-            Assert.AreEqual("ksfor", ArraysAndStrings.minWindow("geeksforgeeks", "ork"));
+            Assert.AreEqual("ksfor", ArraysAndStrings.MinWindow("geeksforgeeks", "ork"));
         }
 
         [TestMethod]
         public void MinWindowTest7()
         {
-            Assert.AreEqual("BANC", ArraysAndStrings.minWindow("ADOBECODEBANC", "ABC"));
+            Assert.AreEqual("BANC", ArraysAndStrings.MinWindow("ADOBECODEBANC", "ABC"));
         }
 
         [TestMethod]

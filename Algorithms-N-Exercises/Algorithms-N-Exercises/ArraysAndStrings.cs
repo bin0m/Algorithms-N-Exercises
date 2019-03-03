@@ -1019,7 +1019,7 @@ namespace Algorithms_N_Exercises
             {
                 if (oneFromLastSum)
                 {
-                    string sumChars = SumChars(longerS[indexLonger], '0', oneFromLastSum);
+                    string sumChars = SumChars(longerS[indexLonger], '0', true);
                     answer[indexAnswer] = sumChars[sumChars.Length - 1];
                     oneFromLastSum = sumChars.Length > 1;
                 }
@@ -1068,7 +1068,7 @@ namespace Algorithms_N_Exercises
         // L — the required amount of child milk in liters.
         // c1, c2, ..., cn — the costs of bottles of different types.
         // Output a single integer — the smallest number of cents you have to pay in order to buy at least L liters of child milk.
-        public static long findHowMuchCentsToSpend(int n, int L, long[] c)
+        public static long FindHowMuchCentsToSpend(int n, int L, long[] c)
         {
             // make c[i] = min(c[i], ..., c[n])
             for (int i = n - 2; i >= 0; i--)
@@ -1311,7 +1311,7 @@ namespace Algorithms_N_Exercises
                     }
                 }
 
-                if (isContained == true)
+                if (isContained)
                 {
                     return true;
                 }
@@ -1557,6 +1557,8 @@ namespace Algorithms_N_Exercises
         /*
          * The deletion distance of two strings is the minimum number of characters you need to delete in the two strings
          * in order to get the same string. For instance, the deletion distance between "heat" and "hit" is 3
+         * time: O(n*m)
+         * space: O(n*m)
          */
         public static int DeletionDistance(string str1, string str2)
         {
@@ -1589,7 +1591,7 @@ namespace Algorithms_N_Exercises
        * time: O(n)
        * space: O(n)
        */
-        public static string minWindow(string A, string B)
+        public static string MinWindow(string A, string B)
         {
             // Edge case
             if (A.Length < B.Length)
