@@ -71,6 +71,10 @@ namespace Algorithms_N_Exercises
 
             Console.WriteLine($"NumOfPathsToDest: result={ArraysAndStrings.NumOfPathsToDest(4)}, expected = 5");
 
+            Console.WriteLine($"IsContainSubstringPermutation: result={ArraysAndStrings.IsContainSubstringPermutation3("dcda", "adc")}, expected = True");
+
+            
+
             Console.ReadLine();
         }
     }

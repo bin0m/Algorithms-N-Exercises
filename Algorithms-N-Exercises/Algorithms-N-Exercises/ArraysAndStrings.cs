@@ -1250,7 +1250,7 @@ namespace Algorithms_N_Exercises
         }
 
 
-        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
+        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of cpp)
         // time: O(N*M)
         // space: O(N+M)
         public static bool IsContainSubstringPermutation(string str, string substr)
@@ -1342,7 +1342,7 @@ namespace Algorithms_N_Exercises
             return false;
         }
 
-        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
+        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of cpp)
         // time: O(N+M)
         // space: O(N+M)
         public static bool IsContainSubstringPermutation2(string str, string substr)
@@ -1380,7 +1380,7 @@ namespace Algorithms_N_Exercises
             int end = substr.Length - 1;
             for (int i = 0; i <= end; i++)
             {
-                IncreaseValueAndRemoveWhenBecomesToZero(diffMap, str, i);
+                IncreaseValueAndRemoveWhenBecomesZero(diffMap, str, i);
             }
 
             while (true)
@@ -1399,10 +1399,10 @@ namespace Algorithms_N_Exercises
                 }
 
                 // add str[end] to window
-                IncreaseValueAndRemoveWhenBecomesToZero(diffMap, str, end);
+                IncreaseValueAndRemoveWhenBecomesZero(diffMap, str, end);
 
                 // remove str[start - 1] from window
-                DecreaseValueAndRemoveWhenBecomesToZero(diffMap, str, start - 1);
+                DecreaseValueAndRemoveWhenBecomesZero(diffMap, str, start - 1);
 
             }
 
@@ -1411,44 +1411,42 @@ namespace Algorithms_N_Exercises
 
         // helper for IsContainSubstringPermutation2
         // O(1)
-        private static void IncreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str,
-            int indexInString)
+        private static void IncreaseValueAndRemoveWhenBecomesZero(Dictionary<char, int> diffMap, string str, int i)
         {
-            if (diffMap.ContainsKey(str[indexInString]))
+            if (diffMap.ContainsKey(str[i]))
             {
-                diffMap[str[indexInString]]++;
-                if (diffMap[str[indexInString]] == 0)
+                diffMap[str[i]]++;
+                if (diffMap[str[i]] == 0)
                 {
-                    diffMap.Remove(str[indexInString]);
+                    diffMap.Remove(str[i]);
                 }
             }
             else
             {
-                diffMap[str[indexInString]] = 1;
+                diffMap[str[i]] = 1;
             }
         }
 
         //helper for IsContainSubstringPermutation2
-        private static void DecreaseValueAndRemoveWhenBecomesToZero(Dictionary<char, int> diffMap, string str,
-            int indexInString)
+        private static void DecreaseValueAndRemoveWhenBecomesZero(Dictionary<char, int> diffMap, string str, int i)
         {
-            if (diffMap.ContainsKey(str[indexInString]))
+            if (diffMap.ContainsKey(str[i]))
             {
-                diffMap[str[indexInString]]--;
-                if (diffMap[str[indexInString]] == 0)
+                diffMap[str[i]]--;
+                if (diffMap[str[i]] == 0)
                 {
-                    diffMap.Remove(str[indexInString]);
+                    diffMap.Remove(str[i]);
                 }
             }
             else
             {
-                diffMap[str[indexInString]] = -1;
+                diffMap[str[i]] = -1;
             }
         }
 
 
 
-        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of appcore)
+        // if "cpp" permutation is contained in "appcore" (returns true, because ppc is permutation of cpp)
         // time: O(N+M)
         // space: O(N+M)
         public static bool IsContainSubstringPermutation3(string str, string substr)
@@ -1490,6 +1488,10 @@ namespace Algorithms_N_Exercises
             {
                 if (diffMap.ContainsKey(str[i]))
                 {
+                    if (diffMap[str[i]] == 0)
+                    {
+                        diffCount++;
+                    }
                     diffMap[str[i]]++;
                     if (diffMap[str[i]] == 0)
                     {
@@ -1518,11 +1520,13 @@ namespace Algorithms_N_Exercises
                     break;
                 }
 
-
-
                 // add to window
                 if (diffMap.ContainsKey(str[end]))
                 {
+                    if (diffMap[str[end]] == 0)
+                    {
+                        diffCount++;
+                    }
                     diffMap[str[end]]++;
                     if (diffMap[str[end]] == 0)
                     {
@@ -1538,15 +1542,15 @@ namespace Algorithms_N_Exercises
                 // remove from window
                 if (diffMap.ContainsKey(str[start - 1]))
                 {
+                    if (diffMap[str[start - 1]] == 0)
+                    {
+                        diffCount++;
+                    }
                     diffMap[str[start - 1]]--;
                     if (diffMap[str[start - 1]] == 0)
                     {
                         diffCount--;
                     }
-                }
-                else
-                {
-                    diffCount++;
                 }
 
             }

@@ -842,7 +842,7 @@ namespace Algorithms_N_Exercises.UnitTests
         [TestMethod]
         public void IsContainSubstringPermutationTest5()
         {
-            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("abcac", "acc"));
+            Assert.AreEqual(true, ArraysAndStrings.IsContainSubstringPermutation3("dcda", "adc"));
         }
 
         [TestMethod]
