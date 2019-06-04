@@ -1764,38 +1764,30 @@ namespace Algorithms_N_Exercises
         public static int[] MoveZerosToEnd(int[] arr)
         {
             // edge cases
-            if (arr.Length < 2)
+            if (arr == null || arr.Length <= 1)
             {
                 return arr;
             }
 
-            int zeros = 0;
-            int firstZeroIndex = 0;
+            int nonZeroCount = 0;
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] == 0)
+                if (arr[i] != 0)
                 {
-                    zeros++;
+                    arr[nonZeroCount] = arr[i];
+                    nonZeroCount++;
                 }
-                else
-                {
-                    if (zeros > 0)
-                    {
-                        Swap(firstZeroIndex, i, arr);
-                        firstZeroIndex++;
-                    }
-                }
+            }
+
+            while (nonZeroCount < arr.Length)
+            {
+                arr[nonZeroCount] = 0;
+                nonZeroCount++;
             }
 
             return arr;
         }
 
-        private static void Swap(int i1, int i2, int[] arr)
-        {
-            int temp = arr[i1];
-            arr[i1] = arr[i2];
-            arr[i2] = temp;
-        }
     }
 }
