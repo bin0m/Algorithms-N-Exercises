@@ -40,14 +40,14 @@ namespace Algorithms_N_Exercises
         {
             if (left < right)
             {
-                var pivot = Partition(arr, left, right);
-                if (pivot > 1)
+                var pivotIndex = Partition(arr, left, right);
+                if (pivotIndex > 1)
                 {
-                    QuickSortInner(arr, left, pivot - 1);
+                    QuickSortInner(arr, left, pivotIndex - 1);
                 }
-                if (pivot + 1 < right)
+                if (pivotIndex + 1 < right)
                 {
-                    QuickSortInner(arr, pivot + 1, right);
+                    QuickSortInner(arr, pivotIndex + 1, right);
                 }
             }
         }
