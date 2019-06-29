@@ -1789,5 +1789,36 @@ namespace Algorithms_N_Exercises
             return arr;
         }
 
+        // Sum of intervals
+        // Array Manipulation from HackerRank
+        // Starting with a 1-indexed array of zeros and a list of operations, for each operation add a value to each of the array
+        // element between two given indices, inclusive. Once all operations have been performed, return the maximum value in your array.
+        // time: O(n)
+        // space: O(n)
+        public static long ArrayManipulation(int n, int[][] queries)
+        {
+            long[] arr = new long[n + 1];
+            foreach (var q in queries)
+            {
+                int from = q[0] - 1;
+                int to = q[1] - 1;
+                int val = q[2];
+
+                arr[from] += val;
+                arr[to + 1] -= val;
+            }
+
+            long max = arr[0];
+            long c = arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                c += arr[i];
+                max = Math.Max(max, c);
+            }
+
+            return max;
+        }
+        
+
     }
 }
