@@ -1025,5 +1025,19 @@ namespace Algorithms_N_Exercises.UnitTests
             CollectionAssert.AreEqual(new [] { 6, 1, 3, -1, 2, 0, 0 }, ArraysAndStrings.MoveZerosToEnd(arr));
         }
 
+        [TestMethod]
+        public void ArrayManipulationTest()
+        {
+            int n = 5;
+            int[][] queries =
+            {
+                new[]{1, 2, 100},
+                new[]{2, 5, 100},
+                new[]{3, 4, 100},
+            };
+
+            Assert.AreEqual(200, ArraysAndStrings.ArrayManipulation(n, queries));
+        }
+
     }
 }
