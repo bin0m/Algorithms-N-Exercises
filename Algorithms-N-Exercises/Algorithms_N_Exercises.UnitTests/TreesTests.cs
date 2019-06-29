@@ -9,7 +9,7 @@ using static Algorithms_N_Exercises.Trees;
 namespace Algorithms_N_Exercises.UnitTests
 {
     [TestClass]
-    public class TressTests
+    public class TreesTests
     {
         [TestMethod]
         public void ListOfDepthsTest1()
