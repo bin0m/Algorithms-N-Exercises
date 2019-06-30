@@ -1061,6 +1061,11 @@ namespace Algorithms_N_Exercises.UnitTests
             }
         }
 
+        [TestMethod]
+        public void MinEditDistanceTest()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.MinEditDistance("cat", "kate"));
+        }
 
 
     }
