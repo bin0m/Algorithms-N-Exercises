@@ -1039,5 +1039,29 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(200, ArraysAndStrings.ArrayManipulation(n, queries));
         }
 
+        [TestMethod]
+        public void PrettyPrintTest()
+        {
+            int n = 3;
+            var expected = new List<List<int>>
+            {
+                new List<int> { 3, 3, 3, 3, 3 },
+                new List<int> { 3, 2, 2, 2, 3 },
+                new List<int> { 3, 2, 1, 2, 3 },
+                new List<int> { 3, 2, 2, 2, 3 },
+                new List<int> { 3, 3, 3, 3, 3 },
+            };
+            var result = ArraysAndStrings.PrettyPrint(n);
+
+            Assert.AreEqual(expected.Count, result.Count);
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                CollectionAssert.AreEqual(expected[i], result[i]);
+            }
+        }
+
+
+
     }
 }
