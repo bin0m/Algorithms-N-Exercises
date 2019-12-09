@@ -310,7 +310,7 @@ namespace Algorithms_N_Exercises
             double[] balance2 = { 2340.0, 4523.69, 3421.0 };
             // 3
             int[] marks = new int[5] { 99, 98, 92, 97, 95 };
-            // 4 
+            // 4
             int[] marks2 = new int[] { 99, 98, 92, 97, 95 };
             // 5
             int[] arr2 = { };
@@ -336,7 +336,7 @@ namespace Algorithms_N_Exercises
                 }
             }
 
-            //2. scan N and reduce its count in Dictionary 
+            //2. scan N and reduce its count in Dictionary
             // If all counts in Dictionary are zero at some point, we return true
             foreach (char c in N)
             {
@@ -422,7 +422,7 @@ namespace Algorithms_N_Exercises
         }
 
         // helper method for WordCountEngine()
-        // O(n) 
+        // O(n)
         private static string StripOutNonAlphabeticalCharacters(string document)
         {
             var sb = new StringBuilder();
@@ -568,7 +568,7 @@ namespace Algorithms_N_Exercises
             }
         }
 
-        // finds in the most efficient manner a cap such that the least number of recipients is impacted and that the new budget constraint is met 
+        // finds in the most efficient manner a cap such that the least number of recipients is impacted and that the new budget constraint is met
         // time: O(nlogn)
         // space: O(1)
         public static double FindGrantsCap(double[] grantsArray, double newBudget)
@@ -859,7 +859,7 @@ namespace Algorithms_N_Exercises
             return matrix[n - 1, n - 1];
         }
 
-        // sort the array into a wave 
+        // sort the array into a wave
         // arrange the elements into a sequence such that a1 >= a2 <= a3 >= a4 <= a5..
         // time: O(n)
         // size: O(1)
@@ -886,7 +886,7 @@ namespace Algorithms_N_Exercises
             A[j] = temp;
         }
 
-        // sorting problem 
+        // sorting problem
         // Given [3, 30, 34, 5, 9], the largest formed number is 9534330
         public static string LargestNumber(List<int> A)
         {
@@ -1064,7 +1064,7 @@ namespace Algorithms_N_Exercises
             return Convert.ToChar(sum) + "";
         }
 
-        // n — the number of types of bottles in the store 
+        // n — the number of types of bottles in the store
         // L — the required amount of child milk in liters.
         // c1, c2, ..., cn — the costs of bottles of different types.
         // Output a single integer — the smallest number of cents you have to pay in order to buy at least L liters of child milk.
@@ -1229,7 +1229,7 @@ namespace Algorithms_N_Exercises
         // east -> 3 1 4 2 3 1 -> west
         //  4          |
         //  3      |   |   |
-        //  2      |   | | | 
+        //  2      |   | | |
         //  1      | | | | | |
         // input:  3 1 4 2 3 1
         // output:     4   3 1
@@ -1890,6 +1890,98 @@ namespace Algorithms_N_Exercises
                 }
             }
             return dp[n - 1, m - 1];
+        }
+
+        // Given an array of strings, group anagrams together.
+        public static IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            IList<IList<string>> groups = new List<IList<string>>();
+            var dicts = new List<Dictionary<char, int>>();
+
+            if (strs == null && strs.Length == 0)
+            {
+                return groups;
+            }
+
+            foreach (string s in strs)
+            {
+                bool IsGroupAssigned = false;
+                for (int i = 0; i < groups.Count; i++)
+                {
+                    var group = groups[i];
+                    if (AreAnagrams(s, dicts[i]))
+                    {
+                        group.Add(s);
+                        IsGroupAssigned = true;
+                        break;
+                    }
+                }
+                if (!IsGroupAssigned)
+                {
+                    var newGroup = new List<string>();
+                    newGroup.Add(s);
+                    groups.Add(newGroup);
+
+                    var newDict = CreateDict(s);
+                    dicts.Add(newDict);
+                }
+            }
+
+            return groups;
+        }
+
+        private static Dictionary<char, int> CreateDict(string s)
+        {
+            var dict = new Dictionary<char, int>();
+
+            foreach (char c in s)
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c]++;
+                }
+                else
+                {
+                    dict[c] = 1;
+                }
+            }
+
+            return dict;
+        }
+
+        private static bool AreAnagrams(string a, Dictionary<char, int> dictB)
+        {
+            if (a == "")
+            {
+                if (dictB.Count == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            var dictA = CreateDict(a);
+
+
+            if (dictA.Count != dictB.Count)
+            {
+                return false;
+            }
+
+            foreach (var item in dictA)
+            {
+                if (!dictB.TryGetValue(item.Key, out int val))
+                {
+                    return false;
+                }
+                if (val != item.Value)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
 
