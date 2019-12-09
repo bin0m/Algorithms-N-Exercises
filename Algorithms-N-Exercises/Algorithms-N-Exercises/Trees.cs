@@ -37,7 +37,7 @@ namespace Algorithms_N_Exercises
                 TreeNode current = queue.Dequeue();
                 if (arr[i] != null)
                 {
-                    current.Left = new TreeNode(arr[i].Value) {Parent = current};
+                    current.Left = new TreeNode(arr[i].Value) { Parent = current };
                     queue.Enqueue(current.Left);
                 }
 
@@ -45,7 +45,7 @@ namespace Algorithms_N_Exercises
                 {
                     if (arr[i + 1] != null)
                     {
-                        current.Right = new TreeNode(arr[i + 1].Value) {Parent = current};
+                        current.Right = new TreeNode(arr[i + 1].Value) { Parent = current };
                         queue.Enqueue(current.Right);
                     }
 
@@ -236,17 +236,24 @@ namespace Algorithms_N_Exercises
         // Pre Order (iteratively)
         public static List<int> TraversePreOrderIterative(TreeNode root)
         {
+            if (root == null)
+            {
+                return new List<int>();
+            }
             var sequence = new List<int>();
             var myStack = new Stack<TreeNode>();
             myStack.Push(root);
             while (myStack.Count > 0)
             {
-                var currentNode = myStack.Pop();
-                if (currentNode != null)
+                var node = myStack.Pop();
+                sequence.Add(node.Val);
+                if (node.Right != null)
                 {
-                    sequence.Add(currentNode.Val);
-                    myStack.Push(currentNode.Right);
-                    myStack.Push(currentNode.Left);
+                    myStack.Push(node.Right);
+                }
+                if (node.Left != null)
+                {
+                    myStack.Push(node.Left);
                 }
             }
 
@@ -364,5 +371,6 @@ namespace Algorithms_N_Exercises
 
             return smaller;
         }
+
     }
 }
