@@ -1025,5 +1025,48 @@ namespace Algorithms_N_Exercises.UnitTests
             CollectionAssert.AreEqual(new [] { 6, 1, 3, -1, 2, 0, 0 }, ArraysAndStrings.MoveZerosToEnd(arr));
         }
 
+        [TestMethod]
+        public void ArrayManipulationTest()
+        {
+            int n = 5;
+            int[][] queries =
+            {
+                new[]{1, 2, 100},
+                new[]{2, 5, 100},
+                new[]{3, 4, 100},
+            };
+
+            Assert.AreEqual(200, ArraysAndStrings.ArrayManipulation(n, queries));
+        }
+
+        [TestMethod]
+        public void PrettyPrintTest()
+        {
+            int n = 3;
+            var expected = new List<List<int>>
+            {
+                new List<int> { 3, 3, 3, 3, 3 },
+                new List<int> { 3, 2, 2, 2, 3 },
+                new List<int> { 3, 2, 1, 2, 3 },
+                new List<int> { 3, 2, 2, 2, 3 },
+                new List<int> { 3, 3, 3, 3, 3 },
+            };
+            var result = ArraysAndStrings.PrettyPrint(n);
+
+            Assert.AreEqual(expected.Count, result.Count);
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                CollectionAssert.AreEqual(expected[i], result[i]);
+            }
+        }
+
+        [TestMethod]
+        public void MinEditDistanceTest()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.MinEditDistance("cat", "kate"));
+        }
+
+
     }
 }

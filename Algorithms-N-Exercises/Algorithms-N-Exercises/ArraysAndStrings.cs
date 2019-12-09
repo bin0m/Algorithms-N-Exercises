@@ -1789,5 +1789,109 @@ namespace Algorithms_N_Exercises
             return arr;
         }
 
+        // Sum of intervals
+        // Array Manipulation from HackerRank
+        // Starting with a 1-indexed array of zeros and a list of operations, for each operation add a value to each of the array
+        // element between two given indices, inclusive. Once all operations have been performed, return the maximum value in your array.
+        // time: O(n)
+        // space: O(n)
+        public static long ArrayManipulation(int n, int[][] queries)
+        {
+            long[] arr = new long[n + 1];
+            foreach (var q in queries)
+            {
+                int from = q[0] - 1;
+                int to = q[1] - 1;
+                int val = q[2];
+
+                arr[from] += val;
+                arr[to + 1] -= val;
+            }
+
+            long max = arr[0];
+            long c = arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                c += arr[i];
+                max = Math.Max(max, c);
+            }
+
+            return max;
+        }
+
+        // Print concentric rectangular pattern in a 2d matrix. (from interviewbit)
+        public static List<List<int>> PrettyPrint(int A)
+        {
+            int n = A * 2 - 1;
+            var mat = new int[n, n];
+            for (int i = A; i >= 1; i--)
+            {
+                // top
+                int from = A - i;
+                int to = n - from - 1;
+                for (int j = from; j <= to; j++)
+                {
+                    // top row
+                    mat[from, j] = i;
+
+                    // bottom row
+                    mat[to, j] = i;
+
+                    // left col
+                    mat[j, from] = i;
+
+                    // right col
+                    mat[j, to] = i;
+                }
+            }
+
+            var lists = new List<List<int>>(n);
+            for (int i = 0; i < n; i++)
+            {
+                lists.Add(new List<int>(n));
+                for (int j = 0; j < n; j++)
+                {
+                    lists[i].Add(mat[i, j]);
+                }
+            }
+
+            return lists;
+        }
+
+        // Given two words A and B, find the minimum number of steps required to convert A to B. (each operation is counted as 1 step.)
+        // time: O(n*m)
+        // space: O(n*m)
+        public static int MinEditDistance(string A, string B)
+        {
+            int n = A.Length + 1;
+            int m = B.Length + 1;
+            int[,] dp = new int[n, m];
+            dp[0, 0] = 0;
+            for (int i = 1; i < m; i++)
+            {
+                dp[0, i] = i;
+            }
+            for (int i = 1; i < n; i++)
+            {
+                dp[i, 0] = i;
+            }
+            for (int i = 1; i < n; i++)
+            {
+                for (int j = 1; j < m; j++)
+                {
+                    if (A[i - 1] == B[j - 1])
+                    {
+                        dp[i, j] = dp[i - 1, j - 1];
+                    }
+                    else
+                    {
+                        dp[i, j] = 1 + Math.Min(dp[i - 1, j], Math.Min(dp[i - 1, j - 1], dp[i, j - 1]));
+                    }
+                }
+            }
+            return dp[n - 1, m - 1];
+        }
+
+
     }
 }

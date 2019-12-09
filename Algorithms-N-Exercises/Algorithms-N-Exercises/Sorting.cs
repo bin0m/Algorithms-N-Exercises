@@ -31,11 +31,61 @@ namespace Algorithms_N_Exercises
             }
         }
 
+        public static void QuickSort(int[] arr)
+        {
+            QuickSortInner(arr, 0, arr.Length - 1);
+        }
+
+        private static void QuickSortInner(int[] arr, int left, int right)
+        {
+            if (left < right)
+            {
+                var pivotIndex = Partition(arr, left, right);
+                if (pivotIndex > 1)
+                {
+                    QuickSortInner(arr, left, pivotIndex - 1);
+                }
+                if (pivotIndex + 1 < right)
+                {
+                    QuickSortInner(arr, pivotIndex + 1, right);
+                }
+            }
+        }
+
+        private static int Partition(int[] arr, int left, int right)
+        {
+            var pivot = arr[left];
+            while (true)
+            {
+                while (arr[left] < pivot)
+                {
+                    left++;
+                }
+                while (arr[right] > pivot)
+                {
+                    right--;
+                }
+                if (left < right)
+                {
+                    Swap(arr, left, right);
+                }
+                else
+                {
+                    return right;
+                }
+            }
+        }
+      
+
+
         private static void Swap(int[] a, int i, int j)
         {
             int temp = a[i];
             a[i] = a[j];
             a[j] = temp;
         }
+
+
+
     }
 }
