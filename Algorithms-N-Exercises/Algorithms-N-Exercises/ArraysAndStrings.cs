@@ -1983,5 +1983,35 @@ namespace Algorithms_N_Exercises
         }
 
 
+        // Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+        public static int SubarraySum(int[] nums, int k)
+        {
+            int num = 0;
+            int sum = 0;
+            var sums = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                sum += nums[i];
+                if (sum == k)
+                {
+                    num++;
+                }
+                if (sums.ContainsKey(sum - k))
+                {
+                    num += sums[sum - k];
+                }
+                if (sums.ContainsKey(sum))
+                {
+                    sums[sum]++;
+                }
+                else
+                {
+                    sums.Add(sum, 1);
+                }
+            }
+            return num;
+        }
+
+
     }
 }

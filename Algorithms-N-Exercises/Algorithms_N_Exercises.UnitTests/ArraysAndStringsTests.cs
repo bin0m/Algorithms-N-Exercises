@@ -1067,6 +1067,34 @@ namespace Algorithms_N_Exercises.UnitTests
             Assert.AreEqual(2, ArraysAndStrings.MinEditDistance("cat", "kate"));
         }
 
+        [TestMethod]
+        public void SubarraySumTest1()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.SubarraySum(new int[] { 1, 1, 1}, 2));
+        }
 
+        [TestMethod]
+        public void SubarraySumTest2()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.SubarraySum(new int[] { 2 }, 2));
+        }
+
+        [TestMethod]
+        public void SubarraySumTest3()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.SubarraySum(new int[] { 2, 1, -1, 3 }, 3));
+        }
+
+        [TestMethod]
+        public void SubarraySumTest4()
+        {
+            Assert.AreEqual(4, ArraysAndStrings.SubarraySum(new int[] { 1, 2, 0, -1, 1, 2 }, 3));
+        }
+
+        [TestMethod]
+        public void SubarraySumTest5()
+        {
+            Assert.AreEqual(5, ArraysAndStrings.SubarraySum(new int[] { 1, 2, 0, 1, 2 }, 3));
+        }
     }
 }
