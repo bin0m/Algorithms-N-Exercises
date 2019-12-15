@@ -1127,33 +1127,31 @@ namespace Algorithms_N_Exercises
                 {
                     arr[index++] = inputMatrix[rowStart, col];
                 }
+                rowStart++;
 
-                for (int row = rowStart + 1; row <= rowEnd; row++)
+                for (int row = rowStart; row <= rowEnd; row++)
                 {
                     arr[index++] = inputMatrix[row, colEnd];
                 }
+                colEnd--;
 
-                if (rowEnd > rowStart)
+                if (rowEnd >= rowStart)
                 {
-                    for (int col = colEnd - 1; col >= colStart; col--)
+                    for (int col = colEnd; col >= colStart; col--)
                     {
                         arr[index++] = inputMatrix[rowEnd, col];
                     }
                 }
+                rowEnd--;
 
-                rowStart++;
-
-                if (colEnd > colStart)
+                if (colEnd >= colStart)
                 {
-                    for (int row = rowEnd - 1; row >= rowStart; row--)
+                    for (int row = rowEnd; row >= rowStart; row--)
                     {
                         arr[index++] = inputMatrix[row, colStart];
                     }
                 }
-
-                rowEnd--;
                 colStart++;
-                colEnd--;
             }
 
             return arr;
