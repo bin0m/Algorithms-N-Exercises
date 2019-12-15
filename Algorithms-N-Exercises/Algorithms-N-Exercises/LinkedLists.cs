@@ -45,7 +45,6 @@ namespace Algorithms_N_Exercises
 
         // -> 1 -> NULL
         // next -> NULL
-
         private ListNode<int> ReverseNode(ListNode<int> prev, ListNode<int> curr)
         {
             if (curr == null)
@@ -74,7 +73,36 @@ namespace Algorithms_N_Exercises
             return prev;
         }
 
+        // Given linked list: 1->2->3->4->5, and n = 2.
+        // After removing the second node from the end, the linked list becomes 1->2->3->5.
+        public ListNode<int> RemoveNthFromEnd(ListNode<int> head, int n)
+        {
+            ListNode<int> right = head;
+            for (int i = 0; i < n; i++)
+            {
+                if (right == null)
+                {
+                    return head;
+                }
+                right = right.Next;
+            }
 
+            if (right == null)
+            {
+                return head.Next;
+            }
+
+            ListNode<int> left = head;
+            while (right.Next != null)
+            {
+                right = right.Next;
+                left = left.Next;
+            }
+
+            left.Next = left.Next.Next;
+
+            return head;
+        }   
 
     }
 }
