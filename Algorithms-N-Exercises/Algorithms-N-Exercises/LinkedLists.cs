@@ -14,7 +14,7 @@ namespace Algorithms_N_Exercises
             }
         }
 
-        static int _currentNthToLast = 0;
+        static int CurrentNthToLast = 0;
 
         public ListNode<int> NthToLast(ListNode<int> head, int n)
         {
@@ -25,16 +25,55 @@ namespace Algorithms_N_Exercises
 
             ListNode<int> node = NthToLast(head.Next, n);
 
-            if (_currentNthToLast == n)
+            if (CurrentNthToLast == n)
             {
                 return head;
             }
 
-            _currentNthToLast++;            
+            CurrentNthToLast++;            
 
             return node;
 
         }
+
+        // Input: 1->2->3->4->5->NULL
+        // Output: 5->4->3->2->1->NULL
+        public ListNode<int> ReverseListRecursive(ListNode<int> head)
+        {
+            return ReverseNode(null, head);
+        }
+
+        // -> 1 -> NULL
+        // next -> NULL
+
+        private ListNode<int> ReverseNode(ListNode<int> prev, ListNode<int> curr)
+        {
+            if (curr == null)
+            {
+                return prev;
+            }
+
+            var next = curr.Next;
+            curr.Next = prev;
+            return ReverseNode(curr, next);
+        }
+
+        // Input: 1->2->3->4->5->NULL
+        // Output: 5->4->3->2->1->NULL
+        public ListNode<int> ReverseListIterative(ListNode<int> head)
+        {
+            ListNode<int> prev = null;
+            ListNode<int> curr = head;
+            while (curr != null)
+            {
+                var next = curr.Next;
+                curr.Next = prev;
+                prev = curr;
+                curr = next;
+            }
+            return prev;
+        }
+
 
 
     }
