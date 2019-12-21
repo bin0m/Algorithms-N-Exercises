@@ -1096,5 +1096,11 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(5, ArraysAndStrings.SubarraySum(new int[] { 1, 2, 0, 1, 2 }, 3));
         }
+
+        [TestMethod]
+        public void LongestPalindromeTest1()
+        {
+            Assert.AreEqual("ada", ArraysAndStrings.LongestPalindrome("badac"));
+        }
     }
 }

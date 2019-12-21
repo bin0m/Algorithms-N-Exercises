@@ -2012,6 +2012,54 @@ namespace Algorithms_N_Exercises
             return num;
         }
 
+        // Given a string s, find the longest palindromic substring in s.
+        public static string LongestPalindrome(string s)
+        {
+            if (s == null || s == "" || s.Length == 1)
+            {
+                return s;
+            }
+
+            string ans = "";
+            int max = 0;
+
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                string curr = ExpandFromMiddle(s, i, i);
+                if (curr.Length > max)
+                {
+                    max = curr.Length;
+                    ans = curr;
+                }
+                curr = ExpandFromMiddle(s, i, i + 1);
+                if (curr.Length > max)
+                {
+                    max = curr.Length;
+                    ans = curr;
+                }
+            }
+            return s;
+        }
+
+        private static string ExpandFromMiddle(string s, int left, int right)
+        {
+            while (left >= 0 && right < s.Length)
+            {
+                if (s[left] == s[right])
+                {
+                    left--;
+                    right++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return s.Substring(left + 1, right - left - 1);
+        }
+
+        
 
     }
 }
