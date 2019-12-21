@@ -2023,6 +2023,7 @@ namespace Algorithms_N_Exercises
             string ans = "";
             int max = 0;
 
+           
             for (int i = 0; i < s.Length - 1; i++)
             {
                 string curr = ExpandFromMiddle(s, i, i);
@@ -2038,7 +2039,7 @@ namespace Algorithms_N_Exercises
                     ans = curr;
                 }
             }
-            return s;
+            return ans;
         }
 
         private static string ExpandFromMiddle(string s, int left, int right)
@@ -2059,7 +2060,43 @@ namespace Algorithms_N_Exercises
             return s.Substring(left + 1, right - left - 1);
         }
 
-        
+        // Given a string, find the length of the longest substring without repeating characters.
+        public static int LengthOfLongestSubstring(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return 0;
+            }           
+
+            int left = 0;
+            int right = 0;
+            int max = 0;
+            int curr = 0;
+            var set = new HashSet<char>();
+
+            while (right < s.Length)
+            {
+                if (set.Contains(s[right]))
+                {
+                    while (s[left] != s[right])
+                    {
+                        curr--;
+                        set.Remove(s[left]);
+                        left++;
+                    }
+                    left++;
+                }
+                else
+                {
+                    set.Add(s[right]);
+                    curr++;
+                    max = Math.Max(max, curr);
+                }
+                right++;
+            }
+
+            return max;
+        }
 
     }
 }

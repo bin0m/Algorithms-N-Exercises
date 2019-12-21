@@ -1102,5 +1102,89 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual("ada", ArraysAndStrings.LongestPalindrome("badac"));
         }
+
+        [TestMethod]
+        public void LongestPalindromeTest2()
+        {
+            Assert.AreEqual("", ArraysAndStrings.LongestPalindrome(""));
+        }
+
+        [TestMethod]
+        public void LongestPalindromeTest3()
+        {
+            Assert.AreEqual("a", ArraysAndStrings.LongestPalindrome("a"));
+        }
+
+        [TestMethod]
+        public void LongestPalindromeTest4()
+        {
+            Assert.AreEqual("aa", ArraysAndStrings.LongestPalindrome("aab"));
+        }
+
+        [TestMethod]
+        public void LongestPalindromeTest5()
+        {
+            Assert.AreEqual("aa", ArraysAndStrings.LongestPalindrome("baa"));
+        }
+
+        [TestMethod]
+        public void LongestPalindromeTest6()
+        {
+            Assert.AreEqual("ada", ArraysAndStrings.LongestPalindrome("adabc"));
+        }
+
+        [TestMethod]
+        public void LongestPalindromeTest7()
+        {
+            Assert.AreEqual("ada", ArraysAndStrings.LongestPalindrome("bcada"));
+        }
+
+        [TestMethod]
+        public void LongestPalindromeTest8()
+        {
+            Assert.AreEqual("adda", ArraysAndStrings.LongestPalindrome("dbaddac"));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest1()
+        {
+            Assert.AreEqual(3, ArraysAndStrings.LengthOfLongestSubstring("abcabcbb"));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest2()
+        {
+            Assert.AreEqual(0, ArraysAndStrings.LengthOfLongestSubstring(""));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest3()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.LengthOfLongestSubstring("a"));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest4()
+        {
+            Assert.AreEqual(1, ArraysAndStrings.LengthOfLongestSubstring("aa"));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest5()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.LengthOfLongestSubstring("aba"));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest6()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.LengthOfLongestSubstring("abbb"));
+        }
+
+        [TestMethod]
+        public void LengthOfLongestSubstringTest7()
+        {
+            Assert.AreEqual(2, ArraysAndStrings.LengthOfLongestSubstring("bbbba"));
+        }
     }
 }
