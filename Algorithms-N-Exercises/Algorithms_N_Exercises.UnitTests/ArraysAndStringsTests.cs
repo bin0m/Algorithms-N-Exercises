@@ -1186,5 +1186,65 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual(2, ArraysAndStrings.LengthOfLongestSubstring("bbbba"));
         }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved1()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved(""));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved2()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("a"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved3()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aa"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved4()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aaa"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved5()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aab"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved6()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aaab"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved7()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aaabb"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved8()
+        {
+            Assert.AreEqual("NO", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aabbcd"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved9()
+        {
+            Assert.AreEqual("YES", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aaabbbcccd"));
+        }
+
+        [TestMethod]
+        public void IsSameCharFrequencyWhenOneCharCanBeRemoved10()
+        {
+            Assert.AreEqual("NO", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aaabbbcccdd"));
+        }
     }
 }
