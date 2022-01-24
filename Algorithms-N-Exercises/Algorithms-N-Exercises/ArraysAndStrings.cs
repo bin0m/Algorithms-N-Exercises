@@ -1732,10 +1732,10 @@ namespace Algorithms_N_Exercises
 
             for (int c = 0; c < cols; c++)
             {
-                int start = mat[0,c];
+                int start = mat[0, c];
                 for (int k = 1; k < Math.Min(rows, cols - c); k++)
                 {
-                    if (mat[k,c + k] != start)
+                    if (mat[k, c + k] != start)
                     {
                         return false;
                     }
@@ -1744,10 +1744,10 @@ namespace Algorithms_N_Exercises
 
             for (int r = 0; r < rows; r++)
             {
-                int start = mat[r,0];
+                int start = mat[r, 0];
                 for (int k = 1; k < Math.Min(cols, rows - r); k++)
                 {
-                    if (mat[r + k,k] != start)
+                    if (mat[r + k, k] != start)
                     {
                         return false;
                     }
@@ -2023,7 +2023,7 @@ namespace Algorithms_N_Exercises
             string ans = "";
             int max = 0;
 
-           
+
             for (int i = 0; i < s.Length - 1; i++)
             {
                 string curr = ExpandFromMiddle(s, i, i);
@@ -2066,7 +2066,7 @@ namespace Algorithms_N_Exercises
             if (string.IsNullOrEmpty(s))
             {
                 return 0;
-            }           
+            }
 
             int left = 0;
             int right = 0;
@@ -2098,5 +2098,58 @@ namespace Algorithms_N_Exercises
             return max;
         }
 
-    }
+        // Sherlock and the Valid String
+        // Return YES, when all characters of the string appear the same number of times.
+        // It is also valid if he can remove just  character at  index in the string, and the remaining characters will occur the same number of times.
+        public static string IsSameCharFrequencyWhenOneCharCanBeRemoved(string s)
+        {
+            var freq = new Dictionary<char, int>(26);
+            foreach (char c in s)
+            {
+                if (freq.ContainsKey(c))
+                {
+                    freq[c]++;
+                }
+                else
+                {
+                    freq[c] = 1;
+                }
+            }
+            var numOfFreq = new Dictionary<int, int>();
+            foreach (int count in freq.Values)
+            {
+                if (numOfFreq.ContainsKey(count))
+                {
+                    numOfFreq[count]++;
+                }
+                else
+                {
+                    numOfFreq[count] = 1;
+                }
+            }
+
+            if (numOfFreq.Count > 2)
+            {
+                return "NO";
+            }
+            if (numOfFreq.Count == 2)
+            {
+                if (numOfFreq.ContainsKey(1) && numOfFreq[1] == 1)
+                {
+                    return "YES";
+                }
+
+                int minFreq = Math.Min(numOfFreq.Keys.First(), numOfFreq.Keys.Last());
+                int maxFreq = Math.Max(numOfFreq.Keys.First(), numOfFreq.Keys.Last());
+
+                if ((maxFreq - minFreq == 1) && (numOfFreq[maxFreq] == 1))
+                {
+                    return "YES";
+                }
+                return "NO";
+            }
+            return "YES";
+        }
+
+    }    
 }
