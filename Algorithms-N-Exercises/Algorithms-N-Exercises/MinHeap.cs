@@ -8,7 +8,7 @@ namespace Algorithms_N_Exercises
 {
     public class MinHeap
     {
-        private List<int> _baseHeap;
+        private readonly List<int> _baseHeap;
 
         public bool IsEmpty
         {

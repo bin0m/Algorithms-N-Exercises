@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Text;
 
 namespace Algorithms_N_Exercises
 {
-    class Program
+    static class Program
     {
 
         static void Main(string[] args)
@@ -14,7 +15,7 @@ namespace Algorithms_N_Exercises
 
             Console.WriteLine($"IsUnique: result={ArraysAndStrings.IsStringUnique("dFf")}, expected=True");
 
-            Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb","cbba")}, expected=True");
+            Console.WriteLine($"CheckPermutation: result={ArraysAndStrings.CheckPermutation("abcb", "cbba")}, expected=True");
 
             Console.WriteLine($"IsPalindromePermutation: result={ArraysAndStrings.IsPalindromePermutation("Tact coa")}, expected=True");
             Console.WriteLine($"IsPalindromePermutation: result={ArraysAndStrings.IsPalindromePermutation("bbcc bc")}, expected=False");
@@ -38,8 +39,8 @@ namespace Algorithms_N_Exercises
             Console.WriteLine($"QueueViaStacks: result={queueViaStacks.Dequeue()}, expected=3");
 
             var mat1 = new[,] { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
-            Console.WriteLine($"RotateMatrix: result=[\n{ArraysAndStrings.MatrixToString(mat1)}], expected=[\n[13, 9, 5, 1],\n[14,10, 6, 2],\n[15,11, 7, 3],\n[16,12, 8, 4]\n]");
-            
+            Console.WriteLine($"RotateMatrix: result=[\n{MatrixToString(mat1)}], expected=[\n[13, 9, 5, 1],\n[14,10, 6, 2],\n[15,11, 7, 3],\n[16,12, 8, 4]\n]");
+
             var res01 = Trees.ListOfDepths(Trees.CreateBinaryTree(new int?[] { 3, 9, 20, null, null, 15, 7 }));
             Console.WriteLine($"result=[[{res01[0].First.Value.Val}],[{res01[1].First.Value.Val},{res01[1].Last.Value.Val}],[{res01[2].First.Value.Val},{res01[2].Last.Value.Val}]],expected = [[3],[9,20],[15,7]]");
 
@@ -50,32 +51,86 @@ namespace Algorithms_N_Exercises
 
             ArraysAndStrings.ArrayInitializations();
 
-            Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("a,O,","qpz,,%ar0O")}, expected=True");
+            Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("a,O,", "qpz,,%ar0O")}, expected=True");
             Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("a,O,", "qpz,%ar0O")}, expected=False");
             Console.WriteLine($"CanBeWrittenFrom: result={ArraysAndStrings.CanBeWrittenFrom("abba", "Banda b")}, expected=False");
 
-            Console.WriteLine($"WordCountEngine: result=[{ArraysAndStrings.MatrixToString(ArraysAndStrings.WordCountEngine("Practice makes perfect, you'll get perfecT by practice. just practice! just just just!!"))}], expected=[[\"just\",\"4\"],[\"practice\",\"3\"],[\"perfect\",\"2\"],[\"makes\",\"1\"],[\"youll\",\"1\"],[\"get\",\"1\"],[\"by\",\"1\"]]");
-            Console.WriteLine($"WordCountEngine: result=[{ArraysAndStrings.MatrixToString(ArraysAndStrings.WordCountEngine("Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. "))}], expected=[[\"and\",\"4\"],[\"every\",\"3\"],[\"is\",\"3\"],[\"a\",\"3\"],[\"quotation\",\"3\"],[\"all\",\"2\"],[\"book\",\"1\"],[\"house\",\"1\"],[\"out\",\"1\"],[\"of\",\"1\"],[\"forests\",\"1\"],[\"mines\",\"1\"],[\"stone\",\"1\"],[\"quarries\",\"1\"],[\"man\",\"1\"],[\"from\",\"1\"],[\"his\",\"1\"],[\"ancestors\",\"1\"]]");
+            Console.WriteLine($"WordCountEngine: result=[{MatrixToString(ArraysAndStrings.WordCountEngine("Practice makes perfect, you'll get perfecT by practice. just practice! just just just!!"))}], expected=[[\"just\",\"4\"],[\"practice\",\"3\"],[\"perfect\",\"2\"],[\"makes\",\"1\"],[\"youll\",\"1\"],[\"get\",\"1\"],[\"by\",\"1\"]]");
+            Console.WriteLine($"WordCountEngine: result=[{MatrixToString(ArraysAndStrings.WordCountEngine("Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. "))}], expected=[[\"and\",\"4\"],[\"every\",\"3\"],[\"is\",\"3\"],[\"a\",\"3\"],[\"quotation\",\"3\"],[\"all\",\"2\"],[\"book\",\"1\"],[\"house\",\"1\"],[\"out\",\"1\"],[\"of\",\"1\"],[\"forests\",\"1\"],[\"mines\",\"1\"],[\"stone\",\"1\"],[\"quarries\",\"1\"],[\"man\",\"1\"],[\"from\",\"1\"],[\"his\",\"1\"],[\"ancestors\",\"1\"]]");
 
             Console.WriteLine($"ReverseWords: result=[{new string(ArraysAndStrings.ReverseWords(new char[] { 'y', 'o', 'u', ' ', 'm', 'e' }))}], expected=[me you]");
 
-            Console.WriteLine($"MeetingPlanner: result=[{ArraysAndStrings.MeetingPlanner(new[,] { {7,12 }}, new[,] { { 2, 11 } },5)}], expected = []");
+            Console.WriteLine($"MeetingPlanner: result=[{ArraysAndStrings.MeetingPlanner(new[,] { { 7, 12 } }, new[,] { { 2, 11 } }, 5)}], expected = []");
 
             Console.WriteLine($"IsMatchRegex: result={ArraysAndStrings.IsMatchRegex("abaa", "a.*a*")}, expected = True");
 
-            Console.WriteLine($"GetShortestUniqueSubstring: result={ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a','b'},"-acb")}, expected = acb");
+            Console.WriteLine($"GetShortestUniqueSubstring: result={ArraysAndStrings.GetShortestUniqueSubstring(new[] { 'a', 'b' }, "-acb")}, expected = acb");
 
-            Console.WriteLine($"GetShortestUniqueSubstring: result=[{ArraysAndStrings.ArrayToString(ArraysAndStrings.FindArrayQuadruplet(new[] { 2, 7, 4, 0, 9, 5, 1, 3 }, 20))}], expected = [0, 4, 7, 9]");
+            Console.WriteLine($"GetShortestUniqueSubstring: result=[{ArrayToString(ArraysAndStrings.FindArrayQuadruplet(new[] { 2, 7, 4, 0, 9, 5, 1, 3 }, 20))}], expected = [0, 4, 7, 9]");
 
-            Console.WriteLine($"GetShortestUniqueSubstring: result={MathAndLogicPuzzles.RootOfNumber(27,3)}, expected = 3.0");
+            Console.WriteLine($"GetShortestUniqueSubstring: result={MathAndLogicPuzzles.RootOfNumber(27, 3)}, expected = 3.0");
 
             Console.WriteLine($"NumOfPathsToDest: result={ArraysAndStrings.NumOfPathsToDest(4)}, expected = 5");
 
             Console.WriteLine($"IsContainSubstringPermutation: result={ArraysAndStrings.IsContainSubstringPermutation3("dcda", "adc")}, expected = True");
 
-            
+
 
             Console.ReadLine();
+        }
+
+        // helper method to print array
+        // O(n)
+        private static string ArrayToString(int[] arr)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sb.Append(arr[i].ToString()).Append(", ");
+            }
+
+            sb.Remove(sb.Length - 2, 2);
+            return sb.ToString();
+        }
+
+        //helper method to print matrix
+        // O(n^2)
+        private static string MatrixToString(int[,] matrix)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
+            {
+                sb.Append('[');
+                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
+                {
+                    sb.Append(matrix[i, j].ToString().PadLeft(2)).Append(',');
+                }
+
+                sb.Length--;
+                sb.AppendLine("],");
+            }
+
+            return sb.ToString();
+        }
+
+        //helper method to print matrix
+        // O(n^2)
+        private static string MatrixToString(string[,] matrix)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
+            {
+                sb.Append('[');
+                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
+                {
+                    sb.Append('"').Append(matrix[i, j]).Append('"').Append(',');
+                }
+
+                sb.Length--;
+                sb.Append("],");
+            }
+
+            return sb.ToString();
         }
     }
 }

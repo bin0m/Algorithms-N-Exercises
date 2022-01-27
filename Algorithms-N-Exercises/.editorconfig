@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# S2368: Public methods should not have multidimensional array parameters
+dotnet_diagnostic.S2368.severity = none
+
+# S3928: Parameter names used into ArgumentException constructors should match an existing one 
+dotnet_diagnostic.S3928.severity = suggestion

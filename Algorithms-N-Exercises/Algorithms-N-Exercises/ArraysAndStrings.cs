@@ -135,17 +135,14 @@ namespace Algorithms_N_Exercises
 
             for (int i = 0; i < abc.Length; i++)
             {
-                if (abc[i] > 0)
+                if (abc[i] > 0 && abc[i] % 2 == 1)
                 {
-                    if (abc[i] % 2 == 1)
+                    if (singleExists)
                     {
-                        if (singleExists)
-                        {
-                            return false;
-                        }
-
-                        singleExists = true;
+                        return false;
                     }
+
+                    singleExists = true;
                 }
             }
 
@@ -280,27 +277,7 @@ namespace Algorithms_N_Exercises
             }
 
             return true;
-        }
-
-        //helper method to print matrix
-        // O(n^2)
-        public static string MatrixToString(int[,] matrix)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
-            {
-                sb.Append('[');
-                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
-                {
-                    sb.Append(matrix[i, j].ToString().PadLeft(2)).Append(',');
-                }
-
-                sb.Length--;
-                sb.AppendLine("],");
-            }
-
-            return sb.ToString();
-        }
+        }       
 
         public static void ArrayInitializations()
         {
@@ -439,28 +416,7 @@ namespace Algorithms_N_Exercises
             }
 
             return sb.ToString();
-        }
-
-        //helper method to print matrix
-        // O(n^2)
-        public static string MatrixToString(string[,] matrix)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
-            {
-                sb.Append('[');
-                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
-                {
-                    sb.Append('"').Append(matrix[i, j]).Append('"').Append(',');
-                }
-
-                sb.Length--;
-                sb.Append("],");
-            }
-
-            return sb.ToString();
-        }
-
+        }  
 
         // helper method for MeetingPlanner
         private static int[] FindCommonSlot(int startA, int endA, int startB, int endB)
@@ -774,19 +730,7 @@ namespace Algorithms_N_Exercises
             return new int[0];
         }
 
-        // helper method to print array
-        // O(n)
-        public static string ArrayToString(int[] arr)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < arr.Length; i++)
-            {
-                sb.Append(arr[i].ToString()).Append(", ");
-            }
-
-            sb.Remove(sb.Length - 2, 2);
-            return sb.ToString();
-        }
+    
 
         // returns a flattened version of dictionary, that can contain inner dictionaries
         // time: O(n)
@@ -865,13 +809,13 @@ namespace Algorithms_N_Exercises
         // size: O(1)
         public static List<int> SortToWave(List<int> A)
         {
-            if (A == null || A.Count() < 2)
+            if (A == null || A.Count < 2)
             {
                 return A;
             }
 
             A.Sort();
-            for (int i = 1; i < A.Count(); i += 2)
+            for (int i = 1; i < A.Count; i += 2)
             {
                 Swap(A, i, i - 1);
             }
@@ -936,13 +880,10 @@ namespace Algorithms_N_Exercises
                         return;
                     }
 
-                    if (a[i] == i + 2 || a[i] == i + 3)
+                    if ((a[i] == i + 2 || a[i] == i + 3) && a[i] > a[i + 1])
                     {
-                        if (a[i] > a[i + 1])
-                        {
-                            Swap(a, i, i + 1);
-                            bribes++;
-                        }
+                        Swap(a, i, i + 1);
+                        bribes++;
                     }
 
                     if (a[i] != i + 1)
@@ -1120,7 +1061,7 @@ namespace Algorithms_N_Exercises
 
             int[] arr = new int[(rowEnd + 1) * (colEnd + 1)];
             int index = 0;
-            //arr[index++] = inputMatrix[0, 0];
+
             while (rowStart <= rowEnd && colStart <= colEnd)
             {
                 for (int col = colStart; col <= colEnd; col++)
@@ -1896,7 +1837,7 @@ namespace Algorithms_N_Exercises
             IList<IList<string>> groups = new List<IList<string>>();
             var dicts = new List<Dictionary<char, int>>();
 
-            if (strs == null && strs.Length == 0)
+            if (strs == null || strs.Length == 0)
             {
                 return groups;
             }
@@ -1916,8 +1857,10 @@ namespace Algorithms_N_Exercises
                 }
                 if (!IsGroupAssigned)
                 {
-                    var newGroup = new List<string>();
-                    newGroup.Add(s);
+                    var newGroup = new List<string>
+                    {
+                        s
+                    };
                     groups.Add(newGroup);
 
                     var newDict = CreateDict(s);
