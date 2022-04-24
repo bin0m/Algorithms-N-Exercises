@@ -1246,5 +1246,96 @@ namespace Algorithms_N_Exercises.UnitTests
         {
             Assert.AreEqual("NO", ArraysAndStrings.IsSameCharFrequencyWhenOneCharCanBeRemoved("aaabbbcccdd"));
         }
+
+        [TestMethod]
+        public void FindIfPathIsPossibleTest1()
+        {
+            int[,] maze = new int[,]
+            {
+                {0}
+            };
+            int[] start = {0, 0};
+            int[] end = {0, 0};
+
+            Assert.AreEqual(true, ArraysAndStrings.FindIfPathIsPossible(maze, start, end));
+        }
+
+        [TestMethod]
+        public void FindIfPathIsPossibleTest2()
+        {
+            int[,] maze = new int[,]
+            {
+                {0, 0},
+                {1, 0}
+            };
+            int[] start = { 0, 0 };
+            int[] end = { 1, 1 };
+
+            Assert.AreEqual(true, ArraysAndStrings.FindIfPathIsPossible(maze, start, end));
+        }
+
+        [TestMethod]
+        public void FindIfPathIsPossibleTest3()
+        {
+            int[,] maze = new int[,]
+            {
+                {0, 0, 1, 0},
+                {1, 0, 1, 0},
+                {0, 0, 1, 0},
+                {0, 0, 1, 0},
+            };
+            int[] start = { 0, 0 };
+            int[] end = { 3, 3 };
+
+            Assert.AreEqual(false, ArraysAndStrings.FindIfPathIsPossible(maze, start, end));
+        }
+
+        [TestMethod]
+        public void FindIfPathIsPossibleTest4()
+        {
+            int[,] maze = new int[,]
+            {
+                {0, 0, 1, 0},
+                {1, 0, 1, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
+            };
+            int[] start = { 0, 0 };
+            int[] end = { 3, 3 };
+
+            Assert.AreEqual(true, ArraysAndStrings.FindIfPathIsPossible(maze, start, end));
+        }
+
+        [TestMethod]
+        public void FindIfPathIsPossibleTest5()
+        {
+            int[,] maze = new int[,]
+            {
+                {0, 1, 0, 0},
+                {1, 1, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 1, 0},
+            };
+            int[] start = { 3, 3 };
+            int[] end = { 0, 0 };
+
+            Assert.AreEqual(false, ArraysAndStrings.FindIfPathIsPossible(maze, start, end));
+        }
+
+        [TestMethod]
+        public void FindIfPathIsPossibleTest6()
+        {
+            int[,] maze = new int[,]
+            {
+                {0, 0, 1, 0},
+                {1, 0, 1, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
+            };
+            int[] start = { 3, 3 };
+            int[] end = { 0, 0 };
+
+            Assert.AreEqual(true, ArraysAndStrings.FindIfPathIsPossible(maze, start, end));
+        }
     }
 }
