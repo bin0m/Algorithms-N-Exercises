@@ -2094,5 +2094,71 @@ namespace Algorithms_N_Exercises
             return "YES";
         }
 
+        // Given 2D matrix N*N
+        // 0 is a passable point and 1 is a “wall”.
+        // Implement a function that returns true if there is a valid path between 2 points in a maze
+        public static bool FindIfPathIsPossible(int[,] maze, int[] start, int[] end)
+        {
+            bool[,] visited = new bool[maze.GetUpperBound(0) + 1, maze.GetUpperBound(1) + 1];
+            Queue<int[]> queue = new Queue<int[]>();
+            queue.Enqueue(start);
+
+            // BFS approach
+            while (queue.Count > 0)
+            {
+                int[] node = queue.Dequeue();
+
+                if (node[0] == end[0] && node[1] == end[1])
+                {
+                    return true;
+                }
+
+                int i = node[0];
+                int j = node[1];
+                visited[i, j] = true;
+
+                List<int[]> adjacencies = GetAdjacencies(maze, node);
+                foreach (var adjacency in adjacencies)
+                {
+                    if (!visited[adjacency[0], adjacency[1]])
+                    {
+                        queue.Enqueue(adjacency);
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        // Helper method for FindIfPathIsPossible()
+        private static List<int[]> GetAdjacencies(int[,] maze, int[] node)
+        {
+            List<int[]> adjacencies = new List<int[]>();
+            int i = node[0];
+            int j = node[1];
+
+            if (i - 1 >= 0 && maze[i - 1, j] != 1)
+            {
+                adjacencies.Add(new int[] { i - 1, j });
+            }
+
+            if (i + 1 <= maze.GetUpperBound(0) && maze[i + 1, j] != 1)
+            {
+                adjacencies.Add(new int[] { i + 1, j });
+            }
+
+            if (j - 1 >= 0 && maze[i, j - 1] != 1)
+            {
+                adjacencies.Add(new int[] { i, j - 1 });
+            }
+
+            if (j + 1 <= maze.GetUpperBound(1) && maze[i, j + 1] != 1)
+            {
+                adjacencies.Add(new int[] { i, j + 1 });
+            }
+
+            return adjacencies;
+        }
+
     }    
 }
